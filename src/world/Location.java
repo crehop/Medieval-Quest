@@ -1,4 +1,4 @@
-package Main;
+package world;
 
 public class Location {
 	private float x;

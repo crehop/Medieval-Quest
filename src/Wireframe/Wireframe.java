@@ -1,8 +1,9 @@
-package Wireframe;
+package wireframe;
 import java.util.ArrayList;
 
+import world.Location;
 
-import Main.Location;
+
 
 
 public class Wireframe {

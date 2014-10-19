@@ -1,8 +1,8 @@
-package Renderer;
+package renderer;
 import static org.lwjgl.opengl.GL11.*;
+import wireframe.Wireframe;
+import wireframe.WireframePart;
 
-import Wireframe.Wireframe;
-import Wireframe.WireframePart;
 
 public class Renderer {
 	public static void renderFrame(){

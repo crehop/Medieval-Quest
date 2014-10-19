@@ -1,6 +1,8 @@
 package Main;
 import java.util.ArrayList;
 
+import loops.MenuLoop;
+
 import org.lwjgl.LWJGLException;
 import static org.lwjgl.input.Keyboard.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -9,51 +11,64 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
 import org.lwjgl.opengl.*;
+import org.newdawn.slick.opengl.Texture;
 
-import Renderer.TextureHandler;
-import Wireframe.Wireframe;
-import Wireframe.WireframePart;
+import renderer.Camera;
+import renderer.TextureHandler;
+import wireframe.Wireframe;
+import wireframe.WireframePart;
+
 
 public class Main {
 	public static Camera cam;
-	private static boolean pressed = false;
 	private static int partID = 0;
 	public static ArrayList<Wireframe> wireframes = new ArrayList<Wireframe>();
+	public static String loop = "start";
 	
 	public static void main(String[] args) {
 		initiate();
-		gameLoop();
+		loop();
 		scrub();		
 	}
-	private static void gameLoop() {
-		TextureHandler.initialize();
+	public static void loop() {
 		cam = new Camera(35,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
 		while(!Display.isCloseRequested()){
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			{
-				{
-
-					glTranslatef(0,0,-20);
-					if(Keyboard.isKeyDown(KEY_F) && pressed == false){
-						Location home = new Location(0.3f,0.1f,2.2f);
-						Location start = new Location (1.3f,0.07f,0.03f);
-						Location end = new Location(0f,-0.2f,1.1f);
-						Wireframe frame = new Wireframe();
-						WireframePart part = new WireframePart(start,end,frame);
-						frame.addPart(part);
-						frame.setLocation(home);
-						System.out.println("CONFIRM F PRESS");
-						pressed = true;
-					}
-				}
-			}
+			confirmLoop();
 			Controls.checkInput();
-			Renderer.Renderer.renderFrame();
-			cam.useView();
+			renderer.Renderer.renderFrame();
 			glEnd();
 			Display.sync(60);
 			Display.update();
 		}
+	}
+	private static void confirmLoop() {
+		switch(loop){
+		case"start": 
+			startLoop();
+			System.out.println("StartLoop");
+			break;
+		case"menu": 
+			System.out.println("MenuLoop");
+			menuLoop();
+			break;
+		case"game":
+			System.out.println("GameLoop");
+			gameLoop();
+			break;
+		default:
+			System.out.println("DEFAULT LOOP WARNING!!!");
+			startLoop();
+			break;
+		}
+	}
+	private static void menuLoop() {
+		
+	}
+	private static void startLoop() {
+		MenuLoop.render();
+	}
+	private static void gameLoop() {
 	}
 	private static void initiate() {
 		try {
@@ -63,10 +78,6 @@ public class Main {
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
-	}
-	public static int getPartID() {
-		partID++;
-		return partID;
 	}
 	public static void scrub(){
 		Display.destroy();

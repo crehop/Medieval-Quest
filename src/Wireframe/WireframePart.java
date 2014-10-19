@@ -1,4 +1,4 @@
-package Wireframe;
+package wireframe;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -7,16 +7,18 @@ import java.util.concurrent.ScheduledExecutorService;
 
 import static org.lwjgl.input.Keyboard.*;
 
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.*;
 import org.lwjgl.util.Color;
 
-import Main.Location;
+import world.Location;
+
 import Main.Main;
 import static org.lwjgl.opengl.GL11.*;
 
 public class WireframePart{
-	private final int ID = Main.getPartID();
+	private final int ID = entities.ID.getPartID();
 	private boolean draw = true;
 	private Wireframe body;
 	private Location start;
@@ -103,63 +105,10 @@ public class WireframePart{
 				glEnd();
 			}
 			glPopMatrix();
+			Main.cam.useView();
 			Display.update();
 			System.out.println("CONFIRM RENDER");
 		}
-
-	}
-	public void render(float rotate){
-		if(draw == true){
-			glPushMatrix();
-			glTranslatef(0,0,-10);
-			glRotatef(0.01f,0.01f,0.01f,0);
-			glBegin(GL_QUADS);
-			{
-				
-				glVertex3f(-1,-1,1);
-				glVertex3f(-1,1,1);
-				glVertex3f(1,1,1);
-				glVertex3f(1,-1,1);
-
-				//BackFace;
-				glRandomColor();
-				glVertex3f(-1,-1,-1);
-				glVertex3f(-1,1,-1);
-				glVertex3f(1,1,-1);
-				glVertex3f(1,-1,-1);
-				
-				//BottomFace
-				glRandomColor();
-				glVertex3f(-1,-1,-1);
-				glVertex3f(-1,-1,1);
-				glVertex3f(-1,1,1);
-				glVertex3f(-1,1,-1);
-
-				//TopFace
-				glRandomColor();
-				glVertex3f(1,-1,-1);
-				glVertex3f(1,-1,1);
-				glVertex3f(1,1,1);
-				glVertex3f(1,1,-1);
-
-				//LeftFace
-				glRandomColor();
-				glVertex3f(-1,-1,-1);
-				glVertex3f(1,-1,-1);
-				glVertex3f(1,-1,1);
-				glVertex3f(-1,-1,1);
-
-				//Right Face
-				glRandomColor();
-				glVertex3f(-1,1,-1);
-				glVertex3f(1,1,-1);
-				glVertex3f(1,1,1);
-				glVertex3f(-1,1,1);
-			}
-			glEnd();
-		}
-		glPopMatrix();
-		Display.update();
 
 	}
 	public Location getStart() {
@@ -176,8 +125,7 @@ public class WireframePart{
 	}
 	private static void glRandomColor() {
 		Random rand = new Random();
-		Color color = new Color();
-		color.set(rand.nextInt(100), rand.nextInt(100), rand.nextInt(100));
-		glColor3f(color.getRed()/100,color.getBlue()/100,color.getGreen()/100);
-		}
+		glColor3f(rand.nextFloat(),rand.nextFloat(),rand.nextFloat());
+	}
+
 }

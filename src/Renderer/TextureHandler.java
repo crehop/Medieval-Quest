@@ -1,4 +1,4 @@
-package Renderer;
+package renderer;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,12 +12,12 @@ import org.newdawn.slick.opengl.TextureLoader;
 
 public class TextureHandler {
 	public static ArrayList<Texture> textures = new ArrayList<Texture>();
-	public static void load(String textureName){
+	public static Texture load(String textureName){
 		FileInputStream stream;
 		try {
 			stream = new FileInputStream(new File("textures/" + textureName + ".png"));
 			Texture texture = TextureLoader.getTexture("PNG", stream);	
-			textures.add(texture);
+			return texture;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -25,8 +25,9 @@ public class TextureHandler {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}
-	public static void initialize() {
-		load("splash");
+	public static Texture getTexture(String name){
+			return load(name);
 	}
 }

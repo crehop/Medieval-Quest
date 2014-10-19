@@ -1,4 +1,4 @@
-package Renderer;
+package renderer;
 
 import org.lwjgl.util.vector.Vector3f;
 
