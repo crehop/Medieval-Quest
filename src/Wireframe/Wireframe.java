@@ -1,7 +1,8 @@
 package wireframe;
 import java.util.ArrayList;
 
-import world.Location;
+import server.Location;
+
 
 
 

@@ -6,8 +6,11 @@ import static org.lwjgl.input.Keyboard.*;
 public class Controls {
 
 	public static void checkInput() {
+		if(Keyboard.isKeyDown(KEY_ESCAPE)){
+			Main.scrub();
+		}
 		if(Keyboard.isKeyDown(KEY_W)){
-			Main.cam.setZ(Main.cam.getZ() + 0.01f);
+			Main.setLoop("game");
 		}
 		if(Keyboard.isKeyDown(KEY_S)){
 			Main.cam.setZ(Main.cam.getZ() - 0.01f);

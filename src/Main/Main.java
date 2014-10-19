@@ -1,22 +1,21 @@
 package Main;
 import java.util.ArrayList;
 
+import loops.GameLoop;
 import loops.MenuLoop;
+import loops.StartLoop;
 
 import org.lwjgl.LWJGLException;
-import static org.lwjgl.input.Keyboard.*;
 import static org.lwjgl.opengl.GL11.*;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
 import org.lwjgl.opengl.*;
-import org.newdawn.slick.opengl.Texture;
 
 import renderer.Camera;
-import renderer.TextureHandler;
+import server.Location;
+import voxel.Voxel;
 import wireframe.Wireframe;
-import wireframe.WireframePart;
 
 
 public class Main {
@@ -34,8 +33,8 @@ public class Main {
 		cam = new Camera(35,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
 		while(!Display.isCloseRequested()){
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			confirmLoop();
 			Controls.checkInput();
+			confirmLoop();
 			renderer.Renderer.renderFrame();
 			glEnd();
 			Display.sync(60);
@@ -46,29 +45,26 @@ public class Main {
 		switch(loop){
 		case"start": 
 			startLoop();
-			System.out.println("StartLoop");
 			break;
 		case"menu": 
-			System.out.println("MenuLoop");
 			menuLoop();
 			break;
 		case"game":
-			System.out.println("GameLoop");
 			gameLoop();
 			break;
 		default:
-			System.out.println("DEFAULT LOOP WARNING!!!");
 			startLoop();
 			break;
 		}
 	}
 	private static void menuLoop() {
-		
-	}
-	private static void startLoop() {
 		MenuLoop.render();
 	}
+	private static void startLoop() {
+		StartLoop.render();
+	}
 	private static void gameLoop() {
+		GameLoop.loop();
 	}
 	private static void initiate() {
 		try {
@@ -81,6 +77,14 @@ public class Main {
 	}
 	public static void scrub(){
 		Display.destroy();
+	}
+	public static void setLoop(String loop2){
+		if(loop.equalsIgnoreCase("game")||loop.equalsIgnoreCase("menu")||loop.equalsIgnoreCase("start")){
+			Main.loop = loop2;
+		}
+		else{
+			System.out.println("IMPROPER LOOP SELECTED MAIN.JAVA");
+		}
 	}
 
 }
