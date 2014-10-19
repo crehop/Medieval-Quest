@@ -1,0 +1,351 @@
+/* generic */
+.hidden {
+    display: none;
+}
+
+.module_content .align-left {
+    text-align: left;
+}
+
+.module_content .align-center {
+    text-align: center;
+}
+
+.module_content .align-right{
+    text-align: right;
+}
+
+
+/* status */
+.m_minecraftserverstatus {
+    padding: 10px;
+}
+
+.m_minecraftserverstatus .header {
+    height: 37px;
+    margin-bottom: 14px;
+}
+
+.m_minecraftserverstatus .status {
+    float: left;
+    margin-right: 5px;
+    height: 42px;
+    width: 42px;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.m_minecraftserverstatus .main {
+    float: left;
+}
+
+.m_minecraftserverstatus .title {
+    font-size: 18px;
+    padding-bottom: 4px;
+}
+
+.m_minecraftserverstatus .host {
+    font-size: 14px;
+}
+
+.m_minecraftserverstatus .description {
+    padding: 2px 7px;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.m_minecraftserverstatus .data {
+	width: 110px;
+	line-height: 18px;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+}
+
+
+/* new server status */
+.m_minecraftserverstatus_new {
+	position: relative;
+	line-height: 20px;
+}
+.m_minecraftserverstatus_new:before {
+	content: " ";
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.m_minecraftserverstatus_new .top-area {
+	padding: 11px 12px;
+}
+.m_minecraftserverstatus_new .bottom-area {
+	padding: 11px 12px 0px 12px;
+	position: relative;
+}
+.m_minecraftserverstatus_new .title {
+	padding-bottom: 20px;
+}
+.m_minecraftserverstatus_new .title .status-icon {
+	content: " ";
+	border: 11px solid black;
+	border-radius: 11px;
+	z-index: 5;
+	position: absolute;
+	top: 14px;
+	left: 12px;
+}
+.m_minecraftserverstatus_new .title .status-icon .bg {
+	content: " ";
+	border: 10px solid;
+	border-radius: 10px;
+	z-index: 5;
+	position: absolute;
+	top: -10px;
+	left: -10px;
+}
+.m_minecraftserverstatus_new .title .status-icon .font {
+	z-index: 6;
+	position: absolute;
+	top: -10px;
+	left: -7px;
+	color: black;
+	font-size: 14px;
+	line-height: 20px;
+}
+.m_minecraftserverstatus_new .title .status-icon.status-offline .font {
+	left: -6px;
+}
+.m_minecraftserverstatus_new .title.with-online-icon {
+	padding-left: 33px;
+}
+.m_minecraftserverstatus_new .title .name {
+	font-size: 17px;
+	top: 3px;
+	position: relative;
+}
+.m_minecraftserverstatus_new .title.with-detail-line {
+	padding-bottom: 12px;
+}
+.m_minecraftserverstatus_new .title.with-detail-line .name {
+	top: 0px;
+}
+.m_minecraftserverstatus_new .title.with-detail-line .status-icon {
+	top: 17px;
+}
+.m_minecraftserverstatus_new .title.with-detail-line .status {
+	margin-top: 6px;
+}
+.m_minecraftserverstatus_new .title .detail-line {
+	font-size: 12px;
+	line-height: 15px;
+	position: relative;
+	top: 1px;
+}
+
+.m_minecraftserverstatus_new .status {
+	font-size: 14px;
+	padding: 4px 8px;
+	border-radius: 4px;
+	float: right;
+	cursor: default;
+}
+.m_minecraftserverstatus_new .status.lower-mode {
+	float: none;
+	display: inline-block;
+	margin-top: 8px;
+}
+
+.m_minecraftserverstatus_new .progressbar {
+	height: 21px;
+	width: 100%;
+	border-radius: 6px;
+	position: relative;
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+.m_minecraftserverstatus_new .progressbar .inner {
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.m_minecraftserverstatus_new .progressbar .count {
+	font-size: 14px;
+	left: 0;
+	top: 0;
+	position: absolute;
+	padding: 0px 6px;
+	z-index: 5;
+	line-height: 21px;
+}
+
+.m_minecraftserverstatus_new .graph-canvas {
+	border-radius: 6px;
+	margin-bottom: 5px;
+	height: 46px;
+	width: 0px;
+	visibility: hidden;
+}
+
+.m_minecraftserverstatus_new .records {
+	font-size: 12px;
+	line-height: 21px;
+}
+
+.m_minecraftserverstatus_new .detail-group {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.m_minecraftserverstatus_new .detail .player {
+	display: inline-block;
+	margin-right: 5px;
+	margin-bottom: 7px;
+}
+.m_minecraftserverstatus_new .detail .player img {
+	width: 35px;
+	height: 35px;
+	border-radius: 3px;
+}
+.m_minecraftserverstatus_new.small-avatars .detail .player img {
+	width: 24px;
+	height: 24px;
+}
+.m_minecraftserverstatus_new.large-avatars .detail .player img {
+	width: 43px;
+	height: 43px;
+}
+
+
+
+.m_minecraftserverstatus_new .detail .show-all {
+	font-size: 12px;
+	display: block;
+	margin-top: 1px;
+	cursor: pointer;
+}
+
+.m_minecraftserverstatus_new .detail .server-name {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.m_minecraftserverstatus_new .bottom-area .minimize-bar {
+	font-size: 12px;
+	text-align: center;
+	display: block;
+	cursor: pointer;
+	line-height: 12px;
+	padding-bottom: 11px;
+}
+.m_minecraftserverstatus_new .bottom-area.minimized .detail {
+	display: none;
+}
+
+
+
+/* players online */
+.m_minecraftserverplayersonline {
+    padding: 10px;
+    font-size: 12px;
+}
+.m_minecraftserverplayersonline .header {
+}
+.m_minecraftserverplayersonline .players {
+    padding: 15px 0;
+}
+.m_minecraftserverplayersonline .player {
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin: 0 3px 3px 0;
+}
+.m_minecraftserverplayersonline .character {
+    cursor: pointer;
+}
+.m_minecraftserverplayersonline .pagination {
+    margin-top: 10px;
+    cursor: pointer;
+}
+.m_minecraftserverplayersonline .pagination-loading {
+    display: none;
+    margin: 5px auto;
+}
+
+
+/* top players online */
+.m_minecraftservertopplayersonline {
+    font-size: 12px;
+}
+.m_minecraftservertopplayersonline.no-server {
+	padding:10px;
+}
+.m_minecraftservertopplayersonline .player {
+    clear: both;
+    padding: 5px;
+    line-height: 25px;
+    overflow: hidden;
+}
+.m_minecraftservertopplayersonline .player.first {
+	border-top: none;
+}
+
+.m_minecraftservertopplayersonline .character {
+    cursor: pointer;
+}
+
+.m_minecraftservertopplayersonline .element_avatar {
+    float: left;
+    margin-right: 10px;
+}
+
+.m_minecraftservertopplayersonline .name {
+    margin: 0 75px 0 35px;
+}
+
+.m_minecraftservertopplayersonline .time {
+    float: right;
+    text-align: right;
+    width: 70px;
+    overflow: hidden;
+}
+
+
+/* graphs */
+.m_minecraftservertpsgraph, .m_minecraftserverplayersgraph, .m_minecraftserverresponsegraph, .m_shopactivity, .m_minecraftvoting {
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.m_minecraftservertpsgraph .graph, .m_minecraftserverplayersgraph .graph, .m_minecraftserverresponsegraph .graph, .m_shopactivity .graph, .m_minecraftvoting .graph {
+    visibility: hidden;
+    height: 36px;
+	border: 1px solid #3a3a3a;
+	box-shadow: 1px 1px 2px #000;
+	-moz-box-shadow: 1px 1px 2px #000;
+}
+
+.m_minecraftservertpsgraph .legend, .m_minecraftserverplayersgraph .legend, .m_minecraftserverresponsegraph .legend, .m_shopactivity .legend, .m_minecraftvoting .legend {
+    margin-top: 10px;
+    font-size: 10px;
+    height: 10px;
+    text-transform: uppercase;
+}
+
+.m_minecraftservertpsgraph .legend-label, .m_minecraftserverplayersgraph .legend-label, .m_minecraftserverresponsegraph .legend-label, .m_minecraftvoting .legend-label {
+    float: left;
+    width: 42px;
+	max-width:42px;
+	position: absolute;
+}
+
+.m_shopactivity .elem2 {
+    float: left;
+    width: 50%;
+}
+
+.m_shopactivity p.error {
+    text-align: center;   
+}

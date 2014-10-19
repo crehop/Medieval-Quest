@@ -1,0 +1,126 @@
+.container_spacer .left,
+.container_spacer .right,
+.input-text .tl,
+.input-text .tr,
+.input-text .bl,
+.input-text .br,
+.input-textarea .tl,
+.input-textarea .tr,
+.input-textarea .bl,
+.input-textarea .br,
+.element_popup .popup-header .left,
+.element_popup .popup-header .right,
+.element_smalltitle .left,
+.element_title .left,
+.element_bigtitle .left,
+.element_smalltitle .right,
+.element_title .right,
+.element_bigtitle .right,
+.element_progressbar .left,
+.element_progressbar .current .cleft,
+.element_progressbar .right,
+.element_progressbar .current .cright,
+.element_avatar.image .a_tl,
+.element_avatar.image .a_tr,
+.element_avatar.image .a_bl,
+.element_avatar.image .a_br,
+.widgetbox .widget-title .left,
+.widgetbox .quote-title .left,
+.widgetbox .widget-title .right,
+.widgetbox .quote-title .right,
+.container_header .left,
+.container_footer .left,
+.container_footer .footer_text_left,
+.container_header .right,
+.container_footer .right,
+.container_footer .footer_text_right,
+.m_vmenu .button .left,
+.m_vmenu .button .right,
+.m_header .tl,
+.m_header .tr,
+.m_header .bl,
+.m_header .br,
+.m_news.main .commentbox-header-left,
+.m_plugin_comment .commentbox-header-left,
+.m_news.main .commentbox-header-right,
+.m_plugin_comment .commentbox-header-right,
+.m_news.main .commentbox-footer-left,
+.m_plugin_comment .commentbox-footer-left,
+.m_news.main .commentbox-footer-right,
+.m_plugin_comment .commentbox-footer-right,
+.m_digitalclock .left,
+.m_digitalclock .right,
+.m_forum .breadcrumbs .left,
+.contentbox .block-title .left,
+.m_forum .breadcrumbs .right,
+.contentbox .block-title .right,
+.contentbox .block-container .he.l,
+.contentbox .block-container .he.r,
+.contentbox .block-container .he.tl,
+.contentbox .block-container .he.tr,
+.contentbox .block-container .he.bl,
+.contentbox .block-container .he.br,
+.m_plugin_comment .commentbox-detail .dcommentbox .title .left.graphic,
+.m_plugin_comment .commentbox-detail .dcommentbox .title .right.graphic,
+.container_inner_l,
+.container_inner_r,
+.container_inner_tl,
+.container_inner_tr,
+.container_inner_bl,
+.container_inner_br,
+.container_body .container_left_bottom,
+.container_body .container_right_bottom {
+	width: 50.3%;
+}
+
+.m_hmenu .left,
+.m_hmenu .right {
+	width: 50.07%;
+}
+.m_hmenu .b.left,
+.m_hmenu .b.right {
+	width: 51%;
+}
+
+.input-text .tl,
+.input-text .tr,
+.input-text .bl,
+.input-text .br,
+.input-textarea .tl,
+.input-textarea .tr,
+.input-textarea .bl,
+.input-textarea .br,
+.element_avatar.image .a_tl,
+.element_avatar.image .a_tr,
+.element_avatar.image .a_bl,
+.element_avatar.image .a_br {
+	height: 50.7%;
+}
+
+.container_inner_tl,
+.container_inner_tr,
+.container_inner_bl,
+.container_inner_br,
+.m_header .tl,
+.m_header .tr,
+.m_header .bl,
+.m_header .br,
+.contentbox .block-container .he.tl,
+.contentbox .block-container .he.tr,
+.contentbox .block-container .he.bl,
+.contentbox .block-container .he.br {
+	height: 50.2%;
+}
+
+.element_button .l,
+.element_button .r,
+.element_smallbutton .l,
+.element_smallbutton .r,
+.element_bigbutton .l,
+.element_bigbutton .r {
+	width: 52.5%;
+}
+
+#enjin-bar #enjin-bar-likes .fb-like-site {
+	/* top: -3px; */
+}
