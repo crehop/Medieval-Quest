@@ -32,13 +32,6 @@ public class Main {
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			Controls.checkInput();
 			confirmLoop();
-			renderer.Renderer.renderFrame();
-			if(debug){
-				DebugInfo.drawString("TEST TEXT IN THE SCREEN TO VIEW", 10, 10);
-				System.out.println("TEXT TEST");
-				glClear(GL_POINT_BIT);
-			}
-			glEnd();
 			cam.useView();
 			Display.sync(60);
 			Display.update();

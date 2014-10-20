@@ -33,7 +33,6 @@ public class Camera {
 	private void initProjection(){
 
 		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
 		gluPerspective(fov,aspect,near,far);
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_DEPTH_TEST);
@@ -113,5 +112,96 @@ public class Camera {
 		this.setRZ(0.0f);
 		this.setRY(0.0f);
 		System.out.println("STABALIZED CAMERA");
+	}
+
+	public void decelerate() {
+		if(this.getRX() != 0){
+			if(this.getRX() > 0){
+				this.setRX(this.getRX() - 0.01f);
+				if(this.getRX() > 0.0f && this.getRX() < 0.01f){
+					this.setRX(0.0f);
+				}
+			}
+			else if(this.getRX() < 0){
+				this.setRX(this.getRX() + 0.01f);
+				if(this.getRX() < 0.0f && this.getRX() > -0.01f){
+					this.setRX(0.0f);
+				}
+			}
+		}
+		if(this.getRY() != 0){
+			if(this.getRY() > 0){
+				this.setRY(this.getRY() - 0.01f);
+				if(this.getRY() > 0.0f && this.getRY() < 0.01f){
+					this.setRY(0.0f);
+				}
+			}
+			else if(this.getRY() < 0){
+				this.setRY(this.getRY() + 0.01f);
+				if(this.getRY() < 0.0f && this.getRY() > -0.01f){
+					this.setRY(0.0f);
+				}
+			}
+		}
+		if(this.getRZ() != 0){
+			if(this.getRZ() > 0){
+				this.setRZ(this.getRZ() - 0.01f);
+				if(this.getRZ() > 0.0f && this.getRZ() < 0.01f){
+					this.setRZ(0.0f);
+				}
+			}
+			else if(this.getRX() < 0){
+				this.setRZ(this.getRZ() + 0.01f);
+				if(this.getRX() < 0.0f && this.getRX() > -0.01f){
+					this.setRX(0.0f);
+				}
+			}
+		}
+		if(this.getX() != 0){
+			if(this.getX() > 0){
+				this.setX(this.getX() - 0.01f);
+				if(this.getX() > 0.0f && this.getX() < 0.01f){
+					this.setX(0.0f);
+				}
+			}
+			else if(this.getX() < 0){
+				this.setX(this.getX() + 0.01f);
+				if(this.getX() < 0.0f && this.getX() > -0.01f){
+					this.setX(0.0f);
+				}
+			}
+		}
+		if(this.getZ() != 0){
+			if(this.getZ() > 0){
+				this.setZ(this.getZ() - 0.01f);
+				if(this.getZ() > 0.0f && this.getZ() < 0.01f){
+					this.setZ(0.0f);
+				}
+				
+			}
+			else if(this.getZ() < 0){
+				this.setZ(this.getZ() + 0.01f);
+				if(this.getZ() < 0.0f && this.getZ() > -0.01f){
+					this.setZ(0.0f);
+				}
+			}
+		}
+		if(this.getY() != 0){
+			if(this.getY() > 0){
+				this.setY(this.getY() - 0.01f);
+				if(this.getY() > 0.0f && this.getY() < 0.01f){
+					this.setY(0.0f);
+				}
+			}
+			else if(this.getY() < 0){
+				this.setY(this.getY() + 0.01f);
+				if(this.getY() > 0.01f){
+					this.setY(0.0f);
+					if(this.getY() < 0.0f && this.getY() > -0.01f){
+						this.setY(0.0f);
+					}
+				}
+			}
+		}
 	}
 }

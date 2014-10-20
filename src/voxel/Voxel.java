@@ -40,7 +40,7 @@ public class Voxel {
 	private void renderTop(boolean render) {
 		if(render){
 			//Top Face
-			glRandomColor();
+			glColor3f(0.9f,0.9f,0.9f);
 			glVertex3f(0.5f,-0.5f,-0.5f);
 			glVertex3f(0.5f,-0.5f,0.5f);
 			glVertex3f(0.5f,0.5f,0.5f);
@@ -51,7 +51,7 @@ public class Voxel {
 	private void renderBottom(boolean render) {
 		if(render){
 			//Bottom Face
-			glRandomColor();
+			glColor3f(0.9f,0.9f,0.0f);
 			glVertex3f(-0.5f,-0.5f,-0.5f);
 			glVertex3f(-0.5f,-0.5f,0.5f);
 			glVertex3f(-0.5f,0.5f,0.5f);
@@ -62,7 +62,7 @@ public class Voxel {
 	private void renderFront(boolean render) {
 		if(render){
 			//Front Face
-			glRandomColor();
+			glColor3f(0.9f,0.0f,0.9f);
 			glVertex3f(-0.5f,-0.5f,0.5f);
 			glVertex3f(-0.5f,0.5f,0.5f);
 			glVertex3f(0.5f,0.5f,0.5f);
@@ -73,7 +73,7 @@ public class Voxel {
 	private void renderBack(boolean render) {
 		if(render){
 		//Back Face;
-			glRandomColor();
+			glColor3f(0.0f,0.9f,0.9f);
 			glVertex3f(-0.5f,-0.5f,-0.5f);
 			glVertex3f(-0.5f,0.5f,-0.5f);
 			glVertex3f(0.5f,0.5f,-0.5f);
@@ -84,7 +84,7 @@ public class Voxel {
 	private void renderRight(boolean render) {
 		if(render){
 			//Right Face
-			glRandomColor();
+			glColor3f(0.9f,0.0f,0.0f);
 			glVertex3f(-0.5f,0.5f,-0.5f);
 			glVertex3f(0.5f,0.5f,-0.5f);
 			glVertex3f(0.5f,0.5f,0.5f);
@@ -95,7 +95,7 @@ public class Voxel {
 	private void renderLeft(boolean render) {
 		if(render){
 			//Left Face
-			glRandomColor();
+			glColor3f(0.0f,0.0f,0.9f);
 			glVertex3f(-0.5f,-0.5f,-0.5f);
 			glVertex3f(0.5f,-0.5f,-0.5f);
 			glVertex3f(0.5f,-0.5f,0.5f);

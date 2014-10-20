@@ -28,8 +28,5 @@ public class GameLoop {
 			vox.render();
 		}
 		Controls.checkInput();
-		renderer.Renderer.renderFrame();
-		Display.sync(60);
-		Display.update();
 	}
 }
