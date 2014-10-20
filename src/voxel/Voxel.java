@@ -4,7 +4,7 @@ import org.lwjgl.opengl.Display;
 
 import server.Location;
 
-import java.util.Random;
+//import java.util.Random;
 
 public class Voxel {
 	
@@ -102,8 +102,8 @@ public class Voxel {
 			glVertex3f(-0.5f,-0.5f,0.5f);	
 		}
 	}
-	private static void glRandomColor() {
-		Random rand = new Random();
-		glColor3f(rand.nextFloat(),rand.nextFloat(),rand.nextFloat());
-	}
+	//private static void glRandomColor() {
+	//	Random rand = new Random();
+	//	glColor3f(rand.nextFloat(),rand.nextFloat(),rand.nextFloat());
+	//}
 }

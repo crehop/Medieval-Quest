@@ -1,8 +1,6 @@
 package Main;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
 import static org.lwjgl.input.Keyboard.*;
 
 public class Controls {

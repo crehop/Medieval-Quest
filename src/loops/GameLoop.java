@@ -5,7 +5,6 @@ import static org.lwjgl.input.Keyboard.KEY_F;
 import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.Display;
 import server.Location;
 import voxel.Voxel;
 import Main.Controls;

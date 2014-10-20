@@ -31,6 +31,9 @@ public class Main {
 		while(!Display.isCloseRequested()){
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			Controls.checkInput();
+			if(debug == true){
+				
+			}
 			confirmLoop();
 			cam.useView();
 			Display.sync(60);
