@@ -69,6 +69,12 @@ public class Camera {
 
 	public void setZ(float z){
 		this.z = z;
+		if(z > 0.05f){
+			z = 0.05f;
+		}
+		if(z < -0.05f){
+			z = -0.05f;
+		}
 	}
 
 	public float getRX(){
@@ -97,5 +103,15 @@ public class Camera {
 	
 	public void moveForward(){
 		
+	}
+
+	public void stabalize() {
+		this.setRX(0.0f);
+		this.setZ(0.0f);
+		this.setX(0.0f);
+		this.setY(0.0f);
+		this.setRZ(0.0f);
+		this.setRY(0.0f);
+		System.out.println("STABALIZED CAMERA");
 	}
 }

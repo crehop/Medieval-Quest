@@ -1,6 +1,7 @@
 package Main;
 
 import org.lwjgl.input.Keyboard;
+
 import static org.lwjgl.input.Keyboard.*;
 
 public class Controls {
@@ -9,8 +10,11 @@ public class Controls {
 		if(Keyboard.isKeyDown(KEY_ESCAPE)){
 			Main.scrub();
 		}
-		if(Keyboard.isKeyDown(KEY_W)){
+		if(Keyboard.isKeyDown(KEY_RETURN)){
 			Main.setLoop("game");
+		}
+		if(Keyboard.isKeyDown(KEY_W)){
+			Main.cam.setZ(Main.cam.getZ() + 0.01f);
 		}
 		if(Keyboard.isKeyDown(KEY_S)){
 			Main.cam.setZ(Main.cam.getZ() - 0.01f);
@@ -22,13 +26,21 @@ public class Controls {
 			Main.cam.setX(Main.cam.getX() - 0.01f);
 		}
 		if(Keyboard.isKeyDown(KEY_SPACE)){
-			Main.cam.setX(Main.cam.getY() + 0.01f);
+			Main.cam.stabalize();
 		}
 		if(Keyboard.isKeyDown(KEY_LSHIFT)){
 			Main.cam.setX(Main.cam.getY() - 0.01f);
 		}
+		if(Keyboard.isKeyDown(KEY_TAB)){
+			Main.cam.stabalize();
+		}
+		if(Keyboard.isKeyDown(KEY_Q)){
+			System.out.println("DEBUG ON");
+			Main.toggleDebug();
+		}
 		if(Keyboard.isKeyDown(KEY_R)){
 		}
+		
 	}
 
 }

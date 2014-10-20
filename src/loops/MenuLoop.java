@@ -19,7 +19,6 @@ public class MenuLoop {
 		glTexCoord2f(0, Display.getWidth());
 		glTexCoord2f(Display.getHeight(), 0);
 		glTexCoord2f(Display.getHeight(), Display.getWidth());
-		System.out.println("CONFIRM MENU LOOP");
 		Controls.checkInput();
 	}
 

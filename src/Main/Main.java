@@ -13,16 +13,14 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.*;
 
 import renderer.Camera;
-import server.Location;
-import voxel.Voxel;
 import wireframe.Wireframe;
 
 
 public class Main {
 	public static Camera cam;
-	private static int partID = 0;
 	public static ArrayList<Wireframe> wireframes = new ArrayList<Wireframe>();
 	public static String loop = "start";
+	private static boolean debug = false;
 	
 	public static void main(String[] args) {
 		initiate();
@@ -30,13 +28,18 @@ public class Main {
 		scrub();		
 	}
 	public static void loop() {
-		cam = new Camera(35,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
 		while(!Display.isCloseRequested()){
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			Controls.checkInput();
 			confirmLoop();
 			renderer.Renderer.renderFrame();
+			if(debug){
+				DebugInfo.drawString("TEST TEXT IN THE SCREEN TO VIEW", 10, 10);
+				System.out.println("TEXT TEST");
+				glClear(GL_POINT_BIT);
+			}
 			glEnd();
+			cam.useView();
 			Display.sync(60);
 			Display.update();
 		}
@@ -71,6 +74,7 @@ public class Main {
 			Display.setDisplayMode(new DisplayMode(1080,720));
 			Display.setTitle("Medieval-Quest");
 			Display.create();
+			cam = new Camera(70,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
@@ -86,5 +90,7 @@ public class Main {
 			System.out.println("IMPROPER LOOP SELECTED MAIN.JAVA");
 		}
 	}
-
+	public static void toggleDebug(){
+		debug = true;
+	}
 }

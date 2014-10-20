@@ -9,6 +9,9 @@ import java.util.Random;
 public class Voxel {
 	
 	public Voxel(Location location){
+
+	}
+	public void render(){
 		initiateRender();
 		renderFinal();
 	}

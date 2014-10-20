@@ -1,5 +1,4 @@
 package renderer;
-import static org.lwjgl.opengl.GL11.*;
 import wireframe.Wireframe;
 import wireframe.WireframePart;
 

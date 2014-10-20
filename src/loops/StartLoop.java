@@ -19,7 +19,6 @@ public class StartLoop {
 		glTexCoord2f(0, Display.getWidth());
 		glTexCoord2f(Display.getHeight(), 0);
 		glTexCoord2f(Display.getHeight(), Display.getWidth());
-		System.out.println("CONFIRM START LOOP");
 		Controls.checkInput();
 	}
 }
