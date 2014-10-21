@@ -12,12 +12,13 @@ import org.lwjgl.opengl.Display;
 
 import org.lwjgl.opengl.*;
 
-import renderer.Camera;
+import renderer.CameraFPS;
 import wireframe.Wireframe;
 
 
 public class Main {
-	public static Camera cam;
+	//public static Camera cam;
+	public static CameraFPS cam;
 	public static ArrayList<Wireframe> wireframes = new ArrayList<Wireframe>();
 	public static String loop = "start";
 	private static boolean debug = false;
@@ -31,10 +32,8 @@ public class Main {
 		while(!Display.isCloseRequested()){
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			Controls.checkInput();
-			if(debug == true){
-				
-			}
 			confirmLoop();
+			GL11.glLoadIdentity();
 			cam.useView();
 			Display.sync(60);
 			Display.update();
@@ -70,7 +69,9 @@ public class Main {
 			Display.setDisplayMode(new DisplayMode(1080,720));
 			Display.setTitle("Medieval-Quest");
 			Display.create();
-			cam = new Camera(70,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
+			//cam = new Camera(70,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
+			cam = new CameraFPS(0,0,0);
+			
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}

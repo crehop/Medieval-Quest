@@ -23,10 +23,6 @@ public class Camera {
 		ry = 0;
 		rz = 0;
 
-		this.fov = fov;
-		this.aspect = aspect;
-		this.near = near;
-		this.far = far;
 		initProjection();
 	}
 

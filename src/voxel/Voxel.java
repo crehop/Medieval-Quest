@@ -7,9 +7,9 @@ import server.Location;
 //import java.util.Random;
 
 public class Voxel {
-	
+	private Location location;
 	public Voxel(Location location){
-
+		this.location = location;
 	}
 	public void render(){
 		initiateRender();
@@ -101,6 +101,9 @@ public class Voxel {
 			glVertex3f(0.5f,-0.5f,0.5f);
 			glVertex3f(-0.5f,-0.5f,0.5f);	
 		}
+	}
+	public Location getLocation(){
+		return location;
 	}
 	//private static void glRandomColor() {
 	//	Random rand = new Random();
