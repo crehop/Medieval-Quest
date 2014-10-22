@@ -12,7 +12,7 @@ import org.newdawn.slick.opengl.TextureLoader;
 
 public class TextureHandler {
 	public static ArrayList<Texture> textures = new ArrayList<Texture>();
-	public static Texture load(String textureName){
+	public static Texture getTexture(String textureName){
 		FileInputStream stream;
 		try {
 			stream = new FileInputStream(new File("textures/" + textureName + ".png"));
@@ -24,8 +24,5 @@ public class TextureHandler {
 			e.printStackTrace();
 		}
 		return null;
-	}
-	public static Texture getTexture(String name){
-			return load(name);
 	}
 }

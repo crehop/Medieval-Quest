@@ -1,6 +1,9 @@
 package voxel;
 import static org.lwjgl.opengl.GL11.*;
 
+import org.newdawn.slick.opengl.Texture;
+
+import renderer.TextureHandler;
 import server.Location;
 
 //import java.util.Random;
@@ -8,13 +11,21 @@ import server.Location;
 public class Voxel {
 	private float size;
 	private Location location;
+	private Texture texture;
 	public Voxel(Location location){
 		this.location = location;
 		size = 0.5f;
+		this.texture = TextureHandler.getTexture("grass");
 	}
 	public Voxel(Location location, float i) {
 		this.location = location;
 		this.size = i;
+		this.texture = TextureHandler.getTexture("grass");
+	}
+	public Voxel(Location location, float i,Texture texture) {
+		this.location = location;
+		this.size = i;
+		this.texture = texture;
 	}
 	public void render(){
 		initiateRender();
@@ -26,6 +37,8 @@ public class Voxel {
 		this.move(this.getLocation());
 		glRotatef(0.0f,0.0f,0.0f,0.0f);
 		glBegin(GL_QUADS);
+		glEnable(GL_TEXTURE_2D);
+		texture.bind();
 		{
 			renderFront(true);
 			renderLeft(true);
@@ -44,11 +57,15 @@ public class Voxel {
 	private void renderTop(boolean render) {
 		if(render){
 			//Top Face
-			glColor3f(0.9f,0.9f,0.9f);
 			glVertex3f(size,-1 * (size),-1 * (size));
+            //glTexCoord3f(0, 0, 0); // top left
 			glVertex3f(size,-1 * (size),size);
+            //glTexCoord3f(0, 1, 0); // bottom left 
 			glVertex3f(size,size,size);
+            //glTexCoord3f(1, 1, 0); // bottom right
 			glVertex3f(size,size,-1 * (size));
+            //glTexCoord3f(1, 0, 0); // top right
+
 		}
 	}
 

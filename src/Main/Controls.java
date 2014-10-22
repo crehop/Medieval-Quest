@@ -23,7 +23,8 @@ public class Controls {
 	//Mouse sensitivity
 	static float mouseSensitivity = 0.05f;
 	//change to adjust movement speed
-	static float movementSpeed = 0.05f;
+	static float defaultMovementSpeed = 0.005f;
+	static float movementSpeed = defaultMovementSpeed;
 	
 	static float lastTime = 0.0f;
 	static float time = 0.0f;
@@ -102,8 +103,12 @@ public class Controls {
 			aKeyIsDown = true;
 		}
 		if(stabalizeCam){
+			movementSpeed = defaultMovementSpeed * 5;
 			//Main.cam.stabalize();
 			aKeyIsDown = true;
+		}
+		if(!(stabalizeCam)){
+			movementSpeed = defaultMovementSpeed;
 		}
 		if(rotateLeft){
 			//Main.cam.setRY(Main.cam.getRY() - 0.01f);
