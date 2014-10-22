@@ -1,15 +1,20 @@
 package voxel;
 import static org.lwjgl.opengl.GL11.*;
-import org.lwjgl.opengl.Display;
 
 import server.Location;
 
 //import java.util.Random;
 
 public class Voxel {
+	private float size;
 	private Location location;
 	public Voxel(Location location){
 		this.location = location;
+		size = 0.5f;
+	}
+	public Voxel(Location location, float i) {
+		this.location = location;
+		this.size = i;
 	}
 	public void render(){
 		initiateRender();
@@ -18,7 +23,7 @@ public class Voxel {
 	
 	private void initiateRender() {
 		glPushMatrix();
-		glTranslatef(0,0,-10);
+		this.move(this.getLocation());
 		glRotatef(0.0f,0.0f,0.0f,0.0f);
 		glBegin(GL_QUADS);
 		{
@@ -33,18 +38,17 @@ public class Voxel {
 	
 	private void renderFinal() {
 		glEnd();
-		glPopMatrix();
-		Display.update();
+	    glPopMatrix();
 	}
 
 	private void renderTop(boolean render) {
 		if(render){
 			//Top Face
 			glColor3f(0.9f,0.9f,0.9f);
-			glVertex3f(0.5f,-0.5f,-0.5f);
-			glVertex3f(0.5f,-0.5f,0.5f);
-			glVertex3f(0.5f,0.5f,0.5f);
-			glVertex3f(0.5f,0.5f,-0.5f);
+			glVertex3f(size,-1 * (size),-1 * (size));
+			glVertex3f(size,-1 * (size),size);
+			glVertex3f(size,size,size);
+			glVertex3f(size,size,-1 * (size));
 		}
 	}
 
@@ -52,10 +56,10 @@ public class Voxel {
 		if(render){
 			//Bottom Face
 			glColor3f(0.9f,0.9f,0.0f);
-			glVertex3f(-0.5f,-0.5f,-0.5f);
-			glVertex3f(-0.5f,-0.5f,0.5f);
-			glVertex3f(-0.5f,0.5f,0.5f);
-			glVertex3f(-0.5f,0.5f,-0.5f);	
+			glVertex3f(-1 * (size),-1 * (size),-1 * (size));
+			glVertex3f(-1 * (size),-1 * (size),size);
+			glVertex3f(-1 * (size),size,size);
+			glVertex3f(-1 * (size),size,-1 * (size));	
 		}
 	}
 	
@@ -63,10 +67,10 @@ public class Voxel {
 		if(render){
 			//Front Face
 			glColor3f(0.9f,0.0f,0.9f);
-			glVertex3f(-0.5f,-0.5f,0.5f);
-			glVertex3f(-0.5f,0.5f,0.5f);
-			glVertex3f(0.5f,0.5f,0.5f);
-			glVertex3f(0.5f,-0.5f,0.5f);
+			glVertex3f(-1 * (size),-1 * (size),size);
+			glVertex3f(-1 * (size),size,size);
+			glVertex3f(size,size,size);
+			glVertex3f(size,-1 * (size),size);
 		}
 	}
 
@@ -74,10 +78,10 @@ public class Voxel {
 		if(render){
 		//Back Face;
 			glColor3f(0.0f,0.9f,0.9f);
-			glVertex3f(-0.5f,-0.5f,-0.5f);
-			glVertex3f(-0.5f,0.5f,-0.5f);
-			glVertex3f(0.5f,0.5f,-0.5f);
-			glVertex3f(0.5f,-0.5f,-0.5f);
+			glVertex3f(-1 * (size),-1 * (size),-1 * (size));
+			glVertex3f(-1 * (size),size,-1 * (size));
+			glVertex3f(size,size,-1 * (size));
+			glVertex3f(size,-1 * (size),-1 * (size));
 		}
 	}
 
@@ -85,10 +89,10 @@ public class Voxel {
 		if(render){
 			//Right Face
 			glColor3f(0.9f,0.0f,0.0f);
-			glVertex3f(-0.5f,0.5f,-0.5f);
-			glVertex3f(0.5f,0.5f,-0.5f);
-			glVertex3f(0.5f,0.5f,0.5f);
-			glVertex3f(-0.5f,0.5f,0.5f);		
+			glVertex3f(-1 * (size),size,-1 * (size));
+			glVertex3f(size,size,-1 * (size));
+			glVertex3f(size,size,size);
+			glVertex3f(-1 * (size),size,size);		
 		}
 	}
 
@@ -96,14 +100,18 @@ public class Voxel {
 		if(render){
 			//Left Face
 			glColor3f(0.0f,0.0f,0.9f);
-			glVertex3f(-0.5f,-0.5f,-0.5f);
-			glVertex3f(0.5f,-0.5f,-0.5f);
-			glVertex3f(0.5f,-0.5f,0.5f);
-			glVertex3f(-0.5f,-0.5f,0.5f);	
+			glVertex3f(-1 * (size),-1 * (size),-1 * (size));
+			glVertex3f(size,-1 * (size),-1 * (size));
+			glVertex3f(size,-1 * (size),size);
+			glVertex3f(-1 * (size),-1 * (size),size);	
 		}
 	}
 	public Location getLocation(){
 		return location;
+	}
+	
+	public void move(Location location){
+		glTranslatef(location.getX(),location.getY(),location.getZ());
 	}
 	//private static void glRandomColor() {
 	//	Random rand = new Random();

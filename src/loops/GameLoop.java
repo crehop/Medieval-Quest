@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
 
 import server.Location;
 import voxel.Voxel;
@@ -19,20 +21,23 @@ public class GameLoop {
 			Mouse.setGrabbed(true);
 		}
 		if(Keyboard.isKeyDown(KEY_F) && pressed == false){
-			Location home = new Location(0.3f,0.1f,2.2f);
-			Location start = new Location (1.3f,0.07f,0.03f);
-			Voxel vox = new Voxel(home);
-			Voxel vox2 = new Voxel(start);
+			Location home = new Location(4.0f,0.0f,0.0f);
+			Location home2 = new Location(8.0f,0.0f,0.0f);
+			Location home3 = new Location(12.0f,0.0f,0.0f);
+			Location home4 = new Location(16.0f,0.0f,0.0f);
+			Voxel vox = new Voxel(home,0.5f);
+			Voxel vox2 = new Voxel(home2,0.25f);
+			Voxel vox3 = new Voxel(home3,0.10f);
+			Voxel vox4 = new Voxel(home4,0.05f);
 			System.out.println("CONFIRM F PRESS");
 			pressed = true;
 			renderMe.add(vox);
 			renderMe.add(vox2);
-			Main.Main.cam.setLocation(vox.getLocation());
+			renderMe.add(vox3);
+			renderMe.add(vox4);
 		}
 		for(Voxel vox:renderMe){
 			vox.render();
-			
 		}
-		Controls.checkInput();
 	}
 }

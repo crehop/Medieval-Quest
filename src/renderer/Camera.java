@@ -3,6 +3,8 @@ package renderer;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.util.glu.GLU.*;
 
+import org.lwjgl.opengl.GL11;
+
 public class Camera {
 	private float x;
 	private float y;
@@ -28,10 +30,11 @@ public class Camera {
 
 	private void initProjection(){
 
-		glMatrixMode(GL_PROJECTION);
-		gluPerspective(fov,aspect,near,far);
-		glMatrixMode(GL_MODELVIEW);
-		glEnable(GL_DEPTH_TEST);
+		GL11.glMatrixMode(GL11.GL_PROJECTION);
+		GL11.glLoadIdentity();
+		GL11.glOrtho(0, 800, 0, 600, 1, -1);
+		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+
 	}
 
 	public void useView(){

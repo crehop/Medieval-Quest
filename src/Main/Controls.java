@@ -3,6 +3,7 @@ package Main;
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 
 import static org.lwjgl.input.Keyboard.*;
 
@@ -22,7 +23,7 @@ public class Controls {
 	//Mouse sensitivity
 	static float mouseSensitivity = 0.05f;
 	//change to adjust movement speed
-	static float movementSpeed = 10.0f;
+	static float movementSpeed = 0.05f;
 	
 	static float lastTime = 0.0f;
 	static float time = 0.0f;
@@ -31,11 +32,14 @@ public class Controls {
 	static float mouseX = 0.0f;
 	static float mouseY = 0.0f;
 	
+	public static long getTime() {
+		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
+	}
 	public static void checkInput() {
 		
 		//Time calculation between ticks
-		time = Sys.getTime();
-		frameLength = (time - lastTime)/1000.0f;
+		time = getTime();
+		frameLength = (time - lastTime);
 		lastTime = time;
 		
 		//Set check key boolean, then add if statement below to actuate
@@ -69,32 +73,32 @@ public class Controls {
 		}
 		if(forward){
 			//Main.cam.setZ(Main.cam.getZ() + 0.01f);
-			Main.cam.walkForward(movementSpeed * frameLength);
+			Main.cam.walkForward((float)(movementSpeed));
 			aKeyIsDown = true;
 		}
 		if(back){
 			//Main.cam.setZ(Main.cam.getZ() - 0.01f);
-			Main.cam.walkBackward(movementSpeed * frameLength);
+			Main.cam.walkBackward((float)(movementSpeed));
 			aKeyIsDown = true;
 		}
 		if(strafeLeft){
 			//Main.cam.setX(Main.cam.getX() + 0.01f);
-			Main.cam.strafeLeft(movementSpeed * frameLength);
+			Main.cam.strafeLeft((float)(movementSpeed));
 			aKeyIsDown = true;
 		}
 		if(strafeRight){
 			//Main.cam.setX(Main.cam.getX() - 0.01f);		
-			Main.cam.strafeRight(movementSpeed * frameLength);
+			Main.cam.strafeRight((float)(movementSpeed));
 			aKeyIsDown = true;
 		}
 		if(jump){
 			//Main.cam.setY(Main.cam.getY() - 0.01f);
-			Main.cam.moveUp(movementSpeed * frameLength);
+			Main.cam.moveUp((float)(movementSpeed));
 			aKeyIsDown = true;
 		}
 		if(crouch){
 			//Main.cam.setY(Main.cam.getY() + 0.01f);
-			Main.cam.moveDown(movementSpeed * frameLength);
+			Main.cam.moveDown((float)(movementSpeed));
 			aKeyIsDown = true;
 		}
 		if(stabalizeCam){
@@ -112,6 +116,7 @@ public class Controls {
 		if(!(aKeyIsDown)){
 			//Main.cam.decelerate();
 		}
+
 	}
 
 }
