@@ -18,12 +18,13 @@ import Main.Main;
 public class GameLoop {
 	public static ArrayList<Voxel> renderMe = new ArrayList<Voxel>();
 	private static boolean pressed = false;
+	static float expand = 0;
 	public static void loop(){
 		if(Mouse.isGrabbed() == false){
 			Mouse.setGrabbed(true);
 		}
 		if(Keyboard.isKeyDown(KEY_F) && pressed == false){
-			Location home = new Location(6.0f,0.0f,0.0f);
+			/*Location home = new Location(6.0f,0.0f,0.0f);
 			Location home2 = new Location(7.25f,0.0f,0.0f);
 			Location home3 = new Location(8.0f,0.0f,0.0f);
 			Location home4 = new Location(8.50f,0.0f,0.0f);
@@ -43,10 +44,34 @@ public class GameLoop {
 			renderMe.add(vox4);
 			renderMe.add(vox5);
 			renderMe.add(vox6);
+			*/
+			for(float x = 0; x <= 0.05f; x+=0.005f){
+				Voxel newVoxX = new Voxel(new Location(x,0,0),0.0025f);
+				renderMe.add(newVoxX);
+				for(float z = 0; z <= 0.05f; z+=0.005f){
+					Voxel newVoxY = new Voxel(new Location(x,0,z),0.0025f);
+					renderMe.add(newVoxY);
+					for(float y = 0; y <= 0.15f; y+=0.005f){
+						Voxel newVoxZ = new Voxel(new Location(x,y,z),0.0025f);
+						renderMe.add(newVoxZ);
+					}
+				}
+			}
 		}
 		for(Voxel vox:renderMe){
+			vox.getLocation().setX(expand + vox.getLocation().getX());
 			vox.render();
 		}
+		System.out.println(expand);
 		Skybox.renderSkyBox(Main.cam);
+	}
+	public static void expand(){
+		expand += 0.0005f;
+	}
+	public static void contract(){
+		expand -= 0.0005f;
+	}
+	public static void reset(){
+		expand = 0.0f;
 	}
 }

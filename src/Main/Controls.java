@@ -1,5 +1,7 @@
 package Main;
 
+import loops.GameLoop;
+
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -19,7 +21,10 @@ public class Controls {
 	static boolean rotateLeft;
 	static boolean rotateRight;
 	static boolean aKeyIsDown;
-	
+	static boolean test1;
+	static boolean test2;
+	static boolean test3;
+
 	//Mouse sensitivity
 	static float mouseSensitivity = 0.05f;
 	//change to adjust movement speed
@@ -54,6 +59,9 @@ public class Controls {
 		stabalizeCam = Keyboard.isKeyDown(KEY_TAB);
 		rotateLeft = Keyboard.isKeyDown(KEY_Q);
 		rotateRight = Keyboard.isKeyDown(KEY_E);
+		test1 = Keyboard.isKeyDown(KEY_ADD);
+		test2 = Keyboard.isKeyDown(KEY_SUBTRACT);
+		test3 = Keyboard.isKeyDown(KEY_EQUALS);
 		aKeyIsDown = false;
 		if(exitKey){
 			Main.scrub();
@@ -121,7 +129,15 @@ public class Controls {
 		if(!(aKeyIsDown)){
 			//Main.cam.decelerate();
 		}
-
+		if(test1){
+			GameLoop.expand();
+		}
+		if(test2){
+			GameLoop.contract();
+		}
+		if(test3){
+			GameLoop.reset();
+		}
 	}
 
 }
