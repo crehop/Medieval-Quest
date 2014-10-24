@@ -1,6 +1,11 @@
 package voxel;
 import static org.lwjgl.opengl.GL11.*;
 
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+
+import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
 import renderer.TextureHandler;
@@ -15,12 +20,13 @@ public class Voxel {
 	public Voxel(Location location){
 		this.location = location;
 		size = 0.5f;
-		this.texture = TextureHandler.getTexture("grass");
+		this.texture = TextureHandler.getTexture("grass", "png" );
+
 	}
 	public Voxel(Location location, float i) {
 		this.location = location;
 		this.size = i;
-		this.texture = TextureHandler.getTexture("grass");
+		this.texture = TextureHandler.getTexture("grass", "png");
 	}
 	public Voxel(Location location, float i,Texture texture) {
 		this.location = location;
@@ -36,9 +42,11 @@ public class Voxel {
 		glPushMatrix();
 		this.move(this.getLocation());
 		glRotatef(0.0f,0.0f,0.0f,0.0f);
-		glBegin(GL_QUADS);
-		glEnable(GL_TEXTURE_2D);
-		texture.bind();
+	    Color.white.bind();
+	    texture.bind(); 
+	    glEnable(GL_TEXTURE_2D);  
+	    glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 
+	    glBegin(GL_QUADS);
 		{
 			renderFront(true);
 			renderLeft(true);
@@ -56,26 +64,29 @@ public class Voxel {
 
 	private void renderTop(boolean render) {
 		if(render){
+			texture.bind();
 			//Top Face
+            glTexCoord2f(0, 0); // top left
 			glVertex3f(size,-1 * (size),-1 * (size));
-            //glTexCoord3f(0, 0, 0); // top left
+            glTexCoord2f(1, 0);			
 			glVertex3f(size,-1 * (size),size);
-            //glTexCoord3f(0, 1, 0); // bottom left 
-			glVertex3f(size,size,size);
-            //glTexCoord3f(1, 1, 0); // bottom right
-			glVertex3f(size,size,-1 * (size));
-            //glTexCoord3f(1, 0, 0); // top right
-
+            glTexCoord2f(1, 1);		
+            glVertex3f(size,size,size);
+            glTexCoord2f(0, 1);
+            glVertex3f(size,size,-1 * (size));
 		}
 	}
 
 	private void renderBottom(boolean render) {
 		if(render){
 			//Bottom Face
-			glColor3f(0.9f,0.9f,0.0f);
+            glTexCoord2f(0, 0); // top left
 			glVertex3f(-1 * (size),-1 * (size),-1 * (size));
+            glTexCoord2f(1, 0);			
 			glVertex3f(-1 * (size),-1 * (size),size);
+            glTexCoord2f(1, 1);		
 			glVertex3f(-1 * (size),size,size);
+            glTexCoord2f(0, 1);
 			glVertex3f(-1 * (size),size,-1 * (size));	
 		}
 	}
@@ -83,10 +94,13 @@ public class Voxel {
 	private void renderFront(boolean render) {
 		if(render){
 			//Front Face
-			glColor3f(0.9f,0.0f,0.9f);
+            glTexCoord2f(0, 0); // top left
 			glVertex3f(-1 * (size),-1 * (size),size);
+            glTexCoord2f(1, 0);			
 			glVertex3f(-1 * (size),size,size);
+            glTexCoord2f(1, 1);		
 			glVertex3f(size,size,size);
+            glTexCoord2f(0, 1);
 			glVertex3f(size,-1 * (size),size);
 		}
 	}
@@ -94,10 +108,13 @@ public class Voxel {
 	private void renderBack(boolean render) {
 		if(render){
 		//Back Face;
-			glColor3f(0.0f,0.9f,0.9f);
+            glTexCoord2f(0, 0); // top left
 			glVertex3f(-1 * (size),-1 * (size),-1 * (size));
+            glTexCoord2f(1, 0);			
 			glVertex3f(-1 * (size),size,-1 * (size));
+            glTexCoord2f(1, 1);		
 			glVertex3f(size,size,-1 * (size));
+            glTexCoord2f(0, 1);
 			glVertex3f(size,-1 * (size),-1 * (size));
 		}
 	}
@@ -105,10 +122,13 @@ public class Voxel {
 	private void renderRight(boolean render) {
 		if(render){
 			//Right Face
-			glColor3f(0.9f,0.0f,0.0f);
+            glTexCoord2f(0, 0); // top left
 			glVertex3f(-1 * (size),size,-1 * (size));
+            glTexCoord2f(1, 0);			
 			glVertex3f(size,size,-1 * (size));
+            glTexCoord2f(1, 1);		
 			glVertex3f(size,size,size);
+            glTexCoord2f(0, 1);
 			glVertex3f(-1 * (size),size,size);		
 		}
 	}
@@ -116,10 +136,13 @@ public class Voxel {
 	private void renderLeft(boolean render) {
 		if(render){
 			//Left Face
-			glColor3f(0.0f,0.0f,0.9f);
+            glTexCoord2f(0, 0); // top left
 			glVertex3f(-1 * (size),-1 * (size),-1 * (size));
+            glTexCoord2f(1, 0);			
 			glVertex3f(size,-1 * (size),-1 * (size));
+            glTexCoord2f(1, 1);		
 			glVertex3f(size,-1 * (size),size);
+            glTexCoord2f(0, 1);
 			glVertex3f(-1 * (size),-1 * (size),size);	
 		}
 	}

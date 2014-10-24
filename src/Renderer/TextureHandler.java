@@ -1,28 +1,28 @@
 package renderer;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-
+import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
+import org.newdawn.slick.util.ResourceLoader;
 
 
-public class TextureHandler {
-	public static ArrayList<Texture> textures = new ArrayList<Texture>();
-	public static Texture getTexture(String textureName){
-		FileInputStream stream;
-		try {
-			stream = new FileInputStream(new File("textures/" + textureName + ".png"));
-			Texture texture = TextureLoader.getTexture("PNG", stream);	
-			return texture;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+public class TextureHandler
+{
+
+    // Used to deliver a texture to entities for quad-rendering.
+    public static Texture getTexture(String name, String ext)
+    {
+        Texture texture = null;
+        try
+        {
+            texture = TextureLoader.getTexture(ext.toUpperCase(), ResourceLoader.getResourceAsStream( "res/textures/" + name + "." + ext.toLowerCase()));
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+            System.exit(0); // Exit the game if the texture isn't loaded properly.
+        }
+
+        return texture;
+    }
 }
