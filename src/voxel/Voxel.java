@@ -23,14 +23,14 @@ public class Voxel {
 		this.texture = TextureHandler.getTexture("grass", "png" );
 
 	}
-	public Voxel(Location location, float i) {
+	public Voxel(Location location, float size) {
 		this.location = location;
-		this.size = i;
+		this.size = size;
 		this.texture = TextureHandler.getTexture("grass", "png");
 	}
-	public Voxel(Location location, float i,Texture texture) {
+	public Voxel(Location location, float size,Texture texture) {
 		this.location = location;
-		this.size = i;
+		this.size = size;
 		this.texture = texture;
 	}
 	public void render(){

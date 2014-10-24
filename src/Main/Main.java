@@ -14,12 +14,15 @@ import org.lwjgl.opengl.GL11;
 
 import org.lwjgl.opengl.*;
 
+import entities.Player;
+
 import renderer.CameraFPS;
+import renderer.Skybox;
 import wireframe.Wireframe;
 
 
 public class Main {
-	public static CameraFPS cam;
+	public static Player cam;
 	public static ArrayList<Wireframe> wireframes = new ArrayList<Wireframe>();
 	public static String loop = "start";
 	private static boolean debug = false;
@@ -93,7 +96,7 @@ public class Main {
 			Display.setTitle("Medieval-Quest");
 			Display.create();
 			//cam = new Camera(70,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
-			cam = new CameraFPS(0,0,0);
+			cam = new Player(0,0,0);
 			
 		} catch (LWJGLException e) {
 			e.printStackTrace();

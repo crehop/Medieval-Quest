@@ -9,9 +9,11 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
+import renderer.Skybox;
 import server.Location;
 import voxel.Voxel;
 import Main.Controls;
+import Main.Main;
 
 public class GameLoop {
 	public static ArrayList<Voxel> renderMe = new ArrayList<Voxel>();
@@ -45,5 +47,6 @@ public class GameLoop {
 		for(Voxel vox:renderMe){
 			vox.render();
 		}
+		Skybox.renderSkyBox(Main.cam);
 	}
 }
