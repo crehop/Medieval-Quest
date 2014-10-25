@@ -18,6 +18,7 @@ public class GameLoop {
 	static float expand = 0;
 	static WireframePart check;
 	static boolean debug = false;
+	static boolean gravity = false;
 	public static void loop(){
 		if(Mouse.isGrabbed() == false){
 			Mouse.setGrabbed(true);
@@ -51,15 +52,21 @@ public class GameLoop {
 			part.render();
 			if(debug){
 				if(part.getRotation() < 100){
-					part.setRotation(part.getRotation() + 0.00005f);
+					part.setRotation(part.getRotation() + 0.005f);
 				}
 			}else if (!(debug)){
 				if(part.getRotation() > 0){
-					part.setRotation(part.getRotation() - 0.00005f);
+					part.setRotation(part.getRotation() - 0.005f);
 				}
+			}
+			if(gravity){
+				part.setDropcall(true);
 			}
 		}
 		Skybox.renderSkyBox(Main.cam);
+		System.out.println("TEST ");
+		Main.cam.test();
+		//System.out.println("CAMERA LOCATION X:" + Main.cam.getLocation().getX() + " Y:" + Main.cam.getLocation().getY() + " Z:"  + Main.cam.getLocation().getZ());
 	}
 	public static void expand(){
 		debug = true;
@@ -70,6 +77,7 @@ public class GameLoop {
 		System.out.println("DEBUG SET TO FALSE");
 	}
 	public static void reset(){
-		expand = 0.0f;
+		gravity = true;
+		System.out.println("SET TO TRUE");
 	}
 }

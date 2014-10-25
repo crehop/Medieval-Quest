@@ -26,7 +26,6 @@ public class Location {
 		this.setZ(z);
 		this.setRotation(0);
 		this.setYaw(0);
-		System.out.println("NEW LOCATION CREATED " + x + " " + y + " " + z);
 	}
 	public Location(Location location) {
 		this.setX(location.getX());

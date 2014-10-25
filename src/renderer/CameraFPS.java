@@ -16,6 +16,7 @@ public class CameraFPS {
 	private Vector3f position = null;
 	private float yaw = 0.0f;
 	private float pitch = 0.0f;
+	private Location location;
 	
 	public CameraFPS(float x, float y, float z){
 		position = new Vector3f(x,y,z);
@@ -26,7 +27,7 @@ public class CameraFPS {
 		glMatrixMode(GL_PROJECTION);
 		gluPerspective(70,(float)Display.getWidth()/(float)Display.getHeight(),0.0003f,1000);
 		glMatrixMode(GL_MODELVIEW);
-		glEnable(GL_DEPTH_TEST);		
+		glEnable(GL_DEPTH_TEST);
 	}
 	public void yaw(float amount){
 		//increment the yaw by amount
@@ -56,6 +57,7 @@ public class CameraFPS {
 		//moves camera forward relative to its current rotation;
 		position.x -= distance * (float)Math.sin(Math.toRadians(yaw + 90));
 		position.z += distance * (float)Math.cos(Math.toRadians(yaw + 90));
+		
 	}
 	public void moveUp(float distance){
 		position.y -= distance;
@@ -77,8 +79,18 @@ public class CameraFPS {
 		position.setX(location.getX());
 		position.setY(location.getY());
 		position.setZ(location.getZ());
-		
 	}
-	
+	public void test(){
+		if(location == null){
+			location = new Location(0,0,0);
+		}
+		location.setX(position.getX());
+		location.setY(position.getY());
+		location.setZ(position.getZ());
+		System.out.println("LOCATION CALL " + position.getX() + " Y:" + position.getY()+ " Z:" + position.getZ());
+	}
+	public Location getLocation(){
+		return location;
+	}
 	
 }

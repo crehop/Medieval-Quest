@@ -1,6 +1,7 @@
 package wireframe;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import loops.GameLoop;
 
@@ -17,6 +18,8 @@ public class WireframePart{
 	private float width = 0.0f;
 	private float height = 0.0f;
 	private float blockSize = 0.0f;
+	private boolean dropcall;
+	private Random rand = new Random();
 	private ArrayList<Voxel> voxels = new ArrayList<Voxel>();
 	public WireframePart(Location location, Wireframe body, float width, float length, float height,float blockSize){
 		this.ID = entities.ID.getPartID();
@@ -65,6 +68,11 @@ public class WireframePart{
 		for(Voxel vox:voxels){
 			vox.render();
 			vox.rotate(this.getRotation());
+			if(dropcall){
+				if(rand.nextFloat() > 0.8){
+					vox.setPhysicsControlled(true);
+				}
+			}
 		}
 	}
 	public Location getLocation() {
@@ -105,6 +113,12 @@ public class WireframePart{
 	}
 	public void setRotation(float rotation) {
 		this.rotation = rotation;
+	}
+	public boolean isDropcall() {
+		return dropcall;
+	}
+	public void setDropcall(boolean dropcall) {
+		this.dropcall = dropcall;
 	}
 
 }

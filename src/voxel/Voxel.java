@@ -3,6 +3,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
+import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
@@ -20,6 +21,8 @@ public class Voxel {
 	private float offsetX;
 	private float offsetY;
 	private float offsetZ;
+	private boolean physicsControlled;
+	Random rand = new Random();
 	public Voxel(Location location){
 		this.location = new Location(location);
 		size = 0.5f;
@@ -63,7 +66,13 @@ public class Voxel {
 	
 	private void initiateRender() {
 		glPushMatrix();
-		this.move(this.getLocation());
+		if(physicsControlled == false){
+			this.move(this.getLocation());
+		}else{
+			if(rand.nextFloat() > 0.08)
+			this.offsetY-=rand.nextFloat()/100;
+			this.move(this.getLocation());
+		}
 		glRotatef(0.0f,0.0f,0.0f,0.0f);
 	    Color.white.bind();
 	    if(this.texture == null){
@@ -185,6 +194,9 @@ public class Voxel {
 	}
 	public void rotate(float rotate){
 		glRotatef(rotate,this.location.getX(),this.location.getY(),this.location.getZ());
+	}
+	public void setPhysicsControlled(boolean controlled){
+		this.physicsControlled = controlled;
 	}
 	//private static void glRandomColor() {
 	//	Random rand = new Random();

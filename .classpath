@@ -2,16 +2,16 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="C:/Users/Tu/Desktop/Jgame/lib/jars/lwjgl.jar">
+	<classpathentry kind="lib" path="C:/Users/Tu/Desktop/Jgame/lwjgl-2.9.1/jar/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Tu/Desktop/Jgame/lib/native-win"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Tu/Desktop/Jgame/lwjgl-2.9.1/win-natives"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Tu/Desktop/Jgame/lib/jars/lwjgl_util.jar">
+	<classpathentry kind="lib" path="C:/Users/Tu/Desktop/Jgame/lwjgl-2.9.1/jar/lwjgl_util.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="file:/C:/Users/Tu/Desktop/Jgame/javadoc/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Tu/Desktop/Jgame/lib/jars/slick-util.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tu/Desktop/Jgame/lwjgl-2.9.1/slick-util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
