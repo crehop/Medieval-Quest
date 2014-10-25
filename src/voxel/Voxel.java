@@ -17,8 +17,11 @@ public class Voxel {
 	private float size;
 	private Location location;
 	private Texture texture;
+	private float offsetX;
+	private float offsetY;
+	private float offsetZ;
 	public Voxel(Location location){
-		this.location = location;
+		this.location = new Location(location);
 		size = 0.5f;
 		this.texture = TextureHandler.getTexture("grass", "png" );
 
@@ -33,6 +36,26 @@ public class Voxel {
 		this.size = size;
 		this.texture = texture;
 	}
+	public Voxel(Location location, float size, float offsetX, float offsetY, float offsetZ ) {
+		this.texture = TextureHandler.getTexture("grass", "png" );
+		this.location = location;
+		this.size = size;
+		this.offsetX = offsetX;
+		this.offsetY = offsetY;
+		this.offsetZ = offsetZ;
+	}
+	public Voxel(Location location, float size,Texture texture, float offsetX, float offsetY, float offsetZ ) {
+		this.location = location;
+		this.size = size;
+		this.texture = texture;
+		this.offsetX = offsetX;
+		this.offsetY = offsetY;
+		this.offsetZ = offsetZ;
+	}
+	public Voxel(Location location2, float f, boolean top, boolean bottom, boolean left,
+			boolean right, boolean forward, boolean back) {
+		// TODO change rendering options so non-rendered sides render is not called.
+	}
 	public void render(){
 		initiateRender();
 		renderFinal();
@@ -43,6 +66,9 @@ public class Voxel {
 		this.move(this.getLocation());
 		glRotatef(0.0f,0.0f,0.0f,0.0f);
 	    Color.white.bind();
+	    if(this.texture == null){
+			this.texture = TextureHandler.getTexture("grass", "png" );
+	    }
 	    texture.bind(); 
 	    glEnable(GL_TEXTURE_2D);  
 	    glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 
@@ -151,7 +177,14 @@ public class Voxel {
 	}
 	
 	public void move(Location location){
-		glTranslatef(location.getX(),location.getY(),location.getZ());
+		if(this.offsetX != 0 || this.offsetY != 0 || this.offsetZ != 0){
+			glTranslatef(location.getX() + this.offsetX,location.getY() + this.offsetY,location.getZ() + this.offsetZ);
+		}else{
+			glTranslatef(location.getX(),location.getY(),location.getZ());
+		}
+	}
+	public void rotate(float rotate){
+		glRotatef(rotate,this.location.getX(),this.location.getY(),this.location.getZ());
 	}
 	//private static void glRandomColor() {
 	//	Random rand = new Random();

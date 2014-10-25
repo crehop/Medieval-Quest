@@ -5,7 +5,6 @@ import loops.GameLoop;
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
 
 import static org.lwjgl.input.Keyboard.*;
 

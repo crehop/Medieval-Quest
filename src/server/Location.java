@@ -28,6 +28,13 @@ public class Location {
 		this.setYaw(0);
 		System.out.println("NEW LOCATION CREATED " + x + " " + y + " " + z);
 	}
+	public Location(Location location) {
+		this.setX(location.getX());
+		this.setY(location.getX());
+		this.setZ(location.getZ());
+		this.setYaw(location.getYaw());
+		this.setRotation(location.getRotation());
+	}
 	public float getX() {
 		return this.x;
 	}

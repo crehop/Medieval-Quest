@@ -15,6 +15,7 @@ public class Skybox {
 		Texture top = TextureHandler.getTexture("skyboxtop", "png");
 		Texture bottom = TextureHandler.getTexture("skyboxbottom", "png");
 		sides.bind();
+		glPopMatrix();
 		glBegin(GL_QUADS);
 		glTexCoord2f(1f, 0.0f);
 		glVertex3f(-player.getLocation().getX() - size -1, -player.getLocation().getY() - size -1, -player.getLocation().getZ()- size -1);
@@ -91,5 +92,6 @@ public class Skybox {
 	        glTexCoord2f(0.0f, 0.0f);
 	        glVertex3f(-player.getLocation().getX() + size + 1, -player.getLocation().getY() - size -1, -player.getLocation().getZ() + size + 1);
 	    glEnd();
+		glPushMatrix();
 	}
 }

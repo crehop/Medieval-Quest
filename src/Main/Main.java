@@ -2,22 +2,15 @@ package Main;
 import java.util.ArrayList;
 
 import loops.GameLoop;
-import loops.MenuLoop;
-import loops.StartLoop;
 
 import org.lwjgl.LWJGLException;
 import static org.lwjgl.opengl.GL11.*;
-
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
 import org.lwjgl.opengl.*;
 
 import entities.Player;
-
-import renderer.CameraFPS;
-import renderer.Skybox;
 import wireframe.Wireframe;
 
 
@@ -46,11 +39,6 @@ public class Main {
 			Driver.checkForTick();
 			Display.sync(60);
 			Display.update();
-	        Thread.yield();
-	        //This stops the app from consuming all your CPU. It makes this slightly less accurate, but is worth it.
-	        //You can remove this line and it will still work (better), your CPU just climbs on certain OSes.
-	        //FYI on some OS's this can cause pretty bad stuttering.
-	        try {Thread.sleep(1);} catch(Exception e) {}
 		}
 	}
 	private static void confirmLoop() {
