@@ -27,7 +27,7 @@ public class Controls {
 	//Mouse sensitivity
 	static float mouseSensitivity = 0.05f;
 	//change to adjust movement speed
-	static float defaultMovementSpeed = 0.005f;
+	static float defaultMovementSpeed = 0.05f;
 	static float movementSpeed = defaultMovementSpeed;
 	
 	static float lastTime = 0.0f;

@@ -205,4 +205,10 @@ public class Voxel {
 	//	Random rand = new Random();
 	//	glColor3f(rand.nextFloat(),rand.nextFloat(),rand.nextFloat());
 	//}
+	public void setOffsetX(float f) {
+		this.offsetX = f;
+	}
+	public float getOffsetX() {
+		return this.offsetX;
+	}
 }

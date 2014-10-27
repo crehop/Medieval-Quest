@@ -3,6 +3,7 @@ package loops;
 import static org.lwjgl.input.Keyboard.KEY_F;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -19,11 +20,14 @@ public class GameLoop {
 	static WireframePart check;
 	static boolean debug = false;
 	static boolean gravity = false;
+	static Random rand = new Random();
 	public static void loop(){
 		if(Mouse.isGrabbed() == false){
 			Mouse.setGrabbed(true);
-			Location home = new Location(6.0f,0.0f,0.0f);
-			WireframePart part = new WireframePart(home, null, 2.0f, 6.0f, 2.0f, 0.25f);
+			Location home = new Location(5.0f,0.0f,0.0f);
+			Location home21 = new Location(10.0f,5.0f,0.0f);
+			WireframePart part = new WireframePart(home, null, 5.0f, 8.0f, 5.0f, 0.25f);
+			WireframePart part2 = new WireframePart(home21, null, 5.0f, 8.0f, 5.0f, 0.35f);
 			check = part;
 		}
 		if(Keyboard.isKeyDown(KEY_F) && pressed == false){
@@ -51,16 +55,22 @@ public class GameLoop {
 		for(WireframePart part:renderMe){
 			part.render();
 			if(debug){
-				if(part.getRotation() < 100){
-					part.setRotation(part.getRotation() + 0.2f);
+				if(part.getRotation() < 120){
+					part.setRotation(part.getRotation() + 3.2f);
 				}
 			}else if (!(debug)){
 				if(part.getRotation() > 0){
-					part.setRotation(part.getRotation() - 0.2f);
+					part.setRotation(part.getRotation() - 3.2f);
 				}
 			}
 			if(gravity){
-				part.setDropcall(true);
+				float check = rand.nextFloat();
+				if(check < 0.03){
+					part.setDropcall(true);
+				}
+			}
+			else{
+				part.setDropcall(false);
 			}
 		}
 		Skybox.renderSkyBox(Main.cam);
@@ -77,7 +87,10 @@ public class GameLoop {
 		System.out.println("DEBUG SET TO FALSE");
 	}
 	public static void reset(){
-		gravity = true;
-		System.out.println("SET TO TRUE");
+		if(gravity){
+			gravity = false;
+		}else{
+			gravity = true;
+		}
 	}
 }
