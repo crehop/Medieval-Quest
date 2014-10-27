@@ -22,7 +22,9 @@ public class Voxel {
 	private float offsetY;
 	private float offsetZ;
 	private boolean physicsControlled;
-	Random rand = new Random();
+	private Random rand = new Random();
+	private float rotation = 0.0f;
+
 	public Voxel(Location location){
 		this.location = new Location(location);
 		size = 0.5f;
@@ -66,6 +68,7 @@ public class Voxel {
 	
 	private void initiateRender() {
 		glPushMatrix();
+		glRotatef(rotation,this.location.getX(),this.location.getY(),this.location.getZ());
 		if(physicsControlled == false){
 			this.move(this.getLocation());
 		}else{
@@ -193,7 +196,7 @@ public class Voxel {
 		}
 	}
 	public void rotate(float rotate){
-		glRotatef(rotate,this.location.getX(),this.location.getY(),this.location.getZ());
+		this.rotation = rotate;
 	}
 	public void setPhysicsControlled(boolean controlled){
 		this.physicsControlled = controlled;

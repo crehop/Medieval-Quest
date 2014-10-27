@@ -66,8 +66,8 @@ public class WireframePart{
 	}
 	public void render() {
 		for(Voxel vox:voxels){
-			vox.render();
 			vox.rotate(this.getRotation());
+			vox.render();
 			if(dropcall){
 				if(rand.nextFloat() > 0.8){
 					vox.setPhysicsControlled(true);

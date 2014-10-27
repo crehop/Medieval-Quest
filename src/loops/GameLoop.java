@@ -52,11 +52,11 @@ public class GameLoop {
 			part.render();
 			if(debug){
 				if(part.getRotation() < 100){
-					part.setRotation(part.getRotation() + 0.005f);
+					part.setRotation(part.getRotation() + 0.2f);
 				}
 			}else if (!(debug)){
 				if(part.getRotation() > 0){
-					part.setRotation(part.getRotation() - 0.005f);
+					part.setRotation(part.getRotation() - 0.2f);
 				}
 			}
 			if(gravity){
