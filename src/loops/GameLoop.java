@@ -26,8 +26,11 @@ public class GameLoop {
 			Mouse.setGrabbed(true);
 			Location home = new Location(5.0f,0.0f,0.0f);
 			Location home21 = new Location(10.0f,5.0f,0.0f);
-			WireframePart part = new WireframePart(home, null, 5.0f, 8.0f, 5.0f, 0.25f);
-			WireframePart part2 = new WireframePart(home21, null, 5.0f, 8.0f, 5.0f, 0.35f);
+			WireframePart part = new WireframePart(home, null, 5.0f, 3.0f, 3.0f, 0.20f);
+			System.out.println("Adding second part");
+			System.out.println("FRAME 1 = " + part.getFrame());
+			WireframePart part2 = new WireframePart(part.getFrame(), 5.0f, 3.0f, 3.0f, 0.75f);
+			
 			check = part;
 		}
 		if(Keyboard.isKeyDown(KEY_F) && pressed == false){

@@ -3,9 +3,9 @@ package utils;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
-import javax.tools.DocumentationTool.Location;
-
 import org.lwjgl.opengl.GL11;
+
+import server.Location;
 
 public class Lighting {
 	private static ByteBuffer temp = ByteBuffer.allocateDirect(16);

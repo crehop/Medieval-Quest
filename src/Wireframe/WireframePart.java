@@ -30,7 +30,8 @@ public class WireframePart{
 			this.length = (float)(length);
 			this.height = (float)(height);
 			this.blockSize = blockSize;
-			body = new Wireframe(parts);		
+			this.body = new Wireframe(parts);
+			this.body.setLocation(location);
 		}else{
 			this.body = body;
 			this.width = (float)(width);
@@ -39,6 +40,18 @@ public class WireframePart{
 			this.blockSize = blockSize;
 		}
 		this.setLocation(location);
+		assemblePart();
+		GameLoop.renderMe.add(this);
+	}
+	public WireframePart(Wireframe body, float width, float length, float height,float blockSize) {
+		this.ID = entities.ID.getPartID();
+		this.body = body;
+		body.addPart(this);
+		this.width = (float)(width);
+		this.length = (float)(length);
+		this.height = (float)(height);
+		this.blockSize = blockSize;
+		this.setLocation(body.getLocation());
 		assemblePart();
 		GameLoop.renderMe.add(this);
 	}
@@ -122,6 +135,9 @@ public class WireframePart{
 	}
 	public void setDropcall(boolean dropcall) {
 		this.dropcall = dropcall;
+	}
+	public Wireframe getFrame() {
+		return this.body;
 	}
 
 }
