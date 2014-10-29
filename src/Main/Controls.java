@@ -23,7 +23,9 @@ public class Controls {
 	static boolean test1;
 	static boolean test2;
 	static boolean test3;
+	static boolean test4;
 
+	
 	//Mouse sensitivity
 	static float mouseSensitivity = 0.05f;
 	//change to adjust movement speed
@@ -61,6 +63,7 @@ public class Controls {
 		test1 = Keyboard.isKeyDown(KEY_ADD);
 		test2 = Keyboard.isKeyDown(KEY_SUBTRACT);
 		test3 = Keyboard.isKeyDown(KEY_EQUALS);
+		test4 = Keyboard.isKeyDown(KEY_F);
 		aKeyIsDown = false;
 		if(exitKey){
 			Main.scrub();
@@ -136,6 +139,9 @@ public class Controls {
 		}
 		if(test3){
 			GameLoop.reset();
+		}
+		if(test4){
+			GameLoop.gravity();
 		}
 	}
 

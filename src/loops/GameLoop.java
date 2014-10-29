@@ -44,7 +44,6 @@ public class GameLoop {
 			Voxel vox4 = new Voxel(home4,0.05f);
 			Voxel vox5 = new Voxel(home5,0.025f);
 			Voxel vox6 = new Voxel(home6,0.005f);
-			System.out.println("CONFIRM F PRESS");
 			pressed = true;
 			renderMe.add(vox);
 			renderMe.add(vox2);
@@ -69,7 +68,9 @@ public class GameLoop {
 				}
 			}
 			if(gravity){
+				System.out.println("CONFIRM GRAVITY");
 				float check = rand.nextFloat();
+				
 				if(check < 0.03){
 					part.setDropcall(true);
 				}
@@ -79,9 +80,6 @@ public class GameLoop {
 			}
 		}
 		Skybox.renderSkyBox(Main.cam);
-		System.out.println("TEST ");
-		Main.cam.test();
-		//System.out.println("CAMERA LOCATION X:" + Main.cam.getLocation().getX() + " Y:" + Main.cam.getLocation().getY() + " Z:"  + Main.cam.getLocation().getZ());
 	}
 	public static void expand(){
 		rotationY++;
@@ -100,6 +98,13 @@ public class GameLoop {
 		++;
 		if(rotationZ>300){
 			rotationZ = 0;
+		}
+	}
+	public static void gravity() {
+		if(gravity = false){
+			gravity = true;
+		}else{
+			gravity = false;
 		}
 	}
 }
