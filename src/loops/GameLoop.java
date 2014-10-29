@@ -28,7 +28,7 @@ public class GameLoop {
 		if(Mouse.isGrabbed() == false){
 			Mouse.setGrabbed(true);
 			Location home21 = new Location(100.0f,0.0f,0.0f);
-			WireframePart part2 = new WireframePart(home21,null, 15.0f, 3.0f, 3.0f, 1.5f);
+			WireframePart part2 = new WireframePart(home21,null, 8.0f, 3.0f, 3.0f, 0.20f);
 			
 			check = part2;
 		}
@@ -68,7 +68,6 @@ public class GameLoop {
 				}
 			}
 			if(gravity){
-				System.out.println("CONFIRM GRAVITY");
 				float check = rand.nextFloat();
 				
 				if(check < 0.03){

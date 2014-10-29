@@ -83,7 +83,6 @@ public class WireframePart{
 	}
 	public void render() {
 		for(Voxel vox:voxels){
-			System.out.println("dropcall = " + dropcall);
 			vox.rotateX(this.rotationX);
 			vox.rotateY(this.rotationY);
 			vox.rotateZ(this.rotationZ);
