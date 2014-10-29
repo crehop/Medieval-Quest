@@ -11,6 +11,7 @@ import org.newdawn.slick.opengl.Texture;
 
 import renderer.TextureHandler;
 import server.Location;
+import wireframe.WireframePart;
 
 //import java.util.Random;
 
@@ -23,7 +24,10 @@ public class Voxel {
 	private float offsetZ;
 	private boolean physicsControlled;
 	private Random rand = new Random();
-	private float rotation = 0.0f;
+	private float rotationX = 0.0f;
+	private float rotationY = 0.0f;
+	private float rotationZ = 0.0f;
+	private WireframePart part = null;
 
 	public Voxel(Location location){
 		this.location = new Location(location);
@@ -68,15 +72,18 @@ public class Voxel {
 	
 	private void initiateRender() {
 		glPushMatrix();
-		glRotatef(rotation,this.location.getX(),this.location.getY(),this.location.getZ());
+		glTranslatef(this.location.getX(), this.location.getY(), this.location.getZ());
+		glRotatef(rotationX,1.0f,0.0f,0.0f);
+		glRotatef(rotationY,0.0f,1.0f,0.0f);
+		glRotatef(rotationZ,0.0f,0.0f,1.0f);
 		if(physicsControlled == false){
 			this.move(this.getLocation());
 		}else{
 			if(rand.nextFloat() > 0.08)
 			this.offsetY-=rand.nextFloat()/100;
+			
 			this.move(this.getLocation());
 		}
-		glRotatef(0.0f,0.0f,0.0f,0.0f);
 	    Color.white.bind();
 	    if(this.texture == null){
 			this.texture = TextureHandler.getTexture("grass", "png" );
@@ -95,6 +102,9 @@ public class Voxel {
 		}
 	}
 	
+	private void move(float x, float y, float z) {
+		glTranslatef(x + this.offsetX, y + this.offsetY, z + this.offsetZ);
+	}
 	private void renderFinal() {
 		glEnd();
 	    glPopMatrix();
@@ -195,8 +205,14 @@ public class Voxel {
 			glTranslatef(location.getX(),location.getY(),location.getZ());
 		}
 	}
-	public void rotate(float rotate){
-		this.rotation = rotate;
+	public void rotateX(float rotate){
+		this.rotationX = rotate;
+	}
+	public void rotateY(float rotate){
+		this.rotationY = rotate;
+	}
+	public void rotateZ(float rotate){
+		this.rotationZ = rotate;
 	}
 	public void setPhysicsControlled(boolean controlled){
 		this.physicsControlled = controlled;
@@ -210,5 +226,11 @@ public class Voxel {
 	}
 	public float getOffsetX() {
 		return this.offsetX;
+	}
+	public WireframePart getPart() {
+		return part;
+	}
+	public void setPart(WireframePart part) {
+		this.part = part;
 	}
 }

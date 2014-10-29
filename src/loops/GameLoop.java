@@ -14,6 +14,9 @@ import wireframe.WireframePart;
 import Main.Main;
 
 public class GameLoop {
+	private static float rotationX = 0.0f;
+	private static float rotationY = 0.0f;
+	private static float rotationZ = 0.0f;
 	public static ArrayList<WireframePart> renderMe = new ArrayList<WireframePart>();
 	private static boolean pressed = false;
 	static float expand = 0;
@@ -24,14 +27,10 @@ public class GameLoop {
 	public static void loop(){
 		if(Mouse.isGrabbed() == false){
 			Mouse.setGrabbed(true);
-			Location home = new Location(5.0f,0.0f,0.0f);
-			Location home21 = new Location(10.0f,5.0f,0.0f);
-			WireframePart part = new WireframePart(home, null, 5.0f, 3.0f, 3.0f, 0.20f);
-			System.out.println("Adding second part");
-			System.out.println("FRAME 1 = " + part.getFrame());
-			WireframePart part2 = new WireframePart(part.getFrame(), 5.0f, 3.0f, 3.0f, 0.75f);
+			Location home21 = new Location(0.0f,0.0f,0.0f);
+			WireframePart part2 = new WireframePart(home21,null, 15.0f, 3.0f, 3.0f, 1.5f);
 			
-			check = part;
+			check = part2;
 		}
 		if(Keyboard.isKeyDown(KEY_F) && pressed == false){
 			/*Location home2 = new Location(7.25f,0.0f,0.0f);
@@ -57,6 +56,9 @@ public class GameLoop {
 		}
 		for(WireframePart part:renderMe){
 			part.render();
+			part.setRotateX(rotationX);
+			part.setRotateY(rotationY);
+			part.setRotateZ(rotationZ);
 			if(debug){
 				if(part.getRotation() < 120){
 					part.setRotation(part.getRotation() + 3.2f);
@@ -82,18 +84,22 @@ public class GameLoop {
 		//System.out.println("CAMERA LOCATION X:" + Main.cam.getLocation().getX() + " Y:" + Main.cam.getLocation().getY() + " Z:"  + Main.cam.getLocation().getZ());
 	}
 	public static void expand(){
-		debug = true;
-		System.out.println("DEBUG SET TO TRUE");
+		rotationY++;
+		if(rotationY>300){
+			rotationY = 0;
+		}
 	}
 	public static void contract(){
-		debug = false;
-		System.out.println("DEBUG SET TO FALSE");
+		rotationX++;
+		if(rotationX>300){
+			rotationX = 0;
+		}
 	}
 	public static void reset(){
-		if(gravity){
-			gravity = false;
-		}else{
-			gravity = true;
+		rotationZ
+		++;
+		if(rotationZ>300){
+			rotationZ = 0;
 		}
 	}
 }

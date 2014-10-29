@@ -10,6 +10,8 @@ import org.lwjgl.opengl.GL11;
 
 import org.lwjgl.opengl.*;
 
+import server.Location;
+
 import entities.Player;
 import wireframe.Wireframe;
 
@@ -22,7 +24,7 @@ public class Main {
 	public static boolean isInGameMode = false;
 	public static boolean isInMenuMode = false;
 	public static boolean isInStartMode = false;
-	
+	public static Location center = new Location(0.0f,0.0f,0.0f);
 	
 	public static void main(String[] args) {
 		initiate();

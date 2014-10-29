@@ -20,6 +20,9 @@ public class WireframePart{
 	private float blockSize = 0.0f;
 	private boolean dropcall;
 	private Random rand = new Random();
+	private float rotationX = 0.0f;
+	private float rotationY = 0.0f;
+	private float rotationZ = 0.0f;
 	private ArrayList<Voxel> voxels = new ArrayList<Voxel>();
 	public WireframePart(Location location, Wireframe body, float width, float length, float height,float blockSize){
 		this.ID = entities.ID.getPartID();
@@ -56,6 +59,7 @@ public class WireframePart{
 		GameLoop.renderMe.add(this);
 	}
 	private int attempt;
+
 	private void assemblePart(){
 		for(float x = 0.0f; x < width; x += getBlockSize() ){
 			Voxel newVoxX = new Voxel(location,this.getBlockSize()/2,x,0,0);
@@ -79,7 +83,9 @@ public class WireframePart{
 	}
 	public void render() {
 		for(Voxel vox:voxels){
-			vox.rotate(this.getRotation());
+			vox.rotateX(this.rotationX);
+			vox.rotateY(this.rotationY);
+			vox.rotateZ(this.rotationZ);
 			vox.render();
 			if(dropcall){
 				if(rand.nextFloat() < 0.008){
@@ -139,5 +145,13 @@ public class WireframePart{
 	public Wireframe getFrame() {
 		return this.body;
 	}
-
+	public void setRotateX(float rotate){
+		this.rotationX = rotate;
+	}
+	public void setRotateY(float rotate){
+		this.rotationY = rotate;
+	}
+	public void setRotateZ(float rotate){
+		this.rotationZ = rotate;
+	}
 }
