@@ -101,7 +101,7 @@ public class GameLoop {
 		}
 	}
 	public static void gravity() {
-		if(gravity = false){
+		if(gravity == false){
 			gravity = true;
 		}else{
 			gravity = false;
