@@ -87,7 +87,6 @@ public class CameraFPS {
 		location.setX(position.getX());
 		location.setY(position.getY());
 		location.setZ(position.getZ());
-		System.out.println("LOCATION CALL " + position.getX() + " Y:" + position.getY()+ " Z:" + position.getZ());
 	}
 	public Location getLocation(){
 		return location;

@@ -27,7 +27,7 @@ public class GameLoop {
 	public static void loop(){
 		if(Mouse.isGrabbed() == false){
 			Mouse.setGrabbed(true);
-			Location home21 = new Location(0.0f,0.0f,0.0f);
+			Location home21 = new Location(100.0f,0.0f,0.0f);
 			WireframePart part2 = new WireframePart(home21,null, 15.0f, 3.0f, 3.0f, 1.5f);
 			
 			check = part2;

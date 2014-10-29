@@ -1,11 +1,6 @@
 package voxel;
 import static org.lwjgl.opengl.GL11.*;
-
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
 import java.util.Random;
-
-import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
@@ -72,10 +67,11 @@ public class Voxel {
 	
 	private void initiateRender() {
 		glPushMatrix();
-		glTranslatef(this.location.getX(), this.location.getY(), this.location.getZ());
+		glTranslatef(-this.getLocation().getX(),-this.getLocation().getY(),-this.getLocation().getZ());
 		glRotatef(rotationX,1.0f,0.0f,0.0f);
 		glRotatef(rotationY,0.0f,1.0f,0.0f);
 		glRotatef(rotationZ,0.0f,0.0f,1.0f);
+		glTranslatef(-this.getLocation().getX(),-this.getLocation().getY(),-this.getLocation().getZ());
 		if(physicsControlled == false){
 			this.move(this.getLocation());
 		}else{
@@ -198,7 +194,7 @@ public class Voxel {
 		return location;
 	}
 	
-	public void move(Location location){
+	private void move(Location location){
 		if(this.offsetX != 0 || this.offsetY != 0 || this.offsetZ != 0){
 			glTranslatef(location.getX() + this.offsetX,location.getY() + this.offsetY,location.getZ() + this.offsetZ);
 		}else{
