@@ -229,4 +229,16 @@ public class Voxel {
 	public void setPart(WireframePart part) {
 		this.part = part;
 	}
+	public float getOffsetY() {
+		return this.offsetY;
+	}
+	public void setOffsetY(float offsetY) {
+		this.offsetY = offsetY;
+	}
+	public float getOffsetZ() {
+		return this.offsetZ;
+	}
+	public void setOffsetZ(float offsetZ) {
+		this.offsetZ = offsetZ;
+	}
 }

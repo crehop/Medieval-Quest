@@ -23,6 +23,9 @@ public class WireframePart{
 	private float rotationX = 0.0f;
 	private float rotationY = 0.0f;
 	private float rotationZ = 0.0f;
+	private float offsetX = 0.0f;
+	private float offsetY = 0.0f;
+	private float offsetZ = 0.0f;
 	private ArrayList<Voxel> voxels = new ArrayList<Voxel>();
 	public WireframePart(Location location, Wireframe body, float width, float length, float height,float blockSize){
 		this.ID = entities.ID.getPartID();
@@ -58,24 +61,16 @@ public class WireframePart{
 		assemblePart();
 		GameLoop.renderMe.add(this);
 	}
-	private int attempt;
-
 	private void assemblePart(){
 		for(float x = 0.0f; x < width; x += getBlockSize() ){
 			Voxel newVoxX = new Voxel(location,this.getBlockSize()/2,x,0,0);
 			voxels.add(newVoxX);
-			attempt++;
-			System.out.println("ATTEMPTED " + attempt + " WIDTH " + width + " X :" + x);
 			for(float y = 0.0f; y < length; y += getBlockSize() ){
 				Voxel newVoxY = new Voxel(location,this.getBlockSize()/2, null, x,y,0);
 				voxels.add(newVoxY);
-				attempt++;
-				System.out.println("ATTEMPTED " + attempt + " LENGTH " + length + " Y :" + y);
 				for(float z = 0.0f; z < height; z += getBlockSize() ){
 					Voxel newVoxZ = new Voxel(location,this.getBlockSize()/2,x,y,z);
 					voxels.add(newVoxZ);
-					attempt++;
-					System.out.println("ATTEMPTED " + attempt + " HEIGHT " + height + " Z :" + z);
 				}
 			}
 				
@@ -153,5 +148,30 @@ public class WireframePart{
 	}
 	public void setRotateZ(float rotate){
 		this.rotationZ = rotate;
+	}
+	public float getOffsetZ() {
+		return offsetZ;
+	}
+	public void setOffsetZ(float offsetZ) {
+		this.offsetZ = offsetZ;
+	}
+	public float getOffsetY() {
+		return offsetY;
+	}
+	public void setOffsetY(float offsetY) {
+		this.offsetY = offsetY;
+	}
+	public float getOffsetX() {
+		return offsetX;
+	}
+	public void setOffsetX(float offsetX) {
+		this.offsetX = offsetX;
+	}
+	public void syncOffset(){
+		for(Voxel vox:voxels){
+			vox.setOffsetX(vox.getOffsetX() + this.offsetX);
+			vox.setOffsetY(vox.getOffsetY() + this.offsetY);
+			vox.setOffsetZ(vox.getOffsetZ() + this.offsetZ);
+		}
 	}
 }

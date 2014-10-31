@@ -8,6 +8,8 @@ import java.util.Random;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
+import entities.Zombie;
+
 import renderer.Skybox;
 import server.Location;
 import wireframe.WireframePart;
@@ -27,10 +29,8 @@ public class GameLoop {
 	public static void loop(){
 		if(Mouse.isGrabbed() == false){
 			Mouse.setGrabbed(true);
-			Location home21 = new Location(100.0f,0.0f,0.0f);
-			WireframePart part2 = new WireframePart(home21,null, 8.0f, 3.0f, 3.0f, 0.20f);
-			
-			check = part2;
+			Location home21 = new Location(10.0f,0.0f,0.0f);			
+			Zombie first = new Zombie(home21);
 		}
 		if(Keyboard.isKeyDown(KEY_F) && pressed == false){
 			/*Location home2 = new Location(7.25f,0.0f,0.0f);
