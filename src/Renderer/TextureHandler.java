@@ -11,12 +11,12 @@ public class TextureHandler
 {
 
     // Used to deliver a texture to entities for quad-rendering.
-    public static Texture getTexture(String name, String ext)
+    public static Texture getTexture(String name)
     {
         Texture texture = null;
         try
         {
-            texture = TextureLoader.getTexture(ext.toUpperCase(), ResourceLoader.getResourceAsStream( "res/textures/" + name + "." + ext.toLowerCase()));
+            texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream( "res/textures/" + name + ".png"));
         } catch (IOException e)
         {
             e.printStackTrace();

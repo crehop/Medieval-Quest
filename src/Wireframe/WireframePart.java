@@ -12,6 +12,7 @@ public class WireframePart{
 	private final int ID;
 	private Wireframe body;
 	private Location location;
+	private String texture;
 	private float rotation = 0.0f;
 	private float yaw = 0.0f;
 	private float length = 0.0f;
@@ -27,6 +28,7 @@ public class WireframePart{
 	private float offsetY = 0.0f;
 	private float offsetZ = 0.0f;
 	private ArrayList<Voxel> voxels = new ArrayList<Voxel>();
+	private boolean textureHasChanged = false;
 	public WireframePart(Location location, Wireframe body, float width, float length, float height,float blockSize){
 		this.ID = entities.ID.getPartID();
 		if(this.body == null){
@@ -81,6 +83,9 @@ public class WireframePart{
 			vox.rotateX(this.rotationX);
 			vox.rotateY(this.rotationY);
 			vox.rotateZ(this.rotationZ);
+			if(this.textureHasChanged){
+				vox.setTexture(texture);
+			}
 			vox.render();
 			if(dropcall){
 				if(rand.nextFloat() < 0.008){
@@ -91,6 +96,7 @@ public class WireframePart{
 				vox.setPhysicsControlled(false);
 			}
 		}
+		this.textureHasChanged  = false;
 	}
 	public Location getLocation() {
 		return location;
@@ -173,5 +179,30 @@ public class WireframePart{
 			vox.setOffsetY(vox.getOffsetY() + this.offsetY);
 			vox.setOffsetZ(vox.getOffsetZ() + this.offsetZ);
 		}
+	}
+	public float getRotateX() {
+		return this.rotationX;
+	}
+	public float getRotateY() {
+		return this.rotationY;
+	}
+	public float getRotateZ() {
+		return this.rotationZ;
+	}
+	public String getTexture() {
+		return texture;
+	}
+	public void setTexture(String texture) {
+		this.texture = texture;
+		this.textureHasChanged = true;
+	}
+	public void rotateX(float rotate){
+		this.rotationX += rotate;
+	}
+	public void rotateY(float rotate){
+		this.rotationY += rotate;
+	}
+	public void rotateZ(float rotate){
+		this.rotationZ += rotate;
 	}
 }

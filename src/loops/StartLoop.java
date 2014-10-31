@@ -9,7 +9,7 @@ import org.newdawn.slick.opengl.Texture;
 import Main.Controls;
 
 public class StartLoop {
-	static Texture splash = renderer.TextureHandler.getTexture("splash", "png");
+	static Texture splash = renderer.TextureHandler.getTexture("splash");
 
 	public static void render() {
 		GL11.glBegin(GL_PROJECTION);

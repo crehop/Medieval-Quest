@@ -13,7 +13,9 @@ import wireframe.WireframePart;
 public class Voxel {
 	private float size;
 	private Location location;
-	private Texture texture;
+	private String texture = "grass";
+	private boolean textureChange;
+	private Texture texture1;
 	private float offsetX;
 	private float offsetY;
 	private float offsetZ;
@@ -27,21 +29,21 @@ public class Voxel {
 	public Voxel(Location location){
 		this.location = new Location(location);
 		size = 0.5f;
-		this.texture = TextureHandler.getTexture("grass", "png" );
+		this.texture1 = TextureHandler.getTexture("grass");
 
 	}
 	public Voxel(Location location, float size) {
 		this.location = location;
 		this.size = size;
-		this.texture = TextureHandler.getTexture("grass", "png");
+		this.texture1 = TextureHandler.getTexture("grass");
 	}
 	public Voxel(Location location, float size,Texture texture) {
 		this.location = location;
 		this.size = size;
-		this.texture = texture;
+		this.texture1 = texture;
 	}
 	public Voxel(Location location, float size, float offsetX, float offsetY, float offsetZ ) {
-		this.texture = TextureHandler.getTexture("grass", "png" );
+		this.texture1 = TextureHandler.getTexture("grass");
 		this.location = location;
 		this.size = size;
 		this.offsetX = offsetX;
@@ -51,7 +53,7 @@ public class Voxel {
 	public Voxel(Location location, float size,Texture texture, float offsetX, float offsetY, float offsetZ ) {
 		this.location = location;
 		this.size = size;
-		this.texture = texture;
+		this.texture1 = texture;
 		this.offsetX = offsetX;
 		this.offsetY = offsetY;
 		this.offsetZ = offsetZ;
@@ -81,10 +83,12 @@ public class Voxel {
 			this.move(this.getLocation());
 		}
 	    Color.white.bind();
-	    if(this.texture == null){
-			this.texture = TextureHandler.getTexture("grass", "png" );
+	    if(this.texture1 == null){
+			this.texture1 = TextureHandler.getTexture("grass");
+	    }else if(this.textureChange){
+	    	this.texture1 = TextureHandler.getTexture(texture);
 	    }
-	    texture.bind(); 
+	    texture1.bind(); 
 	    glEnable(GL_TEXTURE_2D);  
 	    glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 
 	    glBegin(GL_QUADS);
@@ -96,6 +100,7 @@ public class Voxel {
 			renderBottom(true);
 			renderTop(true);
 		}
+		this.textureChange = false;
 	}
 	
 	private void move(float x, float y, float z) {
@@ -108,7 +113,7 @@ public class Voxel {
 
 	private void renderTop(boolean render) {
 		if(render){
-			texture.bind();
+			texture1.bind();
 			//Top Face
             glTexCoord2f(0, 0); // top left
 			glVertex3f(size,-1 * (size),-1 * (size));
@@ -240,5 +245,12 @@ public class Voxel {
 	}
 	public void setOffsetZ(float offsetZ) {
 		this.offsetZ = offsetZ;
+	}
+	public String getTexture() {
+		return this.texture;
+	}
+	public void setTexture(String texture) {
+		this.texture = texture;
+		this.textureChange = true;
 	}
 }
