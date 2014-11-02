@@ -205,4 +205,16 @@ public class WireframePart{
 	public void rotateZ(float rotate){
 		this.rotationZ += rotate;
 	}
+	public ArrayList<Voxel> getVoxels(){
+		return this.voxels;
+	}
+	public void moveX(float f) {
+		this.location.setX(this.getLocation().getX() + f);		
+	}
+	public void moveY(float f) {
+		this.location.setY(this.getLocation().getY() + f);
+	}
+	public void moveZ(float f) {
+		this.location.setZ(this.getLocation().getZ() + f);
+	}
 }

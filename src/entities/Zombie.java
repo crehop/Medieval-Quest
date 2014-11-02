@@ -15,11 +15,13 @@ public class Zombie extends Wireframe{
 	WireframePart leftArmBottom;
 	ArrayList<Voxel> voxels = new ArrayList<Voxel>();
 	public Zombie(Location location) {
-		leftArmTop = new WireframePart(location,this, 5.0f, 3.0f, 3.0f, 0.25f);
-		leftArmBottom = new WireframePart(location,this, 6.0f, 3.0f, 3.0f, 0.25f);
+		leftArmTop = new WireframePart(location,this, 3.0f, 1.25f, 1.25f, 0.25f);
+		leftArmBottom = new WireframePart(location,this, 3.0f, 1.25f, 1.25f, 0.25f);
 		leftArmBottom.setTexture("dirt");
 		leftArmBottom.setOffsetX(-0.0f);
-		leftArmBottom.setOffsetY(-2.75f);
+		leftArmBottom.setOffsetY(-1.00f
+				
+				);
 		leftArmBottom.syncOffset();
 		leftArmBottom.setRotateZ(180.0f);
 		leftArmBottom.rotateZ(-20.0f);
@@ -30,18 +32,24 @@ public class Zombie extends Wireframe{
 	}
 	private void leftArmRun() {
 		if(this.leftArmAnimationMin){
-			leftArmBottom.rotateZ(-0.2f);
-			leftArmTop.rotateZ(-0.1f);
-			if(leftArmBottom.getRotateZ() <= 100){
+			leftArmBottom.rotateZ(-0.5f);
+			leftArmTop.rotateZ(-0.15f);
+			leftArmBottom.moveY(-0.005f);
+			leftArmTop.moveY(-0.005f);
+			if(leftArmBottom.getRotateZ() <= 70){
 				this.leftArmAnimationMax = true;
 				this.leftArmAnimationMin = false;
-			}
+			}	
 		}else if(this.leftArmAnimationMax){
-			leftArmBottom.rotateZ(0.2f);
-			leftArmTop.rotateZ(0.1f);
-			if(leftArmBottom.getRotateZ() >= 180){
+			leftArmBottom.rotateZ(0.5f);
+			leftArmTop.rotateZ(0.15f);
+			leftArmBottom.moveY(0.005f);
+			leftArmTop.moveY(0.005f);
+			if(leftArmBottom.getRotateZ() >= 210){
 				this.leftArmAnimationMin = true;
 				this.leftArmAnimationMax = false;
+				
+				
 			}
 		}
 	}
