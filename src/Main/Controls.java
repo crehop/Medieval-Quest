@@ -132,16 +132,12 @@ public class Controls {
 			//Main.cam.decelerate();
 		}
 		if(test1){
-			GameLoop.expand();
 		}
 		if(test2){
-			GameLoop.contract();
 		}
 		if(test3){
-			GameLoop.reset();
 		}
 		if(test4){
-			GameLoop.gravity();
 		}
 	}
 
