@@ -1,19 +1,19 @@
 package Main;
 
+import org.lwjgl.Sys;
+
 public class Driver {
-	private static int count20 = 0;
-	private static int count1 = 0;
+	private static long lastFrame;
+	private static long getTime(){
+		return((Sys.getTime() * 1000)/ Sys.getTimerResolution());
+	}
+	private static long getDelta(){
+		long currentTime = getTime();
+		int delta = (int)(currentTime - lastFrame);
+		lastFrame = getTime();
+		return delta;
+	}
 	public static void checkForTick(){
-		count20++;
-		count1++;
-		if(count20 == 2){
-			tick20TimesASecond();
-			count20 = 0;
-		}
-		if(count1 == 60){
-			tick1TimesASecond();
-			count1 = 0;
-		}
 	}
 	private static void tick1TimesASecond(){
 	}

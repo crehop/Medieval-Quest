@@ -96,7 +96,7 @@ public class Main {
 	}
 	private static void initiate() {
 		try {
-			Display.setDisplayModeAndFullscreen(new DisplayMode(1280,720));
+			Display.setDisplayModeAndFullscreen(new DisplayMode(1080,720));
 			Display.setFullscreen(true);
 			Display.setTitle("Zombie RTS");
 			Display.create();
