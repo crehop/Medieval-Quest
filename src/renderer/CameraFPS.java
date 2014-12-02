@@ -20,9 +20,10 @@ public class CameraFPS {
 	
 	public CameraFPS(float x, float y, float z){
 		position = new Vector3f(x,y,z);
-		initProjection();
+		this.location = new Location(x,y,z);
+		//initProjection();
 	}
-	private void initProjection() {
+	public void initProjection() {
 		// TODO Auto-generated method stub
 		glMatrixMode(GL_PROJECTION);
 		gluPerspective(70,(float)Display.getWidth()/(float)Display.getHeight(),0.0003f,1000);
@@ -57,7 +58,6 @@ public class CameraFPS {
 		//moves camera forward relative to its current rotation;
 		position.x -= distance * (float)Math.sin(Math.toRadians(yaw + 90));
 		position.z += distance * (float)Math.cos(Math.toRadians(yaw + 90));
-		
 	}
 	public void moveUp(float distance){
 		position.y -= distance;
@@ -72,7 +72,8 @@ public class CameraFPS {
 		GL11.glRotatef(yaw, 0.0f, 1.0f, 0.0f);
 		//Move camera into position vectors location;
 		GL11.glTranslatef(position.x, position.y, position.z);
-		
+		//Update location variable
+		this.updateLocation();
 	}
 	
 	public void setLocation(Location location){
@@ -90,6 +91,11 @@ public class CameraFPS {
 	}
 	public Location getLocation(){
 		return location;
+	}
+	private void updateLocation(){
+		this.location.setY(position.y);
+		this.location.setX(position.x);
+		this.location.setZ(position.z);
 	}
 	
 }

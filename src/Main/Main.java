@@ -36,7 +36,6 @@ public class Main {
 	}
 	public static void loop() {
 		while(!Display.isCloseRequested()){
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			confirmLoop();
 			Display.sync(60);
 			Display.update();
@@ -71,6 +70,7 @@ public class Main {
 			break;
 		case"game":
 			if(loopSwitch == true){
+				GameLoop.toggleInitiate();
 				loopSwitch = false;
 			}
 			GameLoop.loop();
