@@ -40,17 +40,16 @@ public class GameLoop {
 			initProjection();
 			toggleInitiate();
 		}
-		glLoadIdentity();
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		Controls.checkInput();
-		Main.cam.useView();
-		Driver.checkForTick();
 		if(Mouse.isGrabbed() == false){
 			Mouse.setGrabbed(true);
 		}
+		glLoadIdentity();
+		Main.cam.useView();
+		Controls.checkInput();
+		Driver.checkForTick();
 		Skybox.renderSkyBox(Main.cam);
 		test.render();
-		System.out.println(Main.cam.getLocation().getX() + " " + Main.cam.getLocation().getY() + " " + Main.cam.getLocation().getZ() );
+		//System.out.println(Main.cam.getLocation().getX() + " " + Main.cam.getLocation().getY() + " " + Main.cam.getLocation().getZ() );
 	}
 	private static void initProjection() {
 		glMatrixMode(GL_PROJECTION);
