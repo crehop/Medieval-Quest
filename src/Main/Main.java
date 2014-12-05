@@ -48,7 +48,6 @@ public class Main {
 			if(loopSwitch == true){
 				StartLoop.toggleInitiate();
 				loopSwitch = false;
-				System.out.println("loopSwitch = true");
 			}
 			StartLoop.loop();
 			isInGameMode = false;
