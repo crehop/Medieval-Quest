@@ -21,7 +21,7 @@ import wireframe.Wireframe;
 public class Main {
 	public static Player cam;
 	public static ArrayList<Wireframe> wireframes = new ArrayList<Wireframe>();
-	public static String loop = "start";
+	public static String loop = "game";
 	private static boolean debug = false;
 	public static boolean isInGameMode = false;
 	public static boolean isInMenuMode = false;

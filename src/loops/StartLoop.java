@@ -39,10 +39,7 @@ public class StartLoop {
 		//Controls.checkInput();
 	}
 	private static void initiate(){
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
 		glOrtho(0,1080,720,0,1,-1);
-		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_TEXTURE_2D);
 		toggleInitiate();
 		System.out.println("Display Width = " + Display.getWidth() + " Display Height = " + Display.getHeight() + " Initiated set to "+ initiated);
