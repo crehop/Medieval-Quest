@@ -8,7 +8,6 @@ import org.lwjgl.LWJGLException;
 import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
 
 import org.lwjgl.opengl.*;
 
@@ -96,8 +95,8 @@ public class Main {
 	}
 	private static void initiate() {
 		try {
-			Display.setDisplayModeAndFullscreen(new DisplayMode(1080,720));
 			Display.setFullscreen(true);
+			Display.setDisplayModeAndFullscreen(new DisplayMode(1080,720));
 			Display.setTitle("Zombie RTS");
 			Display.create();
 			//cam = new Camera(70,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);

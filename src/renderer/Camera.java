@@ -1,7 +1,6 @@
 package renderer;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.util.glu.GLU.*;
 
 import org.lwjgl.opengl.GL11;
 
@@ -12,10 +11,6 @@ public class Camera {
 	private float rx;
 	private float ry;
 	private float rz;
-	private float fov;
-	private float aspect;
-	private float near;
-	private float far;
 		
 	public Camera(float fov, float aspect, float near, float far){
 		x = 0;

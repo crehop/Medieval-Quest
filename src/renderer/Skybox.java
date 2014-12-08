@@ -18,13 +18,13 @@ public class Skybox {
 			sides.bind();
 			glBegin(GL_QUADS);
 			glTexCoord2f(1f, 0.0f);
-			glVertex3f(-player.getLocation().getX() - size -1, -player.getLocation().getY() - size -1, -player.getLocation().getZ()- size -1);
+			glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() - size -1, player.getLocation().getZ()- size -1);
 	        glTexCoord2f(1f, 1f);
-	        glVertex3f(-player.getLocation().getX() - size -1, -player.getLocation().getY() + size + 1, -player.getLocation().getZ() - size -1);
+	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() + size + 1, player.getLocation().getZ() - size -1);
 	        glTexCoord2f(0.0f, 1f);
-	        glVertex3f(-player.getLocation().getX() + size + 1, -player.getLocation().getY() + size + 1, -player.getLocation().getZ() - size -1);
+	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() + size + 1, player.getLocation().getZ() - size -1);
 	        glTexCoord2f(0.0f, 0.0f);
-	        glVertex3f(-player.getLocation().getX() + size + 1, -player.getLocation().getY() - size -1, -player.getLocation().getZ() - size -1);
+	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() - size -1, player.getLocation().getZ() - size -1);
 	        glEnd();
 		glPopMatrix();
 
@@ -34,13 +34,13 @@ public class Skybox {
 	    	sides.bind();
 	    	glBegin(GL_QUADS);
 	        glTexCoord2f(0.0f, 0.0f);
-	        glVertex3f(-player.getLocation().getX() - size -1, -player.getLocation().getY() - size -1, -player.getLocation().getZ() + size + 1);
+	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() - size -1, player.getLocation().getZ() + size + 1);
 	        glTexCoord2f(1f, 0.0f);
-	        glVertex3f(-player.getLocation().getX() + size + 1, -player.getLocation().getY() - size -1, -player.getLocation().getZ() + size + 1);
+	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() - size -1, player.getLocation().getZ() + size + 1);
 	        glTexCoord2f(1f, 1f);
-	        glVertex3f(-player.getLocation().getX() + size + 1, -player.getLocation().getY() + size + 1, -player.getLocation().getZ() + size + 1);
+	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() + size + 1, player.getLocation().getZ() + size + 1);
 	        glTexCoord2f(0.0f, 1f);
-	        glVertex3f(-player.getLocation().getX() - size -1, -player.getLocation().getY() + size + 1, -player.getLocation().getZ() + size + 1);
+	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() + size + 1, player.getLocation().getZ() + size + 1);
 	        glEnd();
 		glPopMatrix();
 
@@ -50,13 +50,13 @@ public class Skybox {
 			bottom.bind();
 			glBegin(GL_QUADS);
 	        glTexCoord2f(1f, 1f);
-	        glVertex3f(-player.getLocation().getX() - size -1, -player.getLocation().getY() - size -1, -player.getLocation().getZ() - size -1);
+	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() - size -1, player.getLocation().getZ() - size -1);
 	        glTexCoord2f(0.0f, 1f);
-	        glVertex3f(-player.getLocation().getX() + size + 1, -player.getLocation().getY() - size -1, -player.getLocation().getZ() - size -1);
+	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() - size -1, player.getLocation().getZ() - size -1);
 	        glTexCoord2f(0.0f, 0.0f);
-	        glVertex3f(-player.getLocation().getX() + size + 1, -player.getLocation().getY() - size -1, -player.getLocation().getZ() + size + 1);
+	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() - size -1, player.getLocation().getZ() + size + 1);
 	        glTexCoord2f(1f, 0.0f);
-	        glVertex3f(-player.getLocation().getX() - size -1, -player.getLocation().getY() - size -1, -player.getLocation().getZ() + size + 1);
+	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() - size -1, player.getLocation().getZ() + size + 1);
 	        glEnd();
 		glPopMatrix();
 
@@ -65,13 +65,13 @@ public class Skybox {
 			top.bind();
 			glBegin(GL_QUADS);
 	        glTexCoord2f(1f, 0f);
-	        glVertex3f(-player.getLocation().getX() - size -1, -player.getLocation().getY() + size + 1, -player.getLocation().getZ() - size -1);
+	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() + size + 1, player.getLocation().getZ() - size -1);
 	        glTexCoord2f(1f, 1f);
-	        glVertex3f(-player.getLocation().getX() - size -1, -player.getLocation().getY() + size + 1, -player.getLocation().getZ() + size + 1);
+	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() + size + 1, player.getLocation().getZ() + size + 1);
 	        glTexCoord2f(0f, 1f);
-	        glVertex3f(-player.getLocation().getX() + size + 1, -player.getLocation().getY() + size + 1, -player.getLocation().getZ() + size + 1);
+	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() + size + 1, player.getLocation().getZ() + size + 1);
 	        glTexCoord2f(0f, 0f);
-	        glVertex3f(-player.getLocation().getX() + size + 1, -player.getLocation().getY() + size + 1, -player.getLocation().getZ() - size -1);
+	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() + size + 1, player.getLocation().getZ() - size -1);
 	        glEnd();
 		glPopMatrix();
 		
@@ -80,13 +80,13 @@ public class Skybox {
 			sides.bind();
 			glBegin(GL_QUADS);
 	        glTexCoord2f(0.0f, 0.0f);
-	        glVertex3f(-player.getLocation().getX() - size -1, -player.getLocation().getY() - size -1, -player.getLocation().getZ() - size -1);
+	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() - size -1, player.getLocation().getZ() - size -1);
 	        glTexCoord2f(1f, 0.0f);
-	        glVertex3f(-player.getLocation().getX() - size -1, -player.getLocation().getY() - size -1, -player.getLocation().getZ() + size + 1);
+	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() - size -1, player.getLocation().getZ() + size + 1);
 	        glTexCoord2f(1f, 1f);
-	        glVertex3f(-player.getLocation().getX() - size -1, -player.getLocation().getY() + size + 1, -player.getLocation().getZ() + size + 1);
+	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() + size + 1, player.getLocation().getZ() + size + 1);
 	        glTexCoord2f(0.0f, 1f);
-	        glVertex3f(-player.getLocation().getX() - size -1, -player.getLocation().getY() + size + 1, -player.getLocation().getZ() - size -1);
+	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() + size + 1, player.getLocation().getZ() - size -1);
 	        glEnd();
 		glPopMatrix();
 
@@ -95,13 +95,13 @@ public class Skybox {
 			sides.bind();
 			glBegin(GL_QUADS);
 	        glTexCoord2f(1f, 0.0f);
-	        glVertex3f(-player.getLocation().getX() + size + 1, -player.getLocation().getY() - size -1, -player.getLocation().getZ() - size -1);
+	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() - size -1, player.getLocation().getZ() - size -1);
 	        glTexCoord2f(1f, 1f);
-	        glVertex3f(-player.getLocation().getX() + size + 1, -player.getLocation().getY() + size + 1, -player.getLocation().getZ() - size -1);
+	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() + size + 1, player.getLocation().getZ() - size -1);
 	        glTexCoord2f(0.0f, 1f);
-	        glVertex3f(-player.getLocation().getX() + size + 1, -player.getLocation().getY() + size + 1, -player.getLocation().getZ() + size + 1);
+	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() + size + 1, player.getLocation().getZ() + size + 1);
 	        glTexCoord2f(0.0f, 0.0f);
-	        glVertex3f(-player.getLocation().getX() + size + 1, -player.getLocation().getY() - size -1, -player.getLocation().getZ() + size + 1);
+	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() - size -1, player.getLocation().getZ() + size + 1);
 	        glEnd();
 		glPopMatrix();
 	}

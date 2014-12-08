@@ -13,9 +13,9 @@ import org.lwjgl.util.vector.Vector3f;
 import server.Location;
 
 public class CameraFPS {
-	private Vector3f position = null;
-	private float yaw = 0.0f;
-	private float pitch = 0.0f;
+	protected Vector3f position = null;
+	protected float yaw = 0.0f;
+	protected float pitch = 0.0f;
 	private Location location;
 	
 	public CameraFPS(float x, float y, float z){
@@ -92,10 +92,24 @@ public class CameraFPS {
 	public Location getLocation(){
 		return location;
 	}
-	private void updateLocation(){
-		this.location.setY(position.y);
-		this.location.setX(position.x);
-		this.location.setZ(position.z);
+	protected void updateLocation(){
+		this.location.setY(-position.y);
+		this.location.setX(-position.x);
+		this.location.setZ(-position.z);
 	}
+	public void setYaw(float yaw) {
+		this.yaw = yaw;
+	}
+	public float getPitch(){
+		return pitch;
+	}
+
+	public void setPitch(float pitch) {
+		this.pitch = pitch;
+	}
+	public float getYaw() {
+		return yaw;
+	}
+
 	
 }

@@ -1,14 +1,11 @@
 package TerrainGeneration;
 
 import java.util.HashMap;
-import java.util.Iterator;
 
 import entities.Player;
 
-import server.Location;
-
 public class Terrain {
-	HashMap<Integer,Chunk> world = new HashMap<Integer,Chunk>();
+	HashMap<String,Chunk> world = new HashMap<String,Chunk>();
 	public int chunks = 0;
 	public Terrain() {
 		initiateTerrain();
@@ -21,34 +18,32 @@ public class Terrain {
 	}
 
 	private void initiateTerrain() {
-		for(int x = 0; x <=1000; x+=20){
+		for(int x = -200; x <=200; x+=20){
 			Chunk chunk = new Chunk(x,0,0);
-			int key = Integer.parseInt((int)chunk.getLocation().getX() + "" + (int)chunk.getLocation().getY() + "" + (int)chunk.getLocation().getZ());
+			String key = "" + ((int)chunk.getLocation().getX() + "," + (int)chunk.getLocation().getZ());
 			world.put(key,chunk);
 			chunks++;
-			for(int y = 0; y <=1000; y+=20){
-				Chunk chunk2 = new Chunk(x,0,y);
-				int key2 = Integer.parseInt((int)chunk2.getLocation().getX() + "" + (int)chunk2.getLocation().getY() + "" + (int)chunk2.getLocation().getZ());
+			for(int z = -200; z <=200; z+=20){
+				Chunk chunk2 = new Chunk(x,0,z);
+				String key2 = "" + ((int)chunk2.getLocation().getX() + "," + (int)chunk2.getLocation().getZ());
 				world.put(key2,chunk2);
 				chunks++;
 			}
 		}
 	}
 	public void renderChunks(Player player){
-		for(int x = (int) player.getLocation().getX(); x < (int)player.getLocation().getX() + 100; x++											){
-			if(x/20 == 0){
-				int key = Integer.parseInt(x + "0" + "0");
-				System.out.println("Attempted render = " + key);
-				if(world.get(key) != null)	world.get(key).render();
-			}
-			for(int y = (int) player.getLocation().getY(); y < (int)player.getLocation().getY() + 100; y++){
-				if(y/20 == 0){
-					int key2 = Integer.parseInt(x + "0" + y);
-					System.out.println("Attempted render = " + key2);
-					if(world.get(key2) != null)	world.get(key2).render();
-				}
+		int x = (int) player.getLocation().getX() - ((int) player.getLocation().getX()%20);
+		int z = (int) player.getLocation().getZ() - ((int) player.getLocation().getZ()%20);
+		String key = "" + x + "," + z;
+		if(world.get(key) != null)world.get(key).render();
+		for(int X = x-200; X < x+200; X+=20){
+			key = "" + X + "," + z;
+			if(world.get(key) != null)world.get(key).render();
+			for(int Z = z-200; Z < z+200; Z+=20){
+				key = "" + X + "," + Z;
+				if(world.get(key) != null)world.get(key).render();
 			}
 		}
-		world.get(000).render();
+		world.get("0,0").render();
 	}
 }

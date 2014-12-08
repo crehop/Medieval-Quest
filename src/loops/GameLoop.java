@@ -15,7 +15,6 @@ import server.Location;
 import voxel.Voxel;
 import wireframe.WireframePart;
 import Main.Controls;
-import Main.Driver;
 import Main.Main;
 import TerrainGeneration.Terrain;
 
@@ -44,6 +43,7 @@ public class GameLoop {
 		Controls.checkInput();
 		Skybox.renderSkyBox(Main.cam);
 		terrain.renderChunks(Main.cam);
+		test.render();
 		glLoadIdentity();
 		//System.out.println(Main.cam.getLocation().getX() + " " + Main.cam.getLocation().getY() + " " + Main.cam.getLocation().getZ() );
 	}

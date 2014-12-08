@@ -1,7 +1,5 @@
 package Main;
 
-import loops.GameLoop;
-
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -24,12 +22,15 @@ public class Controls {
 	static boolean test2;
 	static boolean test3;
 	static boolean test4;
+	static boolean zoomOut;
+	static boolean zoomIn;
 
 	
 	//Mouse sensitivity
 	static float mouseSensitivity = 0.05f;
+	static int dwheel = Mouse.getDWheel();
 	//change to adjust movement speed
-	static float defaultMovementSpeed = 0.05f;
+	static float defaultMovementSpeed = 0.5f;
 	static float movementSpeed = defaultMovementSpeed;
 	
 	static float lastTime = 0.0f;
@@ -64,6 +65,7 @@ public class Controls {
 		test2 = Keyboard.isKeyDown(KEY_SUBTRACT);
 		test3 = Keyboard.isKeyDown(KEY_EQUALS);
 		test4 = Keyboard.isKeyDown(KEY_F);
+		dwheel = Mouse.getDWheel();
 		aKeyIsDown = false;
 		if(exitKey){
 			Main.scrub();
@@ -71,12 +73,20 @@ public class Controls {
 			return;
 		}
 		
+		if(dwheel > 0){
+			Main.cam.minusZoom();
+		}
+		if(dwheel < 0){
+			Main.cam.plusZoom();
+
+		}
+
 		
 		//MOUSE MOVE COMMANDS
 		mouseY = Mouse.getDY() * -1;
 		mouseX = Mouse.getDX();
-		Main.cam.yaw(mouseX * mouseSensitivity);
-		Main.cam.pitch(mouseY * mouseSensitivity);
+		Main.cam.setYaw(mouseX * mouseSensitivity);
+		Main.cam.setPitch(mouseY * mouseSensitivity);
 		
 		if(Keyboard.isKeyDown(KEY_RETURN)){
 			Main.setLoop("game");
@@ -121,11 +131,11 @@ public class Controls {
 			movementSpeed = defaultMovementSpeed;
 		}
 		if(rotateLeft){
-			//Main.cam.setRY(Main.cam.getRY() - 0.01f);
+			Main.cam.Rotate90Left();
 			aKeyIsDown = true;
 		}
 		if(rotateRight){
-			//Main.cam.setRY(Main.cam.getRY() + 0.01f);
+			Main.cam.Rotate90Right();
 			aKeyIsDown = true;
 		}
 		if(!(aKeyIsDown)){

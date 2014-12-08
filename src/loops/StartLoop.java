@@ -6,8 +6,6 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.Texture;
 
-import Main.Controls;
-
 public class StartLoop {
 	public static boolean initiated = false;
 	static Texture splash = renderer.TextureHandler.getTexture("splash");

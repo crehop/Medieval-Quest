@@ -103,7 +103,7 @@ public class Voxel {
 		this.textureChange = false;
 	}
 	
-	private void move(float x, float y, float z) {
+	public void move(float x, float y, float z) {
 		glTranslatef(x + this.offsetX, y + this.offsetY, z + this.offsetZ);
 	}
 	private void renderFinal() {

@@ -18,18 +18,22 @@ public class Chunk {
 	public Chunk(int x,int y,int z){
 		this.location = new Location(x,y,z);
 	}
+	public Chunk(int x,int y,int z,Texture texture){
+		this.location = new Location(x,y,z);
+		this.terrain = texture;
+	}
 	public void render(){
 		glPushMatrix();
 			terrain.bind();
 			glBegin(GL_QUADS);
 	        glTexCoord2f(1f, 0f);
-	        glVertex3f(this.getLocation().getX() - 10, this.getLocation().getY() + 10, -this.getLocation().getZ() - 10);
+	        glVertex3f(this.getLocation().getX() - 10, this.getLocation().getY(), this.getLocation().getZ() - 10);
 	        glTexCoord2f(1f, 1f);
-	        glVertex3f(this.getLocation().getX() - 10, -this.getLocation().getY() + 10, -this.getLocation().getZ() + 10);
+	        glVertex3f(this.getLocation().getX() - 10, this.getLocation().getY(), this.getLocation().getZ() + 10);
 	        glTexCoord2f(0f, 1f);
-	        glVertex3f(this.getLocation().getX() + 10, -this.getLocation().getY() + 10, -this.getLocation().getZ() + 10);
+	        glVertex3f(this.getLocation().getX() + 10, this.getLocation().getY(), this.getLocation().getZ() + 10);
 	        glTexCoord2f(0f, 0f);
-	        glVertex3f(this.getLocation().getX() + 10, -this.getLocation().getY() + 10, -this.getLocation().getZ() - 10);
+	        glVertex3f(this.getLocation().getX() + 10, this.getLocation().getY(), this.getLocation().getZ() - 10);
 	        glEnd();
 		glPopMatrix();
 	}
