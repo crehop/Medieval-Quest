@@ -26,7 +26,7 @@ public class CameraFPS {
 	public void initProjection() {
 		// TODO Auto-generated method stub
 		glMatrixMode(GL_PROJECTION);
-		gluPerspective(70,(float)Display.getWidth()/(float)Display.getHeight(),0.0003f,1000);
+		gluPerspective(70,(float)Display.getWidth()/(float)Display.getHeight(),0.0003f,10000);
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_DEPTH_TEST);
 	}

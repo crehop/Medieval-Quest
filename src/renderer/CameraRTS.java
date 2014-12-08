@@ -54,7 +54,7 @@ public class CameraRTS extends CameraFPS {
 		}
 	}
 	public void plusZoom(){
-		if(zoom > -100){
+		if(zoom > -1000){
 			this.zoom = zoom -= 10.0f;
 		}
 	}

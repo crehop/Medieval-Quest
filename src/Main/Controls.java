@@ -72,17 +72,12 @@ public class Controls {
 			aKeyIsDown = true;
 			return;
 		}
-		
 		if(dwheel > 0){
 			Main.cam.minusZoom();
 		}
 		if(dwheel < 0){
 			Main.cam.plusZoom();
-
 		}
-
-		
-		//MOUSE MOVE COMMANDS
 		mouseY = Mouse.getDY() * -1;
 		mouseX = Mouse.getDX();
 		Main.cam.setYaw(mouseX * mouseSensitivity);
@@ -93,12 +88,10 @@ public class Controls {
 			aKeyIsDown = true;
 		}
 		if(forward){
-			//Main.cam.setZ(Main.cam.getZ() + 0.01f);
 			Main.cam.walkForward((float)(movementSpeed));
 			aKeyIsDown = true;
 		}
 		if(back){
-			//Main.cam.setZ(Main.cam.getZ() - 0.01f);
 			Main.cam.walkBackward((float)(movementSpeed));
 			aKeyIsDown = true;
 		}
