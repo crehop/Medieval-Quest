@@ -9,20 +9,20 @@ import java.io.IOException;
 import org.lwjgl.util.vector.Vector3f;
 
 public class ModelLoader {
-	public static Model loadModel(File f,float x1,float y1,float z1) throws FileNotFoundException, IOException{
-		Model m = new Model(x1, y1, z1);
+	public static Model loadModel(File f) throws FileNotFoundException, IOException{
+		Model m = new Model(0, 0, 0);
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 		String line;
 		while((line = reader.readLine()) != null){
 			if(line.startsWith("v ")){
 				float x = Float.valueOf(line.split(" ")[1]);
-				float y = Float.valueOf(line.split(" ")[1]);
-				float z = Float.valueOf(line.split(" ")[1]);
+				float y = Float.valueOf(line.split(" ")[2]);
+				float z = Float.valueOf(line.split(" ")[3]);
 				m.vertices.add(new Vector3f(x,y,z));
 			} else if(line.startsWith("vn ")){
 				float x = Float.valueOf(line.split(" ")[1]);
-				float y = Float.valueOf(line.split(" ")[1]);
-				float z = Float.valueOf(line.split(" ")[1]);
+				float y = Float.valueOf(line.split(" ")[2]);
+				float z = Float.valueOf(line.split(" ")[3]);
 				m.normals.add(new Vector3f(x,y,z));
 			} else if(line.startsWith("f ")){
 				Vector3f vertexIndices = new Vector3f(

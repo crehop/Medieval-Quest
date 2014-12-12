@@ -49,7 +49,6 @@ public class GameLoop {
 		Main.Console.setLine2("DELTA = " + Delta.getDifference() );
 		Main.Console.setLine3("FPS = " + FPS.getFPS());
 		Main.Console.setLine4("MODELS ON SCREEN [" + renderer.RenderModels.models.size() + "]");
-		Main.Console.setLine5("MODEL 1 LOCATION [X =" + renderer.RenderModels.models.get(0).getLocation().getX() + " Y =" +  renderer.RenderModels.models.get(0).getLocation().getY() + "Z =" + renderer.RenderModels.models.get(0).getLocation().getZ() + "]");
 		Main.Console.setLine6("MODEL RENDER LOOP COUNT = " + renderer.RenderModels.models.get(0).renderloop);
 		Main.Console.renderConsole();
 		//System.out.println(Main.cam.getLocation().getX() + " " + Main.cam.getLocation().getY() + " " + Main.cam.getLocation().getZ() );

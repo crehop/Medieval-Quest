@@ -25,7 +25,7 @@ public class Model {
 	}
 	public void renderModel(float x,float y,float z){
 		glPushMatrix();
-		 	GL11.glBegin(GL11.GL_POINTS);
+		 	GL11.glBegin(GL11.GL_TRIANGLES);
 		 	for(Face face:faces){
 		 		renderloop++;
 		 		Vector3f n1 = this.normals.get((int)face.normal.x - 1);
