@@ -1,7 +1,5 @@
 package Information;
 
-import loops.GameLoop;
-
 public class Delta {
 	static double t = 0.0;
 	static final double dt = 0.01;

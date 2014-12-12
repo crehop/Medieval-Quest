@@ -4,8 +4,8 @@ import java.util.Random;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
-import renderer.TextureHandler;
 import server.Location;
+import utils.TextureHandler;
 
 //import java.util.Random;
 

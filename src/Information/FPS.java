@@ -1,7 +1,5 @@
 package Information;
 
-import org.lwjgl.opengl.Display;
-
 import server.ServerTime;
 public class FPS {
 	static boolean started = false;

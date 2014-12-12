@@ -8,7 +8,7 @@ import org.newdawn.slick.opengl.Texture;
 
 public class StartLoop {
 	public static boolean initiated = false;
-	static Texture splash = renderer.TextureHandler.getTexture("splash");
+	static Texture splash = utils.TextureHandler.getTexture("splash");
 
 	public static void loop() {
 		if(Mouse.isGrabbed() == true){

@@ -3,16 +3,13 @@ package loops;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.util.glu.GLU.gluPerspective;
 
+import gameElements.Skybox;
+
 import java.util.ArrayList;
 import java.util.Random;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
-
-import renderer.Skybox;
-import renderer.TextureHandler;
 //import server.Location;
 //import voxel.Voxel;
 import voxel.WireframePart;
@@ -30,7 +27,7 @@ public class GameLoop {
 	static Random rand = new Random();
 	static boolean initiated = false;
 	static Terrain terrain;
-	public static Texture grass = renderer.TextureHandler.getTexture("grass");
+	public static Texture grass = utils.TextureHandler.getTexture("grass");
 	//static Voxel test = new Voxel(new Location(10,10,10), 10.0f, grass, 0.0f, 0.0f, 0.0f);
 	public static void loop(){
 		Delta.addDelta();
@@ -45,11 +42,15 @@ public class GameLoop {
 		Information.FPS.updateFPS();
 		Main.Main.cam.useView();
 		Controls.checkInput();
-		Skybox.renderSkyBox(Main.Main.cam);
+		//Skybox.renderSkyBox(Main.Main.cam);
 		terrain.renderChunks(Main.Main.cam);	
-		Main.Console.setLine1("CAMERA [X =" + Main.Main.cam.getLocation().getX() +" Y =" + Main.Main.cam.getLocation().getY() + " Z =" + Main.Main.cam.getLocation().getX() + "]" );
+		renderer.RenderModels.renderActiveModels();
+		Main.Console.setLine1("CAMERA [X =" + Main.Main.cam.getLocation().getX() +" Y =" + Main.Main.cam.getLocation().getY() + " Z =" + Main.Main.cam.getLocation().getZ() + "]" );
 		Main.Console.setLine2("DELTA = " + Delta.getDifference() );
 		Main.Console.setLine3("FPS = " + FPS.getFPS());
+		Main.Console.setLine4("MODELS ON SCREEN [" + renderer.RenderModels.models.size() + "]");
+		Main.Console.setLine5("MODEL 1 LOCATION [X =" + renderer.RenderModels.models.get(0).getLocation().getX() + " Y =" +  renderer.RenderModels.models.get(0).getLocation().getY() + "Z =" + renderer.RenderModels.models.get(0).getLocation().getZ() + "]");
+		Main.Console.setLine6("MODEL RENDER LOOP COUNT = " + renderer.RenderModels.models.get(0).renderloop);
 		Main.Console.renderConsole();
 		//System.out.println(Main.cam.getLocation().getX() + " " + Main.cam.getLocation().getY() + " " + Main.cam.getLocation().getZ() );
 		//STAY LAST IN THIS ORDER ++++++++++++++++++

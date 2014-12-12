@@ -17,7 +17,7 @@ public class MenuLoop {
 		glColor3f(1.0f,1.0f,1.0f);
 		glRecti(0, 0, Display.getHeight(), Display.getWidth());
 		System.out.println("CONFIRM");
-		Texture splash = renderer.TextureHandler.getTexture("splash");
+		Texture splash = utils.TextureHandler.getTexture("splash");
 		splash.bind();
 		glTexCoord2f(0, 0);
 		glTexCoord2f(0, Display.getWidth());
