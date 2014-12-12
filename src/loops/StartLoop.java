@@ -19,7 +19,7 @@ public class StartLoop {
 	}
 	private static void render(){
 		if(initiated == false){
-			initiate();
+			initiateProjection();
 		}
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	    glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 
@@ -36,18 +36,18 @@ public class StartLoop {
 		glEnd();
 		//Controls.checkInput();
 	}
-	private static void initiate(){
+	public static void toggleInitiate(){
+		if(initiated){
+			initiated = false;             
+		}
+		else if(!(initiated)){
+			initiated = true;
+		}
+	}
+	public static void initiateProjection() {
 		glOrtho(0,1080,720,0,1,-1);
 		glEnable(GL_TEXTURE_2D);
 		toggleInitiate();
 		System.out.println("Display Width = " + Display.getWidth() + " Display Height = " + Display.getHeight() + " Initiated set to "+ initiated);
-	}
-	public static void toggleInitiate(){
-		if(initiated == true){
-			initiated = false;
-		}
-		if(initiated == false){
-			initiated = true;
-		}
 	}
 }
