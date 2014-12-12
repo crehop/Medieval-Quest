@@ -15,10 +15,10 @@ import renderer.Skybox;
 import renderer.TextureHandler;
 //import server.Location;
 //import voxel.Voxel;
-import wireframe.WireframePart;
+import voxel.WireframePart;
 import Information.Delta;
+import Information.FPS;
 import Main.Controls;
-import Main.Main;
 import TerrainGeneration.Terrain;
 
 public class GameLoop {
@@ -43,15 +43,17 @@ public class GameLoop {
 			Mouse.setGrabbed(true);
 		}
 		Information.FPS.updateFPS();
-		Main.cam.useView();
+		Main.Main.cam.useView();
 		Controls.checkInput();
-		Skybox.renderSkyBox(Main.cam);
-		terrain.renderChunks(Main.cam);	
-		renderer.TextRenderer.render();
+		Skybox.renderSkyBox(Main.Main.cam);
+		terrain.renderChunks(Main.Main.cam);	
+		Main.Console.setLine1("CAMERA [X =" + Main.Main.cam.getLocation().getX() +" Y =" + Main.Main.cam.getLocation().getY() + " Z =" + Main.Main.cam.getLocation().getX() + "]" );
+		Main.Console.setLine2("DELTA = " + Delta.getDifference() );
+		Main.Console.setLine3("FPS = " + FPS.getFPS());
+		Main.Console.renderConsole();
 		//System.out.println(Main.cam.getLocation().getX() + " " + Main.cam.getLocation().getY() + " " + Main.cam.getLocation().getZ() );
 		//STAY LAST IN THIS ORDER ++++++++++++++++++
 		glLoadIdentity();
-		renderer.TextRenderer.render();
 		//++++++++++++++++++++++++++++++++++++++++++
 	}
 	public static void initProjection() {

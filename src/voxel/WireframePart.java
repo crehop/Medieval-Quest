@@ -1,4 +1,4 @@
-package wireframe;
+package voxel;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -6,7 +6,6 @@ import java.util.Random;
 import loops.GameLoop;
 
 import server.Location;
-import voxel.Voxel;
 
 public class WireframePart{
 	private final int ID;

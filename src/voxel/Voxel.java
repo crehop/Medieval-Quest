@@ -6,7 +6,6 @@ import org.newdawn.slick.opengl.Texture;
 
 import renderer.TextureHandler;
 import server.Location;
-import wireframe.WireframePart;
 
 //import java.util.Random;
 

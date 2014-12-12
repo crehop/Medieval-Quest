@@ -1,6 +1,6 @@
 package renderer;
-import wireframe.Wireframe;
-import wireframe.WireframePart;
+import voxel.Wireframe;
+import voxel.WireframePart;
 
 
 public class Renderer {

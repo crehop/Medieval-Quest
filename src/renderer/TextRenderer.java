@@ -11,14 +11,14 @@ import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.util.glu.GLU.gluPerspective;
 
 public class TextRenderer {
-	private static UnicodeFont font;
+	public static UnicodeFont font;
 	static boolean initiated = false;
 	public TextRenderer(){
 		init();
 	}
+	@SuppressWarnings("unchecked")
 	public static void init() {
 		System.out.println("LOADED!");
 		java.awt.Font awtFont = new java.awt.Font("Times New Roman", java.awt.Font.BOLD, 28);
@@ -42,7 +42,7 @@ public class TextRenderer {
 	    //    e.printStackTrace();
 	    //}   
 	}
-	public static void render(/*float x, float y, String text, Color color*/) {
+	public static void render(float x, float y, String text, Color color) {
 		draw2D();
 		if(!(initiated)){
 			init();
@@ -50,7 +50,7 @@ public class TextRenderer {
 		}
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		font.drawString(200, 250, "TEXT FIXED", Color.red);
+		font.drawString(x, y, text, color);
 		Color.white.bind();
 		reinitiatePreviousDrawState();
 	}

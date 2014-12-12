@@ -1,4 +1,4 @@
-package wireframe;
+package voxel;
 import java.util.ArrayList;
 
 import server.Location;

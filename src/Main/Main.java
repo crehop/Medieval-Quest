@@ -14,7 +14,7 @@ import org.lwjgl.opengl.*;
 import server.Location;
 
 import entities.Player;
-import wireframe.Wireframe;
+import voxel.Wireframe;
 
 
 public class Main {
