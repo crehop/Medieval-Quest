@@ -8,12 +8,14 @@ import java.util.Random;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
 import renderer.Skybox;
-import server.Location;
-import voxel.Voxel;
+//import server.Location;
+//import voxel.Voxel;
 import wireframe.WireframePart;
+import Information.Delta;
 import Main.Controls;
 import Main.Main;
 import TerrainGeneration.Terrain;
@@ -28,24 +30,29 @@ public class GameLoop {
 	static boolean initiated = false;
 	static Terrain terrain;
 	static Texture grass = renderer.TextureHandler.getTexture("grass");
-	static Voxel test = new Voxel(new Location(10,10,10), 10.0f, grass, 0.0f, 0.0f, 0.0f);
+	//static Voxel test = new Voxel(new Location(10,10,10), 10.0f, grass, 0.0f, 0.0f, 0.0f);
 	public static void loop(){
 
 		if(!(initiated)){
 			initProjection();
 			toggleInitiate();
 		}
+		Delta.addDelta();
 		if(Mouse.isGrabbed() == false){
 			Mouse.setGrabbed(true);
 		}
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		Information.FPS.updateFPS();
 		Main.cam.useView();
 		Controls.checkInput();
 		Skybox.renderSkyBox(Main.cam);
 		terrain.renderChunks(Main.cam);
-		test.render();
-		glLoadIdentity();
+		renderer.TextRenderer.render();
+		
 		//System.out.println(Main.cam.getLocation().getX() + " " + Main.cam.getLocation().getY() + " " + Main.cam.getLocation().getZ() );
+		//STAY LAST IN THIS ORDER ++++++++++++++++++
+		glLoadIdentity();
+		//++++++++++++++++++++++++++++++++++++++++++
 	}
 	private static void initProjection() {
 	    GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -60,11 +67,13 @@ public class GameLoop {
 	    }
 	}
 	public static void toggleInitiate(){
-		if(initiated == true){
-			initiated = false;                    
+		System.out.println("INITIATED WAS " + initiated);
+		if(initiated){
+			initiated = false;             
 		}
-		if(initiated == false){
+		else if(!(initiated)){
 			initiated = true;
 		}
+		System.out.println("INITIATED SET TO " + initiated);
 	}
 }

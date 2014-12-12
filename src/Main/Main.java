@@ -122,4 +122,7 @@ public class Main {
 	public static void toggleDebug(){
 		debug = true;
 	}
+	public static String getLoop(){
+		return loop;
+	}
 }
