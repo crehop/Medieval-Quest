@@ -2,6 +2,7 @@ package renderer;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
 public class Camera {
@@ -23,13 +24,12 @@ public class Camera {
 		initProjection();
 	}
 
-	private void initProjection(){
-
+	public void initProjection(){
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, 800, 0, 600, 1, -1);
+		GL11.glOrtho(0, Display.getWidth(), 0, Display.getHeight(), 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
-
+		GL11.glLoadIdentity();
 	}
 
 	public void useView(){
