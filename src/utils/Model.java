@@ -126,6 +126,8 @@ public class Model {
 					bounding.add(ymin);
 					bounding.add(zmax);
 					bounding.add(zmin);
+					Main.Console.setLine5("[XMIN = " + xmin + " YMIN = " + ymin + " ZMIN = " + zmin + "]");
+					Main.Console.setLine6("[XMAX= " + xmax + " YMAX = " + ymax + " ZMAX = " + zmax + "]" + "CHUNK Y = " + this.getChunk().getLocation().getY());
 			 	}
 		        glEnd();
 			glPopMatrix();
@@ -146,8 +148,6 @@ public class Model {
 		}
 	}
 	public void setLocation(float x, float y, float z){
-			Main.Console.setLine5("[XMIN = " + xmin + " YMIN = " + ymin + " ZMIN = " + zmin + "]");
-			Main.Console.setLine6("[XMAX= " + xmax + " YMAX = " + ymax + " ZMAX = " + zmax + "]" + "CHUNK Y = " + this.getChunk().getLocation().getY());
 			float currentX = this.location.getX();
 			float currentY = this.location.getY();
 			float currentZ = this.location.getZ();
@@ -155,8 +155,6 @@ public class Model {
 			this.location.setY(y);
 			this.location.setZ(z);
 		if(this.isMovable() && physics.PhysicsEngine.checkForCollision(this)){
-			
-		}else{
 			this.location.setX(currentX);
 			this.location.setY(currentY);
 			this.location.setZ(currentZ);
@@ -210,6 +208,9 @@ public class Model {
 	}
 	public int getID() {
 		return ID;
+	}
+	public void fixCollisionGround() {
+		this.getLocation().setY((float)(this.getChunk().getLocation().getY() + 1.0f));
 	}
 	
 }

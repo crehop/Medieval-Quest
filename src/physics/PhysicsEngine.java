@@ -25,20 +25,20 @@ public class PhysicsEngine {
 					if(model.getBoundingBox().get(3) < m.getBoundingBox().get(2)) y=false;
 					if(model.getBoundingBox().get(0) > m.getBoundingBox().get(1)) x=false;
 				}
-				System.out.println("CHUNK Y = " + m.getChunk().getLocation().getY() + " MODEL MINY = " + model.getBoundingBox().get(3));
 				if(m.getChunk().getLocation().getY() > model.getBoundingBox().get(3)){
 					if(m.getChunk().getLocation().getY() > model.getBoundingBox().get(3)){
-						model.getLocation().setY(model.getLocation().getY() + 1.0f);
+						model.fixCollisionGround();
 					}
-					System.out.println("COLLISION! GROUND");
+					Main.Console.setLine7("COLLISION! GROUND");
 					return true;
 				}
 				if(x == false && y == false && z == false){
-					System.out.println("COLLISION!" + model.getName());
+					Main.Console.setLine7("COLLISION!" + model.getName());
 					return true;
 				}
 			}
 		}
+		Main.Console.setLine7("NO COLLISION");
 		return false;
 	}
 }
