@@ -1,9 +1,9 @@
 package entities;
 
 public class ID {
-	public static int partID = 0;
-	public static int getPartID() {
-		partID++;
-		return partID;
+	public static int ID = 0;
+	public static int getID() {
+		ID++;
+		return ID;
 	}
 }

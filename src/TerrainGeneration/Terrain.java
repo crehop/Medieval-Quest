@@ -5,7 +5,7 @@ import java.util.HashMap;
 import entities.Player;
 
 public class Terrain {
-	HashMap<String,Chunk> world = new HashMap<String,Chunk>();
+	public HashMap<String,Chunk> world = new HashMap<String,Chunk>();
 	public int chunks = 0;
 	public Terrain() {
 		initiateTerrain();

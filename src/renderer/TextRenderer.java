@@ -20,7 +20,6 @@ public class TextRenderer {
 	}
 	@SuppressWarnings("unchecked")
 	public static void init() {
-		System.out.println("LOADED!");
 		java.awt.Font awtFont = new java.awt.Font("Times New Roman", java.awt.Font.BOLD, 28);
 		font = new UnicodeFont(awtFont);
 		font.addAsciiGlyphs();

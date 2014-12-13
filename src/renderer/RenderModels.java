@@ -22,8 +22,11 @@ public class RenderModels {
 			test2 = ModelLoader.loadModel(new File("res/models/zombie1/zombie1.obj"));
 			//models.add(test);
 			models.add(test2);
+			test2.setCollidable(true);
+			test2.setMovable(true);
+			test2.setLocation(10.0f, 20.0f, 10.0f);
 			//System.out.println("MODEL LOADED V= " + test.vertices.size() + " N= " + test.normals.size() );
-			System.out.println("MODEL2 LOADED V= " + test2.vertices.size() + " N= " + test2.normals.size() );
+			//System.out.println("MODEL2 LOADED V= " + test2.vertices.size() + " N= " + test2.normals.size() );
 			
 		} catch (FileNotFoundException e) {
 			System.out.println("NOT FOUND EXCEPTION");
@@ -32,7 +35,6 @@ public class RenderModels {
 			System.out.println("IO EXCEPTION");
 			e.printStackTrace();
 		}
-		
 	}
 	public static void renderActiveModels(){
 		if(!(initiated)){
@@ -40,8 +42,8 @@ public class RenderModels {
 			initiated = true;
 		}
 		for(Model m:models){
-			m.getLocation().setY((float) (m.getLocation().getY() + 0.01));
-			m.renderModel(m.getLocation().getX(), m.getLocation().getY(), m.getLocation().getZ());
+			m.setLocation(m.getLocation().getX(),m.getLocation().getY(),m.getLocation().getZ());
+			m.renderModel();
 		}
 	}
 }

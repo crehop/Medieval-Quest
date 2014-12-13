@@ -7,7 +7,6 @@ public class CameraRTS extends CameraFPS {
 	float zoom = -30.0f;
 	public CameraRTS(float x, float y, float z) {
 		super(x, y, z);
-		super.setPitch(50.0f);
 	}
 	
 	public void walkForward(float distance){
@@ -42,11 +41,12 @@ public class CameraRTS extends CameraFPS {
 		GL11.glRotatef(super.pitch, 1.0f, 0.0f, 0.0f);
 		GL11.glTranslatef(position.x, position.y, position.z);
 		super.updateLocation();
+		super.setPitch(50.0f);
+	}
+	public void setPitch(float pitch){
+		this.pitch = pitch;
 	}
 	public void setYaw(float yaw) {
-	}
-
-	public void setPitch(float pitch) {
 	}
 	public void minusZoom(){
 		if(zoom < -10.0f){

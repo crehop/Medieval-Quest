@@ -29,7 +29,7 @@ public class WireframePart{
 	private ArrayList<Voxel> voxels = new ArrayList<Voxel>();
 	private boolean textureHasChanged = false;
 	public WireframePart(Location location, Wireframe body, float width, float length, float height,float blockSize){
-		this.ID = entities.ID.getPartID();
+		this.ID = entities.ID.getID();
 		if(this.body == null){
 			ArrayList<WireframePart> parts = new ArrayList<WireframePart>();
 			parts.add(this);
@@ -51,7 +51,7 @@ public class WireframePart{
 		GameLoop.renderMe.add(this);
 	}
 	public WireframePart(Wireframe body, float width, float length, float height,float blockSize) {
-		this.ID = entities.ID.getPartID();
+		this.ID = entities.ID.getID();
 		this.body = body;
 		body.addPart(this);
 		this.width = (float)(width);

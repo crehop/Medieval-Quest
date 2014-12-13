@@ -10,7 +10,8 @@ import org.lwjgl.util.vector.Vector3f;
 
 public class ModelLoader {
 	public static Model loadModel(File f) throws FileNotFoundException, IOException{
-		Model m = new Model(0, 0, 0);
+		Model m = new Model(0, 0, 0, f.getName(),false,true);
+		physics.PhysicsEngine.modelList.add(m);
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 		String line;
 		while((line = reader.readLine()) != null){
@@ -36,6 +37,7 @@ public class ModelLoader {
 				m.faces.add(new Face(vertexIndices,normalIndices));
 			}
 		}
+		m.setName("" + f.getName());
 		reader.close();
 		return m;
 	}

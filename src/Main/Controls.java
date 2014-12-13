@@ -73,10 +73,10 @@ public class Controls {
 			return;
 		}
 		if(dwheel > 0){
-			Main.cam.minusZoom();
+			//Main.cam.minusZoom();
 		}
 		if(dwheel < 0){
-			Main.cam.plusZoom();
+			//Main.cam.plusZoom();
 		}
 		mouseY = Mouse.getDY() * -1;
 		mouseX = Mouse.getDX();
@@ -124,11 +124,11 @@ public class Controls {
 			movementSpeed = defaultMovementSpeed;
 		}
 		if(rotateLeft){
-			Main.cam.Rotate90Left();
+			//Main.cam.Rotate90Left();
 			aKeyIsDown = true;
 		}
 		if(rotateRight){
-			Main.cam.Rotate90Right();
+			//Main.cam.Rotate90Right();
 			aKeyIsDown = true;
 		}
 		if(!(aKeyIsDown)){
