@@ -18,6 +18,7 @@ public class CameraFPS {
 	protected float pitch = 0.0f;
 	private Location location;
 	
+	
 	public CameraFPS(float x, float y, float z){
 		position = new Vector3f(x,y,z);
 		this.location = new Location(x,y,z);
