@@ -33,7 +33,6 @@ public class Camera {
 	}
 
 	public void useView(){
-		
 		glRotatef(rx,1,0,0);
 		glRotatef(ry,0,1,0);
 		glRotatef(rz,0,0,1);
@@ -62,12 +61,6 @@ public class Camera {
 
 	public void setZ(float z){
 		this.z = z;
-		if(z > 0.05f){
-			z = 0.05f;
-		}
-		if(z < -0.05f){
-			z = -0.05f;
-		}
 	}
 
 	public float getRX(){
@@ -105,7 +98,6 @@ public class Camera {
 		this.setY(0.0f);
 		this.setRZ(0.0f);
 		this.setRY(0.0f);
-		System.out.println("STABALIZED CAMERA");
 	}
 
 	public void decelerate() {

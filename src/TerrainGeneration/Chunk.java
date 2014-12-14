@@ -27,13 +27,13 @@ public class Chunk {
 			terrain.bind();
 			glBegin(GL_QUADS);
 	        glTexCoord2f(1f, 0f);
-	        glVertex3f(this.getLocation().getX() - 10, this.getLocation().getY(), this.getLocation().getZ() - 10);
+	        glVertex3f(this.getLocation().getX() - 50, this.getLocation().getY(), this.getLocation().getZ() - 50);
 	        glTexCoord2f(1f, 1f);
-	        glVertex3f(this.getLocation().getX() - 10, this.getLocation().getY(), this.getLocation().getZ() + 10);
+	        glVertex3f(this.getLocation().getX() - 50, this.getLocation().getY(), this.getLocation().getZ() + 50);
 	        glTexCoord2f(0f, 1f);
-	        glVertex3f(this.getLocation().getX() + 10, this.getLocation().getY(), this.getLocation().getZ() + 10);
+	        glVertex3f(this.getLocation().getX() + 50, this.getLocation().getY(), this.getLocation().getZ() + 50);
 	        glTexCoord2f(0f, 0f);
-	        glVertex3f(this.getLocation().getX() + 10, this.getLocation().getY(), this.getLocation().getZ() - 10);
+	        glVertex3f(this.getLocation().getX() + 50, this.getLocation().getY(), this.getLocation().getZ() - 50);
 	        glEnd();
 		glPopMatrix();
 	}

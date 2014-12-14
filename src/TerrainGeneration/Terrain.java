@@ -32,14 +32,14 @@ public class Terrain {
 		}
 	}
 	public void renderChunks(Player player){
-		int x = (int) player.getLocation().getX() - ((int) player.getLocation().getX()%20);
-		int z = (int) player.getLocation().getZ() - ((int) player.getLocation().getZ()%20);
+		int x = (int) player.getLocation().getX() - ((int) player.getLocation().getX()%100);
+		int z = (int) player.getLocation().getZ() - ((int) player.getLocation().getZ()%100);
 		String key = "" + x + "," + z;
 		if(world.get(key) != null)world.get(key).render();
-		for(int X = x-200; X < x+200; X+=20){
+		for(int X = x-20000; X < x+20000; X+=100){
 			key = "" + X + "," + z;
 			if(world.get(key) != null)world.get(key).render();
-			for(int Z = z-200; Z < z+200; Z+=20){
+			for(int Z = z-20000; Z < z+20000; Z+=100){
 				key = "" + X + "," + Z;
 				if(world.get(key) != null)world.get(key).render();
 			}

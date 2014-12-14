@@ -35,10 +35,9 @@ public class Main {
 	}
 	public static void loop() {
 		while(!Display.isCloseRequested()){
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			confirmLoop();
-			Display.sync(60);
 			Display.update();
+			Display.sync(60);
 		}
 	}
 	private static void confirmLoop() {
@@ -99,6 +98,7 @@ public class Main {
 			Display.setDisplayModeAndFullscreen(new DisplayMode(1080,720));
 			Display.setTitle("Zombie RTS");
 			Display.create();
+			Display.setVSyncEnabled(false);
 			//cam = new Camera(70,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
 			cam = new Player(0,0,0);
 			
