@@ -12,6 +12,7 @@ import loops.GameLoop;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL11.*;
 import org.lwjgl.util.vector.Vector3f;
+import org.newdawn.slick.opengl.Texture;
 
 import entities.Player;
 
@@ -51,6 +52,9 @@ public class Model {
 	public void renderModel(){
 		if(render){
 			glPushMatrix();
+				Texture test;
+				test = TextureHandler.getTexture("grass");
+				test.bind();
 			 	GL11.glBegin(GL11.GL_TRIANGLES);
 			 	for(Face face:faces){
 			 		float xmax2 = -10000000000.0f;
