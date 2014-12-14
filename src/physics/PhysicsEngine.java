@@ -13,9 +13,7 @@ public class PhysicsEngine {
 	static boolean y = true;
 	static boolean z = true;
 	public static ArrayList<Model> modelList = new ArrayList<Model>();
-	//Order = xmin[0],xmax[1],ymin[2],ymax[3],zmin[4],zmax[5]
 	public static boolean checkForCollision(Model m) {
-		//Collision on axis?
 		for(Model model:modelList){
 			if(model.isCollidable()){
 				if(model.getID() != m.getID()){

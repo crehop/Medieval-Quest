@@ -42,7 +42,7 @@ public class RenderModels {
 		}
 		for(Model m:models){
 			m.renderModel();
-			m.move(-0.03f, 0.0f, -0.03f);
+			m.move(0.05f, 0.00f, 0.05f);
 		}
 	}
 }

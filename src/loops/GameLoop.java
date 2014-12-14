@@ -31,7 +31,6 @@ public class GameLoop {
 	//static Voxel test = new Voxel(new Location(10,10,10), 10.0f, grass, 0.0f, 0.0f, 0.0f);
 	public static void loop(){
 		Delta.addDelta();
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		if(!(initiated)){
 			initProjection();
 			toggleInitiate();
@@ -42,9 +41,9 @@ public class GameLoop {
 		Information.FPS.updateFPS();
 		Main.Main.cam.useView();
 		Controls.checkInput();
-		Skybox.renderSkyBox(Main.Main.cam);
 		terrain.renderChunks(Main.Main.cam);	
 		renderer.RenderModels.renderActiveModels();
+		Skybox.renderSkyBox(Main.Main.cam);
 		Main.Console.setLine1("CAMERA [X =" + Main.Main.cam.getLocation().getX() +" Y =" + Main.Main.cam.getLocation().getY() + " Z =" + Main.Main.cam.getLocation().getZ() + "]" );
 		Main.Console.setLine2("DELTA = " + Delta.getDifference() );
 		Main.Console.setLine3("FPS = " + FPS.getFPS());
