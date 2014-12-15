@@ -15,6 +15,7 @@ public class Skybox {
 		Texture bottom = TextureHandler.getTexture("skyboxbottom");
 
 		glPushMatrix();
+
 			sides.bind();
 			glBegin(GL_QUADS);
 			glTexCoord2f(1f, 0.0f);
@@ -26,13 +27,10 @@ public class Skybox {
 	        glTexCoord2f(0.0f, 0.0f);
 	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() - size -1, player.getLocation().getZ() - size -1);
 	        glEnd();
-		glPopMatrix();
-
 	    
 	    // Back Face
-	    glPushMatrix();
 	    	sides.bind();
-	    	glBegin(GL_QUADS);
+			glBegin(GL_QUADS);
 	        glTexCoord2f(0.0f, 0.0f);
 	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() - size -1, player.getLocation().getZ() + size + 1);
 	        glTexCoord2f(1f, 0.0f);
@@ -42,11 +40,9 @@ public class Skybox {
 	        glTexCoord2f(0.0f, 1f);
 	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() + size + 1, player.getLocation().getZ() + size + 1);
 	        glEnd();
-		glPopMatrix();
 
 	
 	    // Top Face
-		glPushMatrix();
 			bottom.bind();
 			glBegin(GL_QUADS);
 	        glTexCoord2f(1f, 1f);
@@ -58,10 +54,8 @@ public class Skybox {
 	        glTexCoord2f(1f, 0.0f);
 	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() - size -1, player.getLocation().getZ() + size + 1);
 	        glEnd();
-		glPopMatrix();
 
 	    // Bottom Face
-		glPushMatrix();
 			top.bind();
 			glBegin(GL_QUADS);
 	        glTexCoord2f(1f, 0f);
@@ -73,10 +67,8 @@ public class Skybox {
 	        glTexCoord2f(0f, 0f);
 	        glVertex3f(player.getLocation().getX() + size + 1, player.getLocation().getY() + size + 1, player.getLocation().getZ() - size -1);
 	        glEnd();
-		glPopMatrix();
-		
+
 	    // Right face
-		glPushMatrix();
 			sides.bind();
 			glBegin(GL_QUADS);
 	        glTexCoord2f(0.0f, 0.0f);
@@ -88,10 +80,8 @@ public class Skybox {
 	        glTexCoord2f(0.0f, 1f);
 	        glVertex3f(player.getLocation().getX() - size -1, player.getLocation().getY() + size + 1, player.getLocation().getZ() - size -1);
 	        glEnd();
-		glPopMatrix();
 
 	    // Left Face
-		glPushMatrix();
 			sides.bind();
 			glBegin(GL_QUADS);
 	        glTexCoord2f(1f, 0.0f);

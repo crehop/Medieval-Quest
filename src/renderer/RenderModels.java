@@ -23,7 +23,7 @@ public class RenderModels {
 			models.add(test2);
 			test2.setCollidable(true);
 			test2.setMovable(true);
-			test2.setLocation(0.0f, -1.0f, 0.0f);
+			test2.setLocation(0.0f, -10.0f, 0.0f);
 			//System.out.println("MODEL LOADED V= " + test.vertices.size() + " N= " + test.normals.size() );
 			//System.out.println("MODEL2 LOADED V= " + test2.vertices.size() + " N= " + test2.normals.size() );
 			

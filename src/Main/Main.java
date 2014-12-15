@@ -14,6 +14,7 @@ import org.lwjgl.opengl.*;
 import server.Location;
 
 import entities.Player;
+import voxel.Voxel;
 import voxel.Wireframe;
 
 
@@ -125,5 +126,9 @@ public class Main {
 	}
 	public static String getLoop(){
 		return loop;
+	}
+	public static Location getCenter() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

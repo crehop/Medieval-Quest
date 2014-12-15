@@ -47,31 +47,32 @@ public class Model {
 	private boolean collidable = true;
 	private boolean movable = false;
 	private int renderRun;
+	private Texture texture;
 	
 	public Model(float x,float y,float z,String name, boolean movable, boolean collidable){
 		this.ID = entities.ID.getID();
 		this.location = new Location(x,y,z);
 		this.movable = movable;
 		this.collidable = collidable;
+		this.texture = TextureHandler.getTexture("dirt");
 	}
 	public void renderModel(){
 		if(render){
 			glPushMatrix();
 			 	GL11.glBegin(GL11.GL_TRIANGLES);
 			 	for(Face face:faces){
-			 		renderloop++;
 			 		Vector3f n1 = this.normals.get((int)face.normal.x - 1);
-			 		GL11.glNormal3f(n1.x + this.location.getX(), n1.y + this.location.getY(), n1.z + this.location.getZ());
+			 		GL11.glNormal3f((n1.x + this.location.getX()), (n1.y + this.location.getY()), (n1.z + this.location.getZ()));
 			 		Vector3f v1 = this.vertices.get((int)face.vertex.x - 1);
-			 		GL11.glVertex3f(v1.x + this.location.getX(), v1.y + this.location.getY(), v1.z + this.location.getZ());
+			 		GL11.glVertex3f((v1.x + this.location.getX()), (v1.y + this.location.getY()), (v1.z + this.location.getZ()));
 			 		Vector3f n2 = this.normals.get((int)face.normal.y - 1);
-			 		GL11.glNormal3f(n2.x + this.location.getX(), n2.y + this.location.getY(), n2.z + this.location.getZ());
+			 		GL11.glNormal3f((n2.x + this.location.getX()), (n2.y + this.location.getY()), (n2.z + this.location.getZ()));
 			 		Vector3f v2 = this.vertices.get((int)face.vertex.y - 1);
-			 		GL11.glVertex3f(v2.x + this.location.getX(), v2.y + this.location.getY(), v2.z + this.location.getZ());
+			 		GL11.glVertex3f((v2.x + this.location.getX()), (v2.y + this.location.getY()), (v2.z + this.location.getZ()));
 			 		Vector3f n3 = this.normals.get((int)face.normal.z - 1);
-			 		GL11.glNormal3f(n3.x + this.location.getX(), n3.y + this.location.getY(), n3.z + this.location.getZ());
+			 		GL11.glNormal3f((n3.x + this.location.getX()), (n3.y + this.location.getY()), (n3.z + this.location.getZ()));
 			 		Vector3f v3 = this.vertices.get((int)face.vertex.z - 1);
-			 		GL11.glVertex3f(v3.x + this.location.getX(), v3.y + this.location.getY(), v3.z + this.location.getZ());
+			 		GL11.glVertex3f((v3.x + this.location.getX()), (v3.y + this.location.getY()), (v3.z + this.location.getZ()));
 			 		
 			 		if(n1.x + this.location.getX() > xmax){
 			 			xmax = (n1.x + this.location.getX());
@@ -146,6 +147,11 @@ public class Model {
 				if(moved)this.moved = false;
 		        glEnd(); 
 			glPopMatrix();
+			GameLoop.test.render();
+	        GameLoop.test.getLocation().setX((xmin));
+	        GameLoop.test.getLocation().setY(ymin);
+	        GameLoop.test.getLocation().setZ((zmin));
+	        System.out.println("VOXEL MOVED TO = X="+ ((xmin + xmax) / 2) + " Y=" + ymin + " Z=" + ((zmin + zmax) / 2 ));
 		}
 	}
 	public Location getLocation(){

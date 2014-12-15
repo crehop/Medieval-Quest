@@ -10,6 +10,9 @@ import java.util.Random;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.Texture;
+
+import server.Location;
+import voxel.Voxel;
 //import server.Location;
 //import voxel.Voxel;
 import voxel.WireframePart;
@@ -28,7 +31,7 @@ public class GameLoop {
 	static boolean initiated = false;
 	public static Terrain terrain;
 	public static Texture grass = utils.TextureHandler.getTexture("grass");
-	//static Voxel test = new Voxel(new Location(10,10,10), 10.0f, grass, 0.0f, 0.0f, 0.0f);
+	public static Voxel test = new Voxel(new Location(0,0,0), 0.15f, grass, 0.0f, 0.0f, 0.0f);
 	public static void loop(){
 		Delta.addDelta();
 		if(!(initiated)){

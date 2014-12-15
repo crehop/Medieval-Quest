@@ -68,17 +68,14 @@ public class Voxel {
 	
 	private void initiateRender() {
 		glPushMatrix();
-		glTranslatef(-this.getLocation().getX(),-this.getLocation().getY(),-this.getLocation().getZ());
 		glRotatef(rotationX,1.0f,0.0f,0.0f);
 		glRotatef(rotationY,0.0f,1.0f,0.0f);
 		glRotatef(rotationZ,0.0f,0.0f,1.0f);
-		glTranslatef(-this.getLocation().getX(),-this.getLocation().getY(),-this.getLocation().getZ());
 		if(physicsControlled == false){
 			this.move(this.getLocation());
 		}else{
 			if(rand.nextFloat() > 0.08)
 			this.offsetY-=rand.nextFloat()/100;
-			
 			this.move(this.getLocation());
 		}
 	    Color.white.bind();
@@ -100,10 +97,7 @@ public class Voxel {
 			renderTop(true);
 		}
 		this.textureChange = false;
-	}
-	
-	public void move(float x, float y, float z) {
-		glTranslatef(x + this.offsetX, y + this.offsetY, z + this.offsetZ);
+		renderFinal();
 	}
 	private void renderFinal() {
 		glEnd();
