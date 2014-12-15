@@ -30,8 +30,8 @@ public class GameLoop {
 	static Random rand = new Random();
 	static boolean initiated = false;
 	public static Terrain terrain;
-	public static Texture grass = utils.TextureHandler.getTexture("grass");
-	public static Voxel test = new Voxel(new Location(0,0,0), 0.15f, grass, 0.0f, 0.0f, 0.0f);
+	public static Texture health = utils.TextureHandler.getTexture("health");
+	public static Voxel test = new Voxel(new Location(0,0,0), 0.15f, health, 0.0f, 0.0f, 0.0f);
 	public static void loop(){
 		Delta.addDelta();
 		if(!(initiated)){

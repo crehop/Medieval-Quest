@@ -147,11 +147,10 @@ public class Model {
 				if(moved)this.moved = false;
 		        glEnd(); 
 			glPopMatrix();
-			GameLoop.test.render();
 	        GameLoop.test.getLocation().setX((xmin));
 	        GameLoop.test.getLocation().setY(ymin);
 	        GameLoop.test.getLocation().setZ((zmin));
-	        System.out.println("VOXEL MOVED TO = X="+ ((xmin + xmax) / 2) + " Y=" + ymin + " Z=" + ((zmin + zmax) / 2 ));
+			GameLoop.test.render();
 		}
 	}
 	public Location getLocation(){
