@@ -2,28 +2,31 @@ package Main;
 import java.util.ArrayList;
 
 import loops.GameLoop;
+import loops.StartLoop;
 
 import org.lwjgl.LWJGLException;
 import static org.lwjgl.opengl.GL11.*;
+
 import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
 
 import org.lwjgl.opengl.*;
 
 import server.Location;
 
 import entities.Player;
-import wireframe.Wireframe;
+import voxel.Voxel;
+import voxel.Wireframe;
 
 
 public class Main {
 	public static Player cam;
 	public static ArrayList<Wireframe> wireframes = new ArrayList<Wireframe>();
-	public static String loop = "start";
+	public static String loop = "game";
 	private static boolean debug = false;
 	public static boolean isInGameMode = false;
 	public static boolean isInMenuMode = false;
 	public static boolean isInStartMode = false;
+	public static boolean loopSwitch = false;
 	public static Location center = new Location(0.0f,0.0f,0.0f);
 	
 	public static void main(String[] args) {
@@ -34,18 +37,19 @@ public class Main {
 	public static void loop() {
 		while(!Display.isCloseRequested()){
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			Main.cam.useView();		
-			Controls.checkInput();
 			confirmLoop();
-			GL11.glLoadIdentity();
-			Driver.checkForTick();
-			Display.sync(60);
 			Display.update();
+			Display.sync(60);
 		}
 	}
 	private static void confirmLoop() {
 		switch(loop){
 		case"start": 
+			if(loopSwitch == true){
+				StartLoop.toggleInitiate();
+				loopSwitch = false;
+			}
+			StartLoop.loop();
 			isInGameMode = false;
 			isInMenuMode = false;
 			isInStartMode = true;
@@ -54,6 +58,9 @@ public class Main {
 			}
 			break;
 		case"menu": 
+			if(loopSwitch == true){
+				loopSwitch = false;
+			}
 			isInGameMode = false;
 			isInMenuMode = true;
 			isInStartMode = false;
@@ -62,6 +69,10 @@ public class Main {
 			}
 			break;
 		case"game":
+			if(loopSwitch == true){
+				GameLoop.toggleInitiate();
+				loopSwitch = false;
+			}
 			GameLoop.loop();
 			isInGameMode = true;
 			isInMenuMode = false;
@@ -71,6 +82,9 @@ public class Main {
 			}
 			break;
 		default:
+			if(loopSwitch == true){
+				loopSwitch = false;
+			}
 			isInGameMode = false;
 			isInMenuMode = false;
 			isInStartMode = true;
@@ -82,9 +96,11 @@ public class Main {
 	}
 	private static void initiate() {
 		try {
-			Display.setDisplayMode(new DisplayMode(1080,720));
-			Display.setTitle("Medieval-Quest");
+			Display.setFullscreen(true);
+			Display.setDisplayModeAndFullscreen(new DisplayMode(1080,720));
+			Display.setTitle("Zombie RTS");
 			Display.create();
+			Display.setVSyncEnabled(false);
 			//cam = new Camera(70,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
 			cam = new Player(0,0,0);
 			
@@ -96,8 +112,10 @@ public class Main {
 		Display.destroy();
 	}
 	public static void setLoop(String loop2){
+		
 		if(loop.equalsIgnoreCase("game")||loop.equalsIgnoreCase("menu")||loop.equalsIgnoreCase("start")){
 			Main.loop = loop2;
+			loopSwitch = true;
 		}
 		else{
 			System.out.println("IMPROPER LOOP SELECTED MAIN.JAVA");
@@ -105,5 +123,12 @@ public class Main {
 	}
 	public static void toggleDebug(){
 		debug = true;
+	}
+	public static String getLoop(){
+		return loop;
+	}
+	public static Location getCenter() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,8 +1,8 @@
 package renderer;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.util.glu.GLU.*;
 
+import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 
 public class Camera {
@@ -12,10 +12,6 @@ public class Camera {
 	private float rx;
 	private float ry;
 	private float rz;
-	private float fov;
-	private float aspect;
-	private float near;
-	private float far;
 		
 	public Camera(float fov, float aspect, float near, float far){
 		x = 0;
@@ -28,17 +24,15 @@ public class Camera {
 		initProjection();
 	}
 
-	private void initProjection(){
-
+	public void initProjection(){
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, 800, 0, 600, 1, -1);
+		GL11.glOrtho(0, Display.getWidth(), 0, Display.getHeight(), 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
-
+		GL11.glLoadIdentity();
 	}
 
 	public void useView(){
-		
 		glRotatef(rx,1,0,0);
 		glRotatef(ry,0,1,0);
 		glRotatef(rz,0,0,1);
@@ -67,12 +61,6 @@ public class Camera {
 
 	public void setZ(float z){
 		this.z = z;
-		if(z > 0.05f){
-			z = 0.05f;
-		}
-		if(z < -0.05f){
-			z = -0.05f;
-		}
 	}
 
 	public float getRX(){
@@ -110,7 +98,6 @@ public class Camera {
 		this.setY(0.0f);
 		this.setRZ(0.0f);
 		this.setRY(0.0f);
-		System.out.println("STABALIZED CAMERA");
 	}
 
 	public void decelerate() {
