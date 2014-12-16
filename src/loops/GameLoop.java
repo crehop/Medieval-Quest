@@ -3,6 +3,7 @@ package loops;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.util.glu.GLU.gluPerspective;
 
+import gameElements.Model;
 import gameElements.Skybox;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.Texture;
 
+import renderer.RenderModels;
 import server.Location;
 import voxel.Voxel;
 //import server.Location;
@@ -56,6 +58,15 @@ public class GameLoop {
 		//STAY LAST IN THIS ORDER ++++++++++++++++++
 		glLoadIdentity();
 		//++++++++++++++++++++++++++++++++++++++++++
+	}
+	public static void physicsUpdates(){
+		Model m = null;
+		if(RenderModels.models.size() > 0){
+			if(m == null){
+				m = RenderModels.models.get(0);
+				m.move(0.0f, 0.0f, -0.03f);
+			}
+		}
 	}
 	public static void initProjection() {
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);   

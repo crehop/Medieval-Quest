@@ -11,6 +11,7 @@ public class Console {
 	public static String line5 = "5";
 	public static String line6 = "6";
 	public static String line7 = "7";
+	public static String line8 = "8";
 	public static void renderConsole(){
 		if(consoleOn){
 			int x = 5;
@@ -28,6 +29,8 @@ public class Console {
 			renderer.TextRenderer.render(x, y, line6, Color.white);
 			y += (renderer.TextRenderer.font.getHeight(line6) + 5);
 			renderer.TextRenderer.render(x, y, line7, Color.white);
+			y += (renderer.TextRenderer.font.getHeight(line7) + 5);
+			renderer.TextRenderer.render(x, y, line8, Color.white);
 		}
 	}
 	public static boolean isConsoleOn() {
@@ -77,5 +80,11 @@ public class Console {
 	}
 	public static void setLine7(String line7) {
 		Console.line7 = line7;
+	}
+	public static String getLine8() {
+		return line8;
+	}
+	public static void setLine8(String line7) {
+		Console.line8 = line7;
 	}
 }

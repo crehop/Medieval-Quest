@@ -11,6 +11,8 @@ import org.lwjgl.opengl.Display;
 
 import org.lwjgl.opengl.*;
 
+import Information.EnhancedDelta;
+
 import server.Location;
 
 import entities.Player;
@@ -26,6 +28,8 @@ public class Main {
 	public static boolean isInMenuMode = false;
 	public static boolean isInStartMode = false;
 	public static boolean loopSwitch = false;
+	public static boolean open = true;
+	public static boolean paused = false;
 	public static Location center = new Location(0.0f,0.0f,0.0f);
 	
 	public static void main(String[] args) {
@@ -34,12 +38,29 @@ public class Main {
 		scrub();		
 	}
 	public static void loop() {
-		while(!Display.isCloseRequested()){
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			confirmLoop();
-			Display.update();
-			Display.sync(60);
-		}
+	      Thread loop = new Thread()
+	      {
+	         public void run()
+	         {
+	        	 System.out.println("running");
+	        	 while(this.isOpen()){
+	        		 EnhancedDelta.checkDelta();
+	        	 }
+        		 EnhancedDelta.checkDelta();
+	         }
+
+			public boolean isOpen() {
+				return open;
+			}
+	      };
+     	 System.out.println("running");
+	      loop.start();
+   		while(!Display.isCloseRequested()){
+  			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  			confirmLoop();
+  			Display.update();
+  			Display.sync(60);
+  		}
 	}
 	private static void confirmLoop() {
 		switch(loop){
@@ -108,6 +129,8 @@ public class Main {
 		}
 	}
 	public static void scrub(){
+   		open = false;
+   		System.out.println(" OPEN SET TO FALSE ! ");
 		Display.destroy();
 	}
 	public static void setLoop(String loop2){
@@ -117,7 +140,6 @@ public class Main {
 			loopSwitch = true;
 		}
 		else{
-			System.out.println("IMPROPER LOOP SELECTED MAIN.JAVA");
 		}
 	}
 	public static void toggleDebug(){
@@ -129,5 +151,11 @@ public class Main {
 	public static Location getCenter() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public static boolean isOpen(){
+		return open;
+	}
+	public static boolean isPaused() {
+		return paused;
 	}
 }

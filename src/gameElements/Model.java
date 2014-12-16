@@ -142,8 +142,8 @@ public class Model {
 
 				 	}
 			 	}
-			 	//Main.Console.setLine5("[XMIN = " + xmin + " YMIN = " + ymin + " ZMIN = " + zmin + "]");
-				//Main.Console.setLine6("[XMAX= " + xmax + " YMAX = " + ymax + " ZMAX = " + zmax + "]" + "CHUNK Y = " + this.getChunk().getLocation().getY());
+			 	Main.Console.setLine5("[XMIN = " + xmin + " YMIN = " + ymin + " ZMIN = " + zmin + "]");
+				Main.Console.setLine6("[XMAX= " + xmax + " YMAX = " + ymax + " ZMAX = " + zmax + "]" + "CHUNK Y = " + this.getChunk().getLocation().getY());
 				if(moved)this.moved = false;
 		        glEnd(); 
 			glPopMatrix();
@@ -313,5 +313,11 @@ public class Model {
 	}
 	public void setCollided(boolean collided) {
 		this.collided = collided;
+	}
+	public void setStartLocation(float x, float y, float z) {
+		this.location.setX(x);
+		this.location.setY(y);
+		this.location.setZ(z);
+		this.firstRun = true;
 	}
 }

@@ -48,6 +48,5 @@ public class StartLoop {
 		glOrtho(0,1080,720,0,1,-1);
 		glEnable(GL_TEXTURE_2D);
 		toggleInitiate();
-		System.out.println("Display Width = " + Display.getWidth() + " Display Height = " + Display.getHeight() + " Initiated set to "+ initiated);
 	}
 }
