@@ -142,8 +142,8 @@ public class Model {
 
 				 	}
 			 	}
-			 	Main.Console.setLine5("[XMIN = " + xmin + " YMIN = " + ymin + " ZMIN = " + zmin + "]");
-				Main.Console.setLine6("[XMAX= " + xmax + " YMAX = " + ymax + " ZMAX = " + zmax + "]" + "CHUNK Y = " + this.getChunk().getLocation().getY());
+			 	//Main.Console.setLine5("[XMIN = " + xmin + " YMIN = " + ymin + " ZMIN = " + zmin + "]");
+				//Main.Console.setLine6("[XMAX= " + xmax + " YMAX = " + ymax + " ZMAX = " + zmax + "]" + "CHUNK Y = " + this.getChunk().getLocation().getY());
 				if(moved)this.moved = false;
 		        glEnd(); 
 			glPopMatrix();
@@ -151,6 +151,7 @@ public class Model {
 	        GameLoop.test.getLocation().setY(ymin);
 	        GameLoop.test.getLocation().setZ((zmin));
 			GameLoop.test.render();
+			//System.out.print("RENDERING MODEL" + this.getName() + " ID" + this.getID() + " LOCATION "+ this.getLocation().getX() + " " + this.getLocation().getZ());
 		}
 	}
 	public Location getLocation(){

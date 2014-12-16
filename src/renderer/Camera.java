@@ -20,7 +20,6 @@ public class Camera {
 		rx = 0;
 		ry = 0;
 		rz = 0;
-
 		initProjection();
 	}
 
