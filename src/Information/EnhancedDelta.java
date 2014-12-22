@@ -63,7 +63,6 @@ public class EnhancedDelta {
 	            double thisSecond = (float) (lastUpdateTime / 1000000000);
 	            if (thisSecond > lastSecondTime)
 	            {
-	               System.out.println(Main.Main.isOpen());
 	               fps = frameCount;
 	               frameCount = 0;
 	               lastSecondTime = thisSecond;

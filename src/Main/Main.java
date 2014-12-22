@@ -42,7 +42,6 @@ public class Main {
 	      {
 	         public void run()
 	         {
-	        	 System.out.println("running");
 	        	 while(this.isOpen()){
 	        		 EnhancedDelta.checkDelta();
 	        	 }
@@ -53,7 +52,6 @@ public class Main {
 				return open;
 			}
 	      };
-     	 System.out.println("running");
 	      loop.start();
    		while(!Display.isCloseRequested()){
   			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -130,7 +128,6 @@ public class Main {
 	}
 	public static void scrub(){
    		open = false;
-   		System.out.println(" OPEN SET TO FALSE ! ");
 		Display.destroy();
 	}
 	public static void setLoop(String loop2){

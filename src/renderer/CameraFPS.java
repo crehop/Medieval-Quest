@@ -99,13 +99,13 @@ public class CameraFPS {
 		this.location.setZ(-position.z);
 	}
 	public void setYaw(float yaw) {
-		this.yaw = yaw;
+		this.yaw += yaw;
 	}
 	public float getPitch(){
 		return pitch;
 	}
 	public void setPitch(float pitch) {
-		this.pitch = pitch;
+		this.pitch += pitch;
 	}
 	public float getYaw() {
 		return yaw;
