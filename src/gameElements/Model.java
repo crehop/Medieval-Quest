@@ -320,4 +320,7 @@ public class Model {
 		this.location.setZ(z);
 		this.firstRun = true;
 	}
+	public List<Face> getFaces() {
+		return faces;
+	}
 }

@@ -43,4 +43,9 @@ public class ModelLoader {
 		reader.close();
 		return m;
 	}
+
+	public static int[] createVBO(Model model) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
