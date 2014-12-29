@@ -45,7 +45,6 @@ public class ModelLoader {
 	}
 
 	public static int[] createVBO(Model model) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

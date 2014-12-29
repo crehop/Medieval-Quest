@@ -12,25 +12,29 @@ public class EnhancedDelta {
     final static double TIME_BETWEEN_UPDATES = 1000000000 / GAME_HERTZ;
     //At the very most we will update the game this many times before a new render.
     //If you're worried about visual hitches more than perfect timing, set this to 1.
-    final static int MAX_UPDATES_BEFORE_RENDER = 1;
+    final static int MAX_UPDATES_BEFORE_RENDER = 5;
     static int fps = 0;
     static double startSeconds = System.nanoTime()/1000000000;
     static double now = System.nanoTime();
     static int updateCount = 0;
+    final static double TARGET_FPS = 60;
+    final static double TARGET_TIME_BETWEEN_RENDERS = 1000000000 / TARGET_FPS;
+    static double lastUpdateTime = 0;
+    static double lastRenderTime = 0;
+    static double lastSecondTime = 0;
+    static double thisSecond = 0;
     //We will need the last update time.
 	  public static void checkDelta()
 	   {
 	      NumberFormat format = NumberFormat.getInstance();
 
-	      double lastUpdateTime = System.nanoTime();
+	      lastUpdateTime = System.nanoTime();
 	      //Store the last time we rendered.
-	      double lastRenderTime = System.nanoTime();
+	      lastRenderTime = System.nanoTime();
 	      //If we are able to get as high as this FPS, don't render again.
-	      final double TARGET_FPS = 60;
-	      final double TARGET_TIME_BETWEEN_RENDERS = 1000000000 / TARGET_FPS;
 	      
 	      //Simple way of finding FPS.
-	      double lastSecondTime = (double) (lastUpdateTime / 1000000000);
+	      lastSecondTime = (double) (lastUpdateTime / 1000000000);
 	      
 	      while (Main.Main.isOpen())
 	      {
@@ -58,7 +62,7 @@ public class EnhancedDelta {
 	            }
 	         
 	            //Update the frames we got.
-	            double thisSecond = (float) (lastUpdateTime / 1000000000);
+	            thisSecond = (float) (lastUpdateTime / 1000000000);
 	            if (thisSecond > lastSecondTime)
 	            {
 	               lastSecondTime = thisSecond;

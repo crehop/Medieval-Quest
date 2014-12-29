@@ -74,8 +74,8 @@ public class VBOModels {
 	private static Model model;
 	
 	private static final String MODEL_LOCATION = "res/models/bunny.obj";
-	private static final String VERTEX_SHADER_LOCATION = "res/shaders/vertex_phong_lighting.vs";
-	private static final String FRAGMENT_SHADER_LOCATION = "res/shaders/vertex_phong_lighting.fs";
+	private static final String VERTEX_SHADER_LOCATION = "res/lighting/vertex_phong_lighting.vs";
+	private static final String FRAGMENT_SHADER_LOCATION = "res/lighting/vertex_phong_lighting.fs";
 	
 	public static void setupVBO(){
 		setUpVBOs();
@@ -101,8 +101,9 @@ public class VBOModels {
 	}
 	private static void setUpVBOs() {
 		int[] vbos;
-		try {
-			model = ModelLoader.loadModel(new File(MODEL_LOCATION));
+		//try {
+			//TODO fix
+			model = null;
 			vbos = ModelLoader.createVBO(model);
 			vboVertexHandle = vbos[0];
 			vboNormalHandle = vbos[1];
@@ -112,15 +113,22 @@ public class VBOModels {
 			glNormalPointer(GL_FLOAT, 0, 0L);
 			glEnableClientState(GL_VERTEX_ARRAY);
 			glEnableClientState(GL_NORMAL_ARRAY);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			cleanUp();
-			System.exit(1);
-		} catch (IOException e) {
-			e.printStackTrace();
-			cleanUp();
-			System.exit(1);
-		}
+		//}// catch (FileNotFoundException e) {
+			//e.printStackTrace();
+			//cleanUp();
+			//System.exit(1);
+		//} catch (IOException e) {
+			//e.printStackTrace();
+			//cleanUp();
+			//System.exit(1);
+		//}
+			
+			//STOP UNCOMMENTING HERE!------------------------------------------------------------------
+			
+			
+			
+			
+			
 		//		vboVertexHandle = glGenBuffers();
 		//		vboNormalHandle = glGenBuffers();
 		//		model = null;
