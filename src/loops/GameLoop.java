@@ -15,10 +15,7 @@ import org.newdawn.slick.opengl.Texture;
 import renderer.RenderModels;
 import server.Location;
 import voxel.Voxel;
-//import server.Location;
-//import voxel.Voxel;
 import voxel.WireframePart;
-import Information.Delta;
 import Information.FPS;
 import Main.Controls;
 import TerrainGeneration.Terrain;
@@ -35,7 +32,6 @@ public class GameLoop {
 	public static Texture health = utils.TextureHandler.getTexture("health");
 	public static Voxel test = new Voxel(new Location(0,0,0), 0.15f, health, 0.0f, 0.0f, 0.0f);
 	public static void loop(){
-		Delta.addDelta();
 		if(!(initiated)){
 			initProjection();
 			toggleInitiate();
@@ -49,10 +45,9 @@ public class GameLoop {
 		terrain.renderChunks(Main.Main.cam);	
 		renderer.RenderModels.renderActiveModels();
 		Skybox.renderSkyBox(Main.Main.cam);
-		Main.Console.setLine1("CAMERA [X =" + Main.Main.cam.getLocation().getX() +" Y =" + Main.Main.cam.getLocation().getY() + " Z =" + Main.Main.cam.getLocation().getZ() + "]" );
-		Main.Console.setLine2("DELTA = " + Delta.getDifference() );
-		Main.Console.setLine3("FPS = " + FPS.getFPS());
-		Main.Console.setLine4("MODELS ON SCREEN [" + renderer.RenderModels.models.size() + "]");
+		//Main.Console.setLine1("CAMERA [X =" + Main.Main.cam.getLocation().getX() +" Y =" + Main.Main.cam.getLocation().getY() + " Z =" + Main.Main.cam.getLocation().getZ() + "]" );
+		//Main.Console.setLine3("FPS = " + FPS.getFPS());
+		//Main.Console.setLine4("MODELS ON SCREEN [" + renderer.RenderModels.models.size() + "]");
 		Main.Console.renderConsole();
 		//System.out.println(Main.cam.getLocation().getX() + " " + Main.cam.getLocation().getY() + " " + Main.cam.getLocation().getZ() );
 		//STAY LAST IN THIS ORDER ++++++++++++++++++
@@ -63,8 +58,8 @@ public class GameLoop {
 		Model m = null;
 		if(RenderModels.models.size() > 0){
 			if(m == null){
-				m = RenderModels.models.get(0);
-				m.move(0.0f, 0.0f, -0.03f);
+				//m = RenderModels.models.get(0);
+				//m.move(0.0f, 0.0f, -0.03f);
 			}
 		}
 	}
@@ -76,6 +71,7 @@ public class GameLoop {
 	    glMatrixMode(GL_MODELVIEW);
 	    glLoadIdentity();
 	    glEnable(GL_DEPTH_TEST);
+	    glCullFace(GL_BACK);
 	    if(terrain == null){
 	    	terrain = new Terrain(false);
 	    }

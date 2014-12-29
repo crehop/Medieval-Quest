@@ -12,9 +12,8 @@ public class EnhancedDelta {
     final static double TIME_BETWEEN_UPDATES = 1000000000 / GAME_HERTZ;
     //At the very most we will update the game this many times before a new render.
     //If you're worried about visual hitches more than perfect timing, set this to 1.
-    final static int MAX_UPDATES_BEFORE_RENDER = 5;
+    final static int MAX_UPDATES_BEFORE_RENDER = 1;
     static int fps = 0;
-    static int frameCount = 0;
     static double startSeconds = System.nanoTime()/1000000000;
     static double now = System.nanoTime();
     static int updateCount = 0;
@@ -37,10 +36,9 @@ public class EnhancedDelta {
 	      {
 	         now = System.nanoTime();
 	         updateCount = 0;
-	         frameCount++;
 	         format.setRoundingMode(RoundingMode.DOWN);
 	         format.setMaximumFractionDigits(2);
-             Main.Console.setLine8("NEW SECOND " + format.format(((lastUpdateTime / 1000000000) - startSeconds)) + " " + frameCount);
+             Main.Console.setLine8("" + format.format(((lastUpdateTime / 1000000000) - startSeconds)));
 	         
 	         if (!(Main.Main.isPaused()))
 	         {
@@ -63,8 +61,6 @@ public class EnhancedDelta {
 	            double thisSecond = (float) (lastUpdateTime / 1000000000);
 	            if (thisSecond > lastSecondTime)
 	            {
-	               fps = frameCount;
-	               frameCount = 0;
 	               lastSecondTime = thisSecond;
 	            }
 	         

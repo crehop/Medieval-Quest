@@ -55,6 +55,7 @@ public class TextRenderer {
 	}
 	public static void reinitiatePreviousDrawState(){
 		glDrawBuffer(GL_FRONT);
+        glPopMatrix();
 		glEnable(GL_DEPTH_TEST);
 		glDisable(GL_TEXTURE_2D);
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 
@@ -70,10 +71,11 @@ public class TextRenderer {
 		else{
 			
 		}
+		glDrawBuffer(GL_BACK);
 	}
 	public static void draw2D()
 	{
-		glDrawBuffer(GL_BACK);
+        glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
         glMatrixMode(GL_MODELVIEW);
         glMatrixMode(GL_PROJECTION);

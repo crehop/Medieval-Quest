@@ -7,6 +7,8 @@ import entities.Player;
 public class Terrain {
 	public HashMap<String,Chunk> world = new HashMap<String,Chunk>();
 	public int chunks = 0;
+	private String key = "";
+	private String key2 = "";
 	public Terrain() {
 		initiateTerrain();
 	}
@@ -20,12 +22,12 @@ public class Terrain {
 	private void initiateTerrain() {
 		for(int x = -200; x <=200; x+=20){
 			Chunk chunk = new Chunk(x,0,0);
-			String key = "" + ((int)chunk.getLocation().getX() + "," + (int)chunk.getLocation().getZ());
+			key = "" + ((int)chunk.getLocation().getX() + "," + (int)chunk.getLocation().getZ());
 			world.put(key,chunk);
 			chunks++;
 			for(int z = -200; z <=200; z+=20){
 				Chunk chunk2 = new Chunk(x,0,z);
-				String key2 = "" + ((int)chunk2.getLocation().getX() + "," + (int)chunk2.getLocation().getZ());
+				key2 = "" + ((int)chunk2.getLocation().getX() + "," + (int)chunk2.getLocation().getZ());
 				world.put(key2,chunk2);
 				chunks++;
 			}
@@ -34,7 +36,7 @@ public class Terrain {
 	public void renderChunks(Player player){
 		int x = (int) player.getLocation().getX() - ((int) player.getLocation().getX()%100);
 		int z = (int) player.getLocation().getZ() - ((int) player.getLocation().getZ()%100);
-		String key = "" + x + "," + z;
+		key = "" + x + "," + z;
 		if(world.get(key) != null)world.get(key).render();
 		for(int X = x-20000; X < x+20000; X+=100){
 			key = "" + X + "," + z;

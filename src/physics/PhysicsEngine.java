@@ -20,13 +20,13 @@ public class PhysicsEngine {
 					if(model.getZmax() < m.getZmin() || model.getZmin() > m.getZmax()) z=false;
 					if(model.getYmax() < m.getYmin() || model.getXmin() > m.getXmax()) y=false;
 					if(x == true && y == true && z == true){
-						Main.Console.setLine7("COLLISION! " + model.getName() + " X= " + x + " Y=" + y + " Z=" + z + " ID=" + m.getID()  + " SECOND MODEL =" + model.getID());
+						//Main.Console.setLine7("COLLISION! " + model.getName() + " X= " + x + " Y=" + y + " Z=" + z + " ID=" + m.getID()  + " SECOND MODEL =" + model.getID());
 						return true;
 					}
 				}
 				if(m.getChunk().getLocation().getY() > m.getYmin()){
 					m.fixCollisionGround();
-					Main.Console.setLine7("COLLISION GROUND!" + model.getName() + " "  + " X= " + x + " Y=" + y + " Z=" + z + "ID =" + m.getID() + "SECOND MODEL =" + model.getID());
+					//Main.Console.setLine7("COLLISION GROUND!" + model.getName() + " "  + " X= " + x + " Y=" + y + " Z=" + z + "ID =" + m.getID() + "SECOND MODEL =" + model.getID());
 					return true;
 				}
 			}

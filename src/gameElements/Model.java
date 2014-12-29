@@ -48,6 +48,7 @@ public class Model {
 	private boolean movable = false;
 	private int renderRun;
 	private Texture texture;
+	private String key = "";
 	
 	public Model(float x,float y,float z,String name, boolean movable, boolean collidable){
 		this.ID = entities.ID.getID();
@@ -264,7 +265,7 @@ public class Model {
 		int x = (int) this.getLocation().getX() - ((int) this.getLocation().getX()%20);
 		int z = (int) this.getLocation().getZ() - ((int) this.getLocation().getZ()%20);
 		Chunk chunk = GameLoop.terrain.world.get("0,0");
-		String key = "" + x + "," + z;
+		key = "" + x + "," + z;
 		if(GameLoop.terrain.world.get(key) != null)chunk = GameLoop.terrain.world.get(key);
 		return chunk;
 		
