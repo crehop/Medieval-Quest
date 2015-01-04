@@ -37,6 +37,8 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 public class BufferTools {
+    public static StringBuilder bufferString = new StringBuilder();
+
 
     /**
      * @param v the vector that is to be turned into an array of floats
@@ -79,7 +81,6 @@ public class BufferTools {
      * @return a string representation of the elements in the buffer
      */
     public static String bufferToString(FloatBuffer buffer, int elements) {
-        StringBuilder bufferString = new StringBuilder();
         for (int i = 0; i < elements; i++) {
             bufferString.append(" ").append(buffer.get(i));
         }

@@ -9,13 +9,12 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import org.lwjgl.util.vector.Vector3f;
-
 public class ModelLoader {
+	public static String line;
 	public static Model loadModel(File f) throws FileNotFoundException, IOException{
 		Model m = new Model(0, 0, 0, f.getName(),false,true);
 		physics.PhysicsEngine.modelList.add(m);
 		BufferedReader reader = new BufferedReader(new FileReader(f));
-		String line;
 		while((line = reader.readLine()) != null){
 			if(line.startsWith("v ")){
 				float x = Float.valueOf(line.split(" ")[1]);

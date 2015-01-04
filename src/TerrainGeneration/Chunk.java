@@ -13,8 +13,8 @@ import org.newdawn.slick.opengl.Texture;
 import server.Location;
 
 public class Chunk {
-	Texture terrain = utils.TextureHandler.getTexture("grass");
-	Location location;
+	private Texture terrain = utils.TextureHandler.getTexture("grass");
+	private Location location;
 	public Chunk(int x,int y,int z){
 		this.location = new Location(x,y,z);
 	}

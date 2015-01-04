@@ -8,11 +8,11 @@ import org.newdawn.slick.util.ResourceLoader;
 
 public class TextureHandler
 {
-
+    public static Texture texture = null;
     // Used to deliver a texture to entities for quad-rendering.
     public static Texture getTexture(String name)
     {
-        Texture texture = null;
+    	texture = null;
         try
         {
             texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream( "res/textures/" + name + ".png"));
@@ -21,7 +21,6 @@ public class TextureHandler
             e.printStackTrace();
             System.exit(0); // Exit the game if the texture isn't loaded properly.
         }
-
         return texture;
     }
 }

@@ -9,11 +9,10 @@ import utils.TextureHandler;
 
 public class Skybox {
 	private static int size = 500;
+	private static Texture sides = TextureHandler.getTexture("skybox");
+	private static Texture top = TextureHandler.getTexture("skyboxtop");
+	private static Texture bottom = TextureHandler.getTexture("skyboxbottom");
 	public static void renderSkyBox(Player player){
-		Texture sides = TextureHandler.getTexture("skybox");
-		Texture top = TextureHandler.getTexture("skyboxtop");
-		Texture bottom = TextureHandler.getTexture("skyboxbottom");
-
 		glPushMatrix();
 			sides.bind();
 			glBegin(GL_QUADS);

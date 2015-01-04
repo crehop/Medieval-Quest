@@ -73,7 +73,6 @@ public class VBOModels {
 
 	private static Model model;
 	
-	private static final String MODEL_LOCATION = "res/models/bunny.obj";
 	private static final String VERTEX_SHADER_LOCATION = "res/lighting/vertex_phong_lighting.vs";
 	private static final String FRAGMENT_SHADER_LOCATION = "res/lighting/vertex_phong_lighting.fs";
 	
