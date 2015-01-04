@@ -23,10 +23,11 @@ public class EnhancedDelta {
     static double lastRenderTime = 0;
     static double lastSecondTime = 0;
     static double thisSecond = 0;
+    static NumberFormat format = NumberFormat.getInstance();
     //We will need the last update time.
 	  public static void checkDelta()
 	   {
-	      NumberFormat format = NumberFormat.getInstance();
+	      format = NumberFormat.getInstance();
 
 	      lastUpdateTime = System.nanoTime();
 	      //Store the last time we rendered.

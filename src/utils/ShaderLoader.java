@@ -47,13 +47,17 @@ public class ShaderLoader {
      * @return the shader program or -1 if the loading or compiling failed
      */
     public static String line;
+    private static BufferedReader fragmentShaderFileReader = null;
+    private static BufferedReader vertexShaderFileReader = null;
+    private static StringBuilder vertexShaderSource = null;
+    private static StringBuilder fragmentShaderSource = null;
     public static int loadShaderPair(String vertexShaderLocation, String fragmentShaderLocation) {
         int shaderProgram = glCreateProgram();
         int vertexShader = glCreateShader(GL_VERTEX_SHADER);
         int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-        StringBuilder vertexShaderSource = new StringBuilder();
-        StringBuilder fragmentShaderSource = new StringBuilder();
-        BufferedReader vertexShaderFileReader = null;
+        vertexShaderSource = new StringBuilder();
+        fragmentShaderSource = new StringBuilder();
+        vertexShaderFileReader = null;
         try {
             vertexShaderFileReader = new BufferedReader(new FileReader(vertexShaderLocation));
             while ((line = vertexShaderFileReader.readLine()) != null) {
@@ -71,7 +75,7 @@ public class ShaderLoader {
                 }
             }
         }
-        BufferedReader fragmentShaderFileReader = null;
+        fragmentShaderFileReader = null;
         try {
             fragmentShaderFileReader = new BufferedReader(new FileReader(fragmentShaderLocation));
             while ((line = fragmentShaderFileReader.readLine()) != null) {

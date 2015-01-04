@@ -26,6 +26,9 @@ public class WireframePart{
 	private float offsetX = 0.0f;
 	private float offsetY = 0.0f;
 	private float offsetZ = 0.0f;
+	private Voxel newVoxZ = null;
+	private Voxel newVoxX = null;
+	private Voxel newVoxY = null;
 	private ArrayList<Voxel> voxels = new ArrayList<Voxel>();
 	private boolean textureHasChanged = false;
 	public WireframePart(Location location, Wireframe body, float width, float length, float height,float blockSize){
@@ -64,13 +67,13 @@ public class WireframePart{
 	}
 	private void assemblePart(){
 		for(float x = 0.0f; x < width; x += getBlockSize() ){
-			Voxel newVoxX = new Voxel(location,this.getBlockSize()/2,x,0,0);
+			newVoxX = new Voxel(location,this.getBlockSize()/2,x,0,0);
 			voxels.add(newVoxX);
 			for(float y = 0.0f; y < length; y += getBlockSize() ){
-				Voxel newVoxY = new Voxel(location,this.getBlockSize()/2, null, x,y,0);
+				newVoxY = new Voxel(location,this.getBlockSize()/2, null, x,y,0);
 				voxels.add(newVoxY);
 				for(float z = 0.0f; z < height; z += getBlockSize() ){
-					Voxel newVoxZ = new Voxel(location,this.getBlockSize()/2,x,y,z);
+					newVoxZ = new Voxel(location,this.getBlockSize()/2,x,y,z);
 					voxels.add(newVoxZ);
 				}
 			}

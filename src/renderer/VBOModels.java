@@ -27,7 +27,7 @@ package renderer;
  * of the authors and should not be interpreted as representing official policies,
  * either expressed or implied, of the FreeBSD Project.
  */
-import static org.lwjgl.opengl.GL11.GL_BACK;
+/*import static org.lwjgl.opengl.GL11.GL_BACK;
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
 import static org.lwjgl.opengl.GL11.GL_DIFFUSE;
@@ -66,7 +66,7 @@ import utils.ModelLoader;
 import utils.ShaderLoader;
 
 public class VBOModels {
-
+	private static int[] vbos;
 	private static int shaderProgram;
 	private static int vboVertexHandle;
 	private static int vboNormalHandle;
@@ -99,9 +99,9 @@ public class VBOModels {
 		glMaterial(GL_FRONT, GL_DIFFUSE, BufferTools.asFlippedFloatBuffer(0.4f, 0.27f, 0.17f, 0));
 	}
 	private static void setUpVBOs() {
-		int[] vbos;
 		//try {
 			//TODO fix
+			vbos.clear();
 			model = null;
 			vbos = ModelLoader.createVBO(model);
 			vboVertexHandle = vbos[0];
@@ -165,4 +165,4 @@ public class VBOModels {
 		shaderProgram = ShaderLoader.loadShaderPair(VERTEX_SHADER_LOCATION, FRAGMENT_SHADER_LOCATION);
 		glUseProgram(shaderProgram);
 	}
-}
+}*/

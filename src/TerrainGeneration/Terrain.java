@@ -9,6 +9,8 @@ public class Terrain {
 	public int chunks = 0;
 	private String key = "";
 	private String key2 = "";
+	private Chunk chunk;
+	private Chunk chunk2;
 	public Terrain() {
 		initiateTerrain();
 	}
@@ -21,12 +23,12 @@ public class Terrain {
 
 	private void initiateTerrain() {
 		for(int x = -200; x <=200; x+=20){
-			Chunk chunk = new Chunk(x,0,0);
+			chunk = new Chunk(x,0,0);
 			key = "" + ((int)chunk.getLocation().getX() + "," + (int)chunk.getLocation().getZ());
 			world.put(key,chunk);
 			chunks++;
 			for(int z = -200; z <=200; z+=20){
-				Chunk chunk2 = new Chunk(x,0,z);
+				chunk2 = new Chunk(x,0,z);
 				key2 = "" + ((int)chunk2.getLocation().getX() + "," + (int)chunk2.getLocation().getZ());
 				world.put(key2,chunk2);
 				chunks++;

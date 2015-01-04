@@ -27,7 +27,7 @@ public class Voxel {
 
 	public Voxel(Location location){
 		this.location = new Location(location);
-		size = 0.5f;
+		this.size = 0.5f;
 		this.texture1 = TextureHandler.getTexture("grass");
 
 	}
@@ -211,10 +211,6 @@ public class Voxel {
 	public void setPhysicsControlled(boolean controlled){
 		this.physicsControlled = controlled;
 	}
-	//private static void glRandomColor() {
-	//	Random rand = new Random();
-	//	glColor3f(rand.nextFloat(),rand.nextFloat(),rand.nextFloat());
-	//}
 	public void setOffsetX(float f) {
 		this.offsetX = f;
 	}

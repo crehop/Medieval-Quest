@@ -17,6 +17,10 @@ public class RenderModels {
 	static boolean initiated = false;
 	static Model test2;
 	static Model test3;
+	static float one = 0;
+	static float two = 0;
+	static float y = 0;
+	static Model spam = null;
 	public static ArrayList<Model> models = new ArrayList<Model>();
 	static Random rand = new Random();
 	public static void initiate(){
@@ -47,9 +51,9 @@ public class RenderModels {
 			initiated = true;
 		}
 		for(Model m:models){
-			float one = rand.nextFloat();
-			float two = rand.nextFloat();
-			float y = rand.nextFloat();
+			one = rand.nextFloat();
+			two = rand.nextFloat();
+			y = rand.nextFloat();
 			if(rand.nextFloat() < 0.5f){
 				one *= -1;
 			}
@@ -62,7 +66,7 @@ public class RenderModels {
 	}
 	public static void spam(){
 		try {
-			Model spam = ModelLoader.loadModel(new File("res/models/zombie1/zombie1.obj"));
+			if(spam == null)spam = ModelLoader.loadModel(new File("res/models/zombie1/zombie1.obj"));
 			test3.setCollidable(true);
 			test3.setMovable(true);
 			test3.setStartLocation(0.0f, 2.0f, (models.get(models.size()-1).getLocation().getZ() + 2.0f));
