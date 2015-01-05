@@ -45,7 +45,7 @@ public class GameLoop {
 		terrain.renderChunks(Main.Main.cam);	
 		renderer.RenderModels.renderActiveModels();
 		Skybox.renderSkyBox(Main.Main.cam);
-		Main.Console.setLine1("CAMERA [X =" + Main.Main.cam.getLocation().getX() +" Y =" + Main.Main.cam.getLocation().getY() + " Z =" + Main.Main.cam.getLocation().getZ() + " Pitch =" + Main.Main.cam.getPitch() + " Yaw =" + Main.Main.cam.getYaw() + "]");
+		Main.Console.setLine1("CAMERA [X =" + (int)Main.Main.cam.getLocation().getX() +" Y =" + (int)Main.Main.cam.getLocation().getY() + " Z =" + (int)Main.Main.cam.getLocation().getZ() + " Pitch =" + (int)Main.Main.cam.getPitch() + " Yaw =" + (int)Main.Main.cam.getYaw() + "]");
 		Main.Console.setLine3("FPS = " + FPS.getFPS());
 		Main.Console.setLine4("MODELS ON SCREEN [" + renderer.RenderModels.models.size() + "]");
 		Main.Console.renderConsole();

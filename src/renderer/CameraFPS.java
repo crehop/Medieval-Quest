@@ -39,13 +39,37 @@ public class CameraFPS {
 		pitch += amount;
 	}
 	public void walkForward(float distance){
+		if(this.pitch > 86 || this.pitch < -86){
+			distance = distance/25.5f;
+		}
+		else if(this.pitch > 75 || this.pitch < -75){
+			distance = distance/7.5f;
+		}	
+		else if(this.pitch > 65 || this.pitch < -65){
+			distance = distance/4.0f;
+		}
+		else if(this.pitch > 45 || this.pitch < -45){
+			distance = distance/1.8f;
+		}
 		//moves camera forward relative to its current rotation;
 		position.x -= distance * (float)Math.sin(Math.toRadians(yaw));
 		position.y += distance * (float)Math.tan(Math.toRadians(pitch));
 		position.z += distance * (float)Math.cos(Math.toRadians(yaw));
+		
 	}
 	public void walkBackward(float distance){
-		//moves camera backward relative to its current rotation;
+		if(this.pitch > 86 || this.pitch < -86){
+			distance = distance/25.5f;
+		}
+		else if(this.pitch > 75 || this.pitch < -75){
+			distance = distance/7.5f;
+		}	
+		else if(this.pitch > 65 || this.pitch < -65){
+			distance = distance/4.0f;
+		}
+		else if(this.pitch > 45 || this.pitch < -45){
+			distance = distance/1.8f;
+		}
 		position.x += distance * (float)Math.sin(Math.toRadians(yaw));
 		position.y -= distance * (float)Math.tan(Math.toRadians(pitch));
 		position.z -= distance * (float)Math.cos(Math.toRadians(yaw));
@@ -113,11 +137,11 @@ public class CameraFPS {
 		return pitch;
 	}
 	public void setPitch(float pitch) {
-		if ((this.pitch + pitch) > 65.0){
-			this.pitch = 65.0f;
+		if ((this.pitch + pitch) > 88.0){
+			this.pitch = 88.0f;
 		}
-		else if ((this.pitch + pitch) < -65.0){
-			this.pitch = -65.0f;
+		else if ((this.pitch + pitch) < -88.0){
+			this.pitch = -88.0f;
 		}
 		else{
 			this.pitch += pitch;
