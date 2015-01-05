@@ -158,7 +158,6 @@ public class Model {
 	        GameLoop.test.getLocation().setY(ymin);
 	        GameLoop.test.getLocation().setZ((zmin));
 			GameLoop.test.render();
-			//System.out.print("RENDERING MODEL" + this.getName() + " ID" + this.getID() + " LOCATION "+ this.getLocation().getX() + " " + this.getLocation().getZ());
 		}
 	}
 	public Location getLocation(){

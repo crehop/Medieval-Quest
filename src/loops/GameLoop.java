@@ -45,11 +45,10 @@ public class GameLoop {
 		terrain.renderChunks(Main.Main.cam);	
 		renderer.RenderModels.renderActiveModels();
 		Skybox.renderSkyBox(Main.Main.cam);
-		//Main.Console.setLine1("CAMERA [X =" + Main.Main.cam.getLocation().getX() +" Y =" + Main.Main.cam.getLocation().getY() + " Z =" + Main.Main.cam.getLocation().getZ() + "]" );
-		//Main.Console.setLine3("FPS = " + FPS.getFPS());
-		//Main.Console.setLine4("MODELS ON SCREEN [" + renderer.RenderModels.models.size() + "]");
+		Main.Console.setLine1("CAMERA [X =" + Main.Main.cam.getLocation().getX() +" Y =" + Main.Main.cam.getLocation().getY() + " Z =" + Main.Main.cam.getLocation().getZ() + " Pitch =" + Main.Main.cam.getPitch() + " Yaw =" + Main.Main.cam.getYaw() + "]");
+		Main.Console.setLine3("FPS = " + FPS.getFPS());
+		Main.Console.setLine4("MODELS ON SCREEN [" + renderer.RenderModels.models.size() + "]");
 		Main.Console.renderConsole();
-		//System.out.println(Main.cam.getLocation().getX() + " " + Main.cam.getLocation().getY() + " " + Main.cam.getLocation().getZ() );
 		//STAY LAST IN THIS ORDER ++++++++++++++++++
 		glLoadIdentity();
 		//++++++++++++++++++++++++++++++++++++++++++
