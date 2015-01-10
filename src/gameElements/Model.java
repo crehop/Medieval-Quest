@@ -4,6 +4,7 @@ import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,12 +13,15 @@ import loops.GameLoop;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL11.*;
 import org.lwjgl.util.vector.Vector3f;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
 
 import entities.Player;
 
 import physics.PhysicsEngine;
 
+import Information.Console;
 import TerrainGeneration.Chunk;
 
 import server.Location;
@@ -30,6 +34,7 @@ public class Model {
 	public Location location;
 	public List<Vector3f> vertices = new ArrayList<Vector3f>();
 	public List<Vector3f> normals = new ArrayList<Vector3f>();
+	public List<Vector2f> textures = new ArrayList<Vector2f>();
 	public List<Face> faces = new ArrayList<Face>();
 	public int renderloop = 0;
 	private float xmax = -100000000.0f;
@@ -56,26 +61,44 @@ public class Model {
 	private Vector3f v2 = null;
 	private Vector3f n3 = null;
 	private Vector3f v3 = null;
-	public Model(float x,float y,float z,String name, boolean movable, boolean collidable){
+	private Vector2f tx = null;
+	private int count = 0;
+	public Model(float x,float y,float z,File f, boolean movable, boolean collidable){
 		this.ID = entities.ID.getID();
 		this.location = new Location(x,y,z);
 		this.movable = movable;
 		this.collidable = collidable;
-		this.texture = TextureHandler.getTexture("dirt");
-	}
+		this.name = f.getName().replace(".obj", "");
+		texture = TextureHandler.getModelTexture(f.getPath().replace(".obj",".png"));	}
 	public void renderModel(){
 		if(render){
+			Console.setLine2("Textures buffer size = " + textures.size());
 			glPushMatrix();
+				this.texture.bind();
+				Console.setLine7("WIDTH = " + texture.getWidth() + " Height = " + texture.getHeight());
+				GL11.glEnable(GL11.GL_TEXTURE_2D);
+				GL11.glEnable(GL11.GL_BLEND);
+			    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			 	GL11.glBegin(GL11.GL_TRIANGLES);
 			 	for(Face face:faces){
+			 		tx = textures.get(count);
+			 		if(count < tx.length())count++;
+		            GL11.glTexCoord2f(0,0);
+		            
 			 		n1 = this.normals.get((int)face.normal.x - 1);
 			 		GL11.glNormal3f((n1.x + this.location.getX()), (n1.y + this.location.getY()), (n1.z + this.location.getZ()));
 			 		v1 = this.vertices.get((int)face.vertex.x - 1);
 			 		GL11.glVertex3f((v1.x + this.location.getX()), (v1.y + this.location.getY()), (v1.z + this.location.getZ()));
+			 		
+		            GL11.glTexCoord2f(1,0);
+		            
 			 		n2 = this.normals.get((int)face.normal.y - 1);
 			 		GL11.glNormal3f((n2.x + this.location.getX()), (n2.y + this.location.getY()), (n2.z + this.location.getZ()));
 			 		v2 = this.vertices.get((int)face.vertex.y - 1);
 			 		GL11.glVertex3f((v2.x + this.location.getX()), (v2.y + this.location.getY()), (v2.z + this.location.getZ()));
+
+		            GL11.glTexCoord2f(0,1);
+		            
 			 		n3 = this.normals.get((int)face.normal.z - 1);
 			 		GL11.glNormal3f((n3.x + this.location.getX()), (n3.y + this.location.getY()), (n3.z + this.location.getZ()));
 			 		v3 = this.vertices.get((int)face.vertex.z - 1);
@@ -152,6 +175,8 @@ public class Model {
 			 	Information.Console.setLine5("[XMIN = " + xmin + " YMIN = " + ymin + " ZMIN = " + zmin + "]");
 				Information.Console.setLine6("[XMAX= " + xmax + " YMAX = " + ymax + " ZMAX = " + zmax + "]" + "CHUNK Y = " + this.getChunk().getLocation().getY());
 				if(moved)this.moved = false;
+				GL11.glDisable(GL11.GL_TEXTURE_2D);
+				GL11.glDisable(GL11.GL_BLEND);
 		        glEnd(); 
 			glPopMatrix();
 	        GameLoop.test.getLocation().setX((xmin));

@@ -23,4 +23,17 @@ public class TextureHandler
         }
         return texture;
     }
+    public static Texture getModelTexture(String name)
+    {
+    	texture = null;
+        try
+        {
+            texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(name));
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+            System.exit(0); // Exit the game if the texture isn't loaded properly.
+        }
+        return texture;
+    }
 }

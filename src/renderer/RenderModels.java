@@ -25,16 +25,16 @@ public class RenderModels {
 	static Random rand = new Random();
 	public static void initiate(){
 		try {
-			test2 = ModelLoader.loadModel(new File("res/models/wall/wall.obj"));
-			test3 = ModelLoader.loadModel(new File("res/models/zombie1/zombie1.obj"));
-			test2.setCollidable(true);
-			test2.setMovable(true);
-			test2.setStartLocation(0.0f, 2.0f, 0.0f);
+			//test2 = ModelLoader.loadModel(new File("res/models/wall/wall.obj"));
+			test3 = ModelLoader.loadModel(new File("res/models/zombie/zombie.obj"));
+			//test2.setCollidable(true);
+			//test2.setMovable(true);
+			//test2.setStartLocation(0.0f, 2.0f, 0.0f);
 			test3.setCollidable(true);
 			test3.setMovable(true);
 			test3.setStartLocation(0.0f, -12.0f, 2.0f);
 			models.add(test3);
-			models.add(test2);
+			//models.add(test2);
 			
 			//System.out.println("MODEL LOADED V= " + test.vertices.size() + " N= " + test.normals.size() );
 			//System.out.println("MODEL2 LOADED V= " + test2.vertices.size() + " N= " + test2.normals.size() );
@@ -66,7 +66,7 @@ public class RenderModels {
 	}
 	public static void spam(){
 		try {
-			if(spam == null)spam = ModelLoader.loadModel(new File("res/models/zombie1/zombie1.obj"));
+			if(spam == null)spam = ModelLoader.loadModel(new File("res/models/zombie/zombie.obj"));
 			test3.setCollidable(true);
 			test3.setMovable(true);
 			test3.setStartLocation(0.0f, 2.0f, (models.get(models.size()-1).getLocation().getZ() + 2.0f));

@@ -14,6 +14,27 @@ public class Console {
 	public static String line8 = "8";
 	public static void renderConsole(){
 		if(consoleOn){
+			if(line1 == null){
+				line1 = "null";
+			}
+			if(line2 == null){
+				line2 = "null";
+			}
+			if(line3 == null){
+				line3 = "null";
+			}
+			if(line4 == null){
+				line4 = "null";
+			}
+			if(line5 == null){
+				line5 = "null";
+			}
+			if(line6 == null){
+				line6 = "null";
+			}
+			if(line7 == null){
+				line7 = "null";
+			}
 			int x = 5;
 			int y = 5;
 			renderer.TextRenderer.render(x, y, line1, Color.white);

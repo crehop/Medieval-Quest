@@ -9,12 +9,16 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import org.lwjgl.util.vector.Vector3f;
+import org.newdawn.slick.geom.Vector2f;
+
+import Information.Console;
 public class ModelLoader {
 	public static String line;
 	private static Vector3f vertexIndices;
 	private static Vector3f normalIndices;
+	private static Vector2f textureIndices;
 	public static Model loadModel(File f) throws FileNotFoundException, IOException{
-		Model m = new Model(0, 0, 0, f.getName(),false,true);
+		Model m = new Model(0, 0, 0, f,false,true);
 		physics.PhysicsEngine.modelList.add(m);
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 		while((line = reader.readLine()) != null){
@@ -38,6 +42,12 @@ public class ModelLoader {
 						,Float.valueOf(line.split(" ")[2].split("/")[2])
 						,Float.valueOf(line.split(" ")[3].split("/")[2]));
 				m.faces.add(new Face(vertexIndices,normalIndices));
+			}
+			else if(line.startsWith("vt ")){
+				textureIndices = new Vector2f(
+						Float.valueOf(line.split(" ")[1].split("/")[0])
+						,Float.valueOf(line.split(" ")[2].split("/")[0]));
+				m.textures.add(textureIndices);
 			}
 		}
 		m.setName("" + f.getName());
