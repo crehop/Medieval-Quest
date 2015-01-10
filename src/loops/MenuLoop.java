@@ -6,7 +6,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.Texture;
 
-import Main.Controls;
+import Information.Controls;
 
 public class MenuLoop {
 	public static Texture splash = utils.TextureHandler.getTexture("splash");

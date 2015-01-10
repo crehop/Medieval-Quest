@@ -1,8 +1,10 @@
-package Main;
+package Information;
 
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+
+import Main.Main;
 
 import static org.lwjgl.input.Keyboard.*;
 
@@ -14,7 +16,8 @@ public class Controls {
 	static boolean strafeRight;
 	static boolean jump;
 	static boolean crouch;
-	static boolean stabalizeCam;
+	static boolean speedUpCam;
+	static boolean speedDownCam;
 	static boolean rotateLeft;
 	static boolean rotateRight;
 	static boolean aKeyIsDown;
@@ -30,7 +33,7 @@ public class Controls {
 	static float mouseSensitivity = 0.05f;
 	static int dwheel = Mouse.getDWheel();
 	//change to adjust movement speed
-	static float defaultMovementSpeed = 0.5f;
+	static final float defaultMovementSpeed = 0.5f;
 	static float movementSpeed = defaultMovementSpeed;
 	
 	static float lastTime = 0.0f;
@@ -58,7 +61,8 @@ public class Controls {
 		strafeRight = Keyboard.isKeyDown(KEY_D);
 		jump = Keyboard.isKeyDown(KEY_SPACE);
 		crouch = Keyboard.isKeyDown(KEY_LSHIFT);
-		stabalizeCam = Keyboard.isKeyDown(KEY_TAB);
+		speedUpCam = Keyboard.isKeyDown(KEY_TAB);
+		speedDownCam = Keyboard.isKeyDown(KEY_LCONTROL);
 		rotateLeft = Keyboard.isKeyDown(KEY_Q);
 		rotateRight = Keyboard.isKeyDown(KEY_E);
 		test1 = Keyboard.isKeyDown(KEY_ADD);
@@ -115,12 +119,15 @@ public class Controls {
 			Main.cam.moveDown((float)(movementSpeed));
 			aKeyIsDown = true;
 		}
-		if(stabalizeCam){
+		if(speedUpCam){
 			movementSpeed = defaultMovementSpeed * 5;
-			//Main.cam.stabalize();
 			aKeyIsDown = true;
 		}
-		if(!(stabalizeCam)){
+		else if(speedDownCam){
+			movementSpeed = defaultMovementSpeed / 100;
+			aKeyIsDown = true;
+		}
+		else{
 			movementSpeed = defaultMovementSpeed;
 		}
 		if(rotateLeft){

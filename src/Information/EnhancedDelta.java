@@ -43,7 +43,7 @@ public class EnhancedDelta {
 	         updateCount = 0;
 	         format.setRoundingMode(RoundingMode.DOWN);
 	         format.setMaximumFractionDigits(2);
-             Main.Console.setLine8("" + format.format(((lastUpdateTime / 1000000000) - startSeconds)));
+             Information.Console.setLine8("" + format.format(((lastUpdateTime / 1000000000) - startSeconds)));
 	         
 	         if (!(Main.Main.isPaused()))
 	         {

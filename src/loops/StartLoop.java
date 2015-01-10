@@ -15,7 +15,7 @@ public class StartLoop {
 			Mouse.setGrabbed(false);
 		}
 		render();
-		Main.Controls.checkInput();
+		Information.Controls.checkInput();
 	}
 	private static void render(){
 		if(initiated == false){

@@ -12,14 +12,14 @@ import org.lwjgl.util.vector.Vector3f;
 
 import server.Location;
 
-public class CameraFPS {
+public class CameraFreelook {
 	protected Vector3f position = null;
 	protected float yaw = 0.0f;
 	protected float pitch = 0.0f;
 	private Location location;
 	
 	
-	public CameraFPS(float x, float y, float z){
+	public CameraFreelook(float x, float y, float z){
 		position = new Vector3f(x,y,z);
 		this.location = new Location(x,y,z);
 		//initProjection();
@@ -39,12 +39,39 @@ public class CameraFPS {
 		pitch += amount;
 	}
 	public void walkForward(float distance){
+		if(this.pitch > 86 || this.pitch < -86){
+			distance = distance/25.5f;
+		}
+		else if(this.pitch > 75 || this.pitch < -75){
+			distance = distance/7.5f;
+		}	
+		else if(this.pitch > 65 || this.pitch < -65){
+			distance = distance/4.0f;
+		}
+		else if(this.pitch > 45 || this.pitch < -45){
+			distance = distance/1.8f;
+		}
+		//moves camera forward relative to its current rotation;
 		position.x -= distance * (float)Math.sin(Math.toRadians(yaw));
+		position.y += distance * (float)Math.tan(Math.toRadians(pitch));
 		position.z += distance * (float)Math.cos(Math.toRadians(yaw));
 		
 	}
 	public void walkBackward(float distance){
+		if(this.pitch > 86 || this.pitch < -86){
+			distance = distance/25.5f;
+		}
+		else if(this.pitch > 75 || this.pitch < -75){
+			distance = distance/7.5f;
+		}	
+		else if(this.pitch > 65 || this.pitch < -65){
+			distance = distance/4.0f;
+		}
+		else if(this.pitch > 45 || this.pitch < -45){
+			distance = distance/1.8f;
+		}
 		position.x += distance * (float)Math.sin(Math.toRadians(yaw));
+		position.y -= distance * (float)Math.tan(Math.toRadians(pitch));
 		position.z -= distance * (float)Math.cos(Math.toRadians(yaw));
 	}
 	public void strafeLeft(float distance){

@@ -1,4 +1,4 @@
-package Main;
+package Information;
 
 import org.newdawn.slick.Color;
 

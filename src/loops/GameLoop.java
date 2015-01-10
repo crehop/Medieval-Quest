@@ -16,8 +16,8 @@ import renderer.RenderModels;
 import server.Location;
 import voxel.Voxel;
 import voxel.WireframePart;
+import Information.Controls;
 import Information.FPS;
-import Main.Controls;
 import TerrainGeneration.Terrain;
 
 public class GameLoop {
@@ -45,10 +45,10 @@ public class GameLoop {
 		terrain.renderChunks(Main.Main.cam);	
 		renderer.RenderModels.renderActiveModels();
 		Skybox.renderSkyBox(Main.Main.cam);
-		Main.Console.setLine1("CAMERA [X =" + (int)Main.Main.cam.getLocation().getX() +" Y =" + (int)Main.Main.cam.getLocation().getY() + " Z =" + (int)Main.Main.cam.getLocation().getZ() + " Pitch =" + (int)Main.Main.cam.getPitch() + " Yaw =" + (int)Main.Main.cam.getYaw() + "]");
-		Main.Console.setLine3("FPS = " + FPS.getFPS());
-		Main.Console.setLine4("MODELS ON SCREEN [" + renderer.RenderModels.models.size() + "]");
-		Main.Console.renderConsole();
+		Information.Console.setLine1("CAMERA [X =" + (int)Main.Main.cam.getLocation().getX() +" Y =" + (int)Main.Main.cam.getLocation().getY() + " Z =" + (int)Main.Main.cam.getLocation().getZ() + " Pitch =" + (int)Main.Main.cam.getPitch() + " Yaw =" + (int)Main.Main.cam.getYaw() + "]");
+		Information.Console.setLine3("FPS = " + FPS.getFPS());
+		Information.Console.setLine4("MODELS ON SCREEN [" + renderer.RenderModels.models.size() + "]");
+		Information.Console.renderConsole();
 		//STAY LAST IN THIS ORDER ++++++++++++++++++
 		glLoadIdentity();
 		//++++++++++++++++++++++++++++++++++++++++++
