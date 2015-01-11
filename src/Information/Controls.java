@@ -27,6 +27,10 @@ public class Controls {
 	static boolean test4;
 	static boolean zoomOut;
 	static boolean zoomIn;
+	static boolean offsetXPlus;
+	static boolean offsetXMinus;
+	static boolean offsetYPlus;
+	static boolean offsetYMinus;
 
 	
 	//Mouse sensitivity
@@ -69,6 +73,10 @@ public class Controls {
 		test2 = Keyboard.isKeyDown(KEY_SUBTRACT);
 		test3 = Keyboard.isKeyDown(KEY_EQUALS);
 		test4 = Keyboard.isKeyDown(KEY_F);
+		offsetXPlus = Keyboard.isKeyDown(KEY_UP);
+		offsetXMinus = Keyboard.isKeyDown(KEY_DOWN);
+		offsetYPlus = Keyboard.isKeyDown(KEY_LEFT);
+		offsetYMinus = Keyboard.isKeyDown(KEY_RIGHT);
 		dwheel = Mouse.getDWheel();
 		aKeyIsDown = false;
 		if(exitKey){
@@ -149,6 +157,10 @@ public class Controls {
 		}
 		if(test4){
 		}
+		renderer.RenderModels.setOffsetXPlus(offsetXPlus);
+		renderer.RenderModels.setOffsetXMinus(offsetXMinus);
+		renderer.RenderModels.setOffsetYPlus(offsetYPlus);
+		renderer.RenderModels.setOffsetYMinus(offsetYMinus);
 	}
 
 }

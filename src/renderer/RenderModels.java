@@ -15,6 +15,10 @@ import utils.ModelLoader;
 
 public class RenderModels {
 	static boolean initiated = false;
+	static boolean offsetXPlus = false;
+	static boolean offsetXMinus = false;
+	static boolean offsetYPlus = false;
+	static boolean offsetYMinus = false;
 	static Model test2;
 	static Model test3;
 	static float one = 0;
@@ -25,16 +29,16 @@ public class RenderModels {
 	static Random rand = new Random();
 	public static void initiate(){
 		try {
-			//test2 = ModelLoader.loadModel(new File("res/models/wall/wall.obj"));
+			test2 = ModelLoader.loadModel(new File("res/models/wall/wall.obj"));
 			test3 = ModelLoader.loadModel(new File("res/models/zombie/zombie.obj"));
-			//test2.setCollidable(true);
-			//test2.setMovable(true);
-			//test2.setStartLocation(0.0f, 2.0f, 0.0f);
+			test2.setCollidable(true);
+			test2.setMovable(true);
+			test2.setStartLocation(0.0f, 2.0f, 0.0f);
 			test3.setCollidable(true);
 			test3.setMovable(true);
 			test3.setStartLocation(0.0f, -12.0f, 2.0f);
 			models.add(test3);
-			//models.add(test2);
+			models.add(test2);
 			
 			//System.out.println("MODEL LOADED V= " + test.vertices.size() + " N= " + test.normals.size() );
 			//System.out.println("MODEL2 LOADED V= " + test2.vertices.size() + " N= " + test2.normals.size() );
@@ -51,14 +55,17 @@ public class RenderModels {
 			initiated = true;
 		}
 		for(Model m:models){
-			one = rand.nextFloat();
-			two = rand.nextFloat();
-			y = rand.nextFloat();
-			if(rand.nextFloat() < 0.5f){
-				one *= -1;
+			if(offsetYMinus){
+				m.offsetyMinus();
 			}
-			if(rand.nextFloat() < 0.5f){
-				two *= -1;
+			if(offsetYPlus){
+				m.offsetyPlus();
+			}
+			if(offsetXMinus){
+				m.offsetxMinus();
+			}
+			if(offsetXPlus){
+				m.offsetxPlus();
 			}
 			m.renderModel();
 			//m.move(one/5, 0.0f, two/5);
@@ -79,5 +86,29 @@ public class RenderModels {
 			e.printStackTrace();
 		}
 
+	}
+	public static boolean isOffsetXPlus() {
+		return offsetXPlus;
+	}
+	public static void setOffsetXPlus(boolean offsetXPlus) {
+		RenderModels.offsetXPlus = offsetXPlus;
+	}
+	public static boolean isOffsetXMinus() {
+		return offsetXMinus;
+	}
+	public static void setOffsetXMinus(boolean offsetXMinus) {
+		RenderModels.offsetXMinus = offsetXMinus;
+	}
+	public static boolean isOffsetYPlus() {
+		return offsetYPlus;
+	}
+	public static void setOffsetYPlus(boolean offsetYPlus) {
+		RenderModels.offsetYPlus = offsetYPlus;
+	}
+	public static boolean isOffsetYMinus() {
+		return offsetYMinus;
+	}
+	public static void setOffsetYMinus(boolean offsetYMinus) {
+		RenderModels.offsetYMinus = offsetYMinus;
 	}
 }
