@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import Information.Console;
+
 import utils.ModelLoader;
 
 public class RenderModels {
@@ -21,6 +23,7 @@ public class RenderModels {
 	static boolean offsetYMinus = false;
 	static Model test2;
 	static Model test3;
+	static Model test4;
 	static float one = 0;
 	static float two = 0;
 	static float y = 0;
@@ -55,19 +58,25 @@ public class RenderModels {
 			initiated = true;
 		}
 		for(Model m:models){
-			if(offsetYMinus){
-				m.offsetyMinus();
-			}
-			if(offsetYPlus){
-				m.offsetyPlus();
-			}
-			if(offsetXMinus){
-				m.offsetxMinus();
-			}
-			if(offsetXPlus){
-				m.offsetxPlus();
-			}
 			m.renderModel();
+			if(m.getID() == 2){
+				if(offsetXPlus){
+					m.move(0.01f, 0, 0);
+					Console.setLine7("OFFSET - X - PLUS");
+				}
+				if(offsetXMinus){
+					m.move(-0.01f, 0, 0);
+					Console.setLine7("OFFSET - X - MINUS");
+				}
+				if(offsetYPlus){
+					m.move(0.0f, 0.0f, 0.01f);
+					Console.setLine7("OFFSET - Y - PLUS");
+				}
+				if(offsetYMinus){
+					m.move(0.0f, 0.0f, -0.01f);
+					Console.setLine7("OFFSET - Y - MINUS");
+				}
+			}
 			//m.move(one/5, 0.0f, two/5);
 		}
 	}

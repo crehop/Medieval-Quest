@@ -43,8 +43,6 @@ public class Model {
 	private float ymax = -100000000.0f;
 	private float zmin = 100000000.0f;
 	private float zmax = -100000000.0f;
-	private float offsetx = 0.0f;
-	private float offsety = 0.0f;
 	private boolean moved = true;
 	private boolean collided = false;
 	private boolean firstRun = true;
@@ -77,14 +75,14 @@ public class Model {
 	public void renderModel(){
 		if(render){
 			glPushMatrix();
+			    //READ http://en.wikipedia.org/wiki/Wavefront_.obj_file#Texture_maps
 				this.texture.bind();
-				Console.setLine7("OFFSETX = " + offsetx + " OFFSETY = " + offsety);
-				//TODO READ http://en.wikipedia.org/wiki/Wavefront_.obj_file#Texture_maps
 				GL11.glEnable(GL11.GL_TEXTURE_2D);
 				GL11.glEnable(GL11.GL_BLEND);
 			    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			 	GL11.glBegin(GL11.GL_TRIANGLES);
 			 	for(Face face:faces){
+			 		//n=normal t=texel v=vertex
 			 		n1 = this.normals.get((int)face.normal.x - 1);
 		            t1 = this.textures.get((int)face.textureCall.x -1);
 			 		v1 = this.vertices.get((int)face.vertex.x - 1);
@@ -94,15 +92,18 @@ public class Model {
 			 		n3 = this.normals.get((int)face.normal.z - 1);
 		            t3 = this.textures.get((int)face.textureCall.z -1);
 			 		v3 = this.vertices.get((int)face.vertex.z - 1);
-			        GL11.glTexCoord2f(-t1.x-offsetx,-t1.y-offsety);
+			 		
+			        GL11.glTexCoord2f(-t1.x,-t1.y);
 			        GL11.glNormal3f((n1.x + this.location.getX()), (n1.y + this.location.getY()), (n1.z + this.location.getZ()));
 			 		GL11.glVertex3f((v1.x + this.location.getX()), (v1.y + this.location.getY()), (v1.z + this.location.getZ()));	
-			        GL11.glTexCoord2f(-t2.x-offsetx,-t2.y-offsety);
+			        GL11.glTexCoord2f(-t2.x,-t2.y);
 			 		GL11.glVertex3f((v2.x + this.location.getX()), (v2.y + this.location.getY()), (v2.z + this.location.getZ()));
 			 		GL11.glNormal3f((n2.x + this.location.getX()), (n2.y + this.location.getY()), (n2.z + this.location.getZ()));
-				    GL11.glTexCoord2f(-t3.x-offsetx,-t3.y-offsety);
+				    GL11.glTexCoord2f(-t3.x,-t3.y);
 			 		GL11.glVertex3f((v3.x + this.location.getX()), (v3.y + this.location.getY()), (v3.z + this.location.getZ())); 
 			 		GL11.glNormal3f((n3.x + this.location.getX()), (n3.y + this.location.getY()), (n3.z + this.location.getZ()));
+			 		
+			 		
 			 		
 			 		if(n1.x + this.location.getX() > xmax){
 			 			xmax = (n1.x + this.location.getX());
@@ -284,6 +285,7 @@ public class Model {
 	public float getZmax() {
 		return zmax;
 	}
+	
 	public void setZmax(float zmax) {
 		this.zmax = zmax;
 	}
@@ -345,6 +347,10 @@ public class Model {
 	public void setCollided(boolean collided) {
 		this.collided = collided;
 	}
+	/**
+	 * The location where the model will be spawned (triggers firstrun).
+	 * @return
+	 */
 	public void setStartLocation(float x, float y, float z) {
 		this.location.setX(x);
 		this.location.setY(y);
@@ -353,17 +359,5 @@ public class Model {
 	}
 	public List<Face> getFaces() {
 		return faces;
-	}
-	public void offsetxPlus(){
-		offsetx+=0.001f;
-	}
-	public void offsetxMinus(){
-		offsetx-=0.001f;
-	}
-	public void offsetyPlus(){
-		offsety+=0.001f;
-	}
-	public void offsetyMinus(){
-		offsety-=0.001f;
 	}
 }
