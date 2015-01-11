@@ -72,32 +72,36 @@ public class Model {
 		texture = TextureHandler.getModelTexture(f.getPath().replace(".obj",".png"));	}
 	public void renderModel(){
 		if(render){
-			Console.setLine2("Textures buffer size = " + textures.size());
 			glPushMatrix();
 				this.texture.bind();
-				Console.setLine7("WIDTH = " + texture.getWidth() + " Height = " + texture.getHeight());
+				//TODO READ http://en.wikipedia.org/wiki/Wavefront_.obj_file#Texture_maps
 				GL11.glEnable(GL11.GL_TEXTURE_2D);
 				GL11.glEnable(GL11.GL_BLEND);
 			    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			 	GL11.glBegin(GL11.GL_TRIANGLES);
 			 	for(Face face:faces){
 			 		tx = textures.get(count);
-			 		if(count < tx.length())count++;
-		            GL11.glTexCoord2f(0,0);
+			 		if(count < textures.size() -1){
+			 			count++;
+						Console.setLine7("Count = " + count + " textures.size = " +  textures.size() + " FACES.size = " + faces.size());
+			 		}else{
+			 			count = 0;
+			 		}
+		            GL11.glTexCoord2f(0,tx.y);
 		            
 			 		n1 = this.normals.get((int)face.normal.x - 1);
 			 		GL11.glNormal3f((n1.x + this.location.getX()), (n1.y + this.location.getY()), (n1.z + this.location.getZ()));
 			 		v1 = this.vertices.get((int)face.vertex.x - 1);
 			 		GL11.glVertex3f((v1.x + this.location.getX()), (v1.y + this.location.getY()), (v1.z + this.location.getZ()));
 			 		
-		            GL11.glTexCoord2f(1,0);
+		            GL11.glTexCoord2f(tx.x,0);
 		            
 			 		n2 = this.normals.get((int)face.normal.y - 1);
 			 		GL11.glNormal3f((n2.x + this.location.getX()), (n2.y + this.location.getY()), (n2.z + this.location.getZ()));
 			 		v2 = this.vertices.get((int)face.vertex.y - 1);
 			 		GL11.glVertex3f((v2.x + this.location.getX()), (v2.y + this.location.getY()), (v2.z + this.location.getZ()));
 
-		            GL11.glTexCoord2f(0,1);
+		            GL11.glTexCoord2f(0,0);
 		            
 			 		n3 = this.normals.get((int)face.normal.z - 1);
 			 		GL11.glNormal3f((n3.x + this.location.getX()), (n3.y + this.location.getY()), (n3.z + this.location.getZ()));
