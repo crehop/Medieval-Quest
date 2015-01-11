@@ -94,13 +94,13 @@ public class Model {
 			 		n3 = this.normals.get((int)face.normal.z - 1);
 		            t3 = this.textures.get((int)face.textureCall.z -1);
 			 		v3 = this.vertices.get((int)face.vertex.z - 1);
-			        GL11.glTexCoord2f(t1.x-offsetx,t1.y-offsety);
-			 		GL11.glVertex3f((v1.x + this.location.getX()), (v1.y + this.location.getY()), (v1.z + this.location.getZ()));	
+			        GL11.glTexCoord2f(-t1.x-offsetx,-t1.y-offsety);
 			        GL11.glNormal3f((n1.x + this.location.getX()), (n1.y + this.location.getY()), (n1.z + this.location.getZ()));
-			        GL11.glTexCoord2f(t2.x-offsetx,t2.y-offsety);
+			 		GL11.glVertex3f((v1.x + this.location.getX()), (v1.y + this.location.getY()), (v1.z + this.location.getZ()));	
+			        GL11.glTexCoord2f(-t2.x-offsetx,-t2.y-offsety);
 			 		GL11.glVertex3f((v2.x + this.location.getX()), (v2.y + this.location.getY()), (v2.z + this.location.getZ()));
 			 		GL11.glNormal3f((n2.x + this.location.getX()), (n2.y + this.location.getY()), (n2.z + this.location.getZ()));
-				    GL11.glTexCoord2f(t3.x-offsetx,t3.y-offsety);
+				    GL11.glTexCoord2f(-t3.x-offsetx,-t3.y-offsety);
 			 		GL11.glVertex3f((v3.x + this.location.getX()), (v3.y + this.location.getY()), (v3.z + this.location.getZ())); 
 			 		GL11.glNormal3f((n3.x + this.location.getX()), (n3.y + this.location.getY()), (n3.z + this.location.getZ()));
 			 		
