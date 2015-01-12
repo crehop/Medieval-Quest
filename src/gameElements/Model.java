@@ -53,7 +53,7 @@ public class Model {
 	private boolean collidable = true;
 	private boolean movable = false;
 	private int renderRun;
-	private Texture texture;
+	protected Texture texture;
 	private String key = "";
 	private Vector2f t1 = null;
 	private Vector3f n1 = null;
@@ -72,6 +72,11 @@ public class Model {
 		this.collidable = collidable;
 		this.name = f.getName().replace(".obj", "");
 		texture = TextureHandler.getModelTexture(f.getPath().replace(".obj",".png"));	}
+	public Model(File f, Texture texture2) {
+		this.name = f.getName().replace(".obj", "");
+		this.texture = texture2;	
+		this.ID = -1;
+	}
 	public void renderModel(){
 		if(render){
 			glPushMatrix();
@@ -232,7 +237,10 @@ public class Model {
 		}
 	}
 	public void setLocation(Location location){
-		if(this.isMovable() && physics.PhysicsEngine.checkForCollision(this) && this.isCollidable()){
+		if(this.location == null){
+			this.location = new Location(location.getX(),location.getY(),location.getZ());
+		}
+		else if(this.isMovable() && physics.PhysicsEngine.checkForCollision(this) && this.isCollidable()){
 			this.location.setX(this.location.getX());
 			this.location.setY(this.location.getY());
 			this.location.setZ(this.location.getZ());
@@ -359,5 +367,8 @@ public class Model {
 	}
 	public List<Face> getFaces() {
 		return faces;
+	}
+	public void setTexture(Texture texture2) {
+		this.texture = texture2;
 	}
 }

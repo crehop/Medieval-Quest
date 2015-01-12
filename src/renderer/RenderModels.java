@@ -3,6 +3,7 @@ package renderer;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
 
+import entities.Zombie;
 import gameElements.Model;
 
 import java.io.File;
@@ -28,10 +29,12 @@ public class RenderModels {
 	static float two = 0;
 	static float y = 0;
 	static Model spam = null;
+	static Zombie testZomb = null;
 	public static ArrayList<Model> models = new ArrayList<Model>();
 	static Random rand = new Random();
 	public static void initiate(){
 		try {
+			testZomb = new Zombie(10.0f,-0.01f,10.0f);
 			test2 = ModelLoader.loadModel(new File("res/models/wall/wall.obj"));
 			test3 = ModelLoader.loadModel(new File("res/models/zombie/zombie.obj"));
 			test2.setCollidable(true);
@@ -57,15 +60,20 @@ public class RenderModels {
 			initiate();
 			initiated = true;
 		}
+		Console.setLine7("" + one);
+		one++;
+		testZomb.render();
 		for(Model m:models){
 			m.renderModel();
 			if(m.getID() == 2){
 				if(offsetXPlus){
 					m.move(0.01f, 0, 0);
+					testZomb.animateBackward();
 					Console.setLine7("OFFSET - X - PLUS");
 				}
 				if(offsetXMinus){
 					m.move(-0.01f, 0, 0);
+					testZomb.animateForward();
 					Console.setLine7("OFFSET - X - MINUS");
 				}
 				if(offsetYPlus){
