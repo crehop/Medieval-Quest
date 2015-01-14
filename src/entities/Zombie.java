@@ -23,12 +23,22 @@ public class Zombie implements Unit{
 	private Model interem = null;
 	private Model baseModel = null;
 	private String prefix = "00000";
-	private Texture texture = TextureHandler.getModelTexture("res/models/zombie/zombie.png");
+	private Texture texture = TextureHandler.getModelTexture("res/models/zombie/zombie2.png");
 	private Location location;
 	private int base = 0;
 	public Zombie(float x, float y, float z) {
 		this.location = new Location(x,y,z);
-		for(int i = 1; i<240; i++){
+		try {
+			baseModel = ModelLoader.loadModel(new File("res/models/zombie/zombie2.obj"), this.texture);
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		animate.put(0, baseModel);
+		for(int i = 1; i<2; i++){
 			if(i>99){
 				prefix = "000";
 			}
@@ -38,7 +48,6 @@ public class Zombie implements Unit{
 				prefix = "00000";
 			}
 			try {
-				baseModel = ModelLoader.loadModel(new File("res/models/zombie/zombie.obj"), this.texture);
 				interem = ModelLoader.loadModel(new File("res/models/zombie/zombie_" + prefix + i + ".obj"), this.texture);
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
