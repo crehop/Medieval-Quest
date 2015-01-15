@@ -1,8 +1,5 @@
 package renderer;
 
-import static org.lwjgl.opengl.GL11.glPopMatrix;
-import static org.lwjgl.opengl.GL11.glPushMatrix;
-
 import entities.Trees;
 import entities.Zombie;
 import gameElements.Model;
@@ -12,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+
+import org.lwjgl.opengl.GL11;
 
 import Information.Console;
 
@@ -63,7 +62,6 @@ public class RenderModels {
 			initiate();
 			initiated = true;
 		}
-		Trees.render();
 		Console.setLine7("" + one);
 		one++;
 		testZomb.render();
@@ -91,6 +89,13 @@ public class RenderModels {
 			}
 			//m.move(one/5, 0.0f, two/5);
 		}
+		//DRAW TRANSPARENT MODELS HERE=======================================
+		GL11.glEnable(GL11.GL_BLEND);
+	    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glAlphaFunc(GL11.GL_GREATER, 0);
+		Trees.render();
+		GL11.glDisable(GL11.GL_BLEND);
+		//END TRANSPARENT MODEL==============================================
 	}
 	public static void spam(){
 		try {

@@ -84,8 +84,6 @@ public class Model {
 				this.texture.bind();
 				GL11.glClearColor(0.7f, 0.7f, 0.7f, 1.0f); 
 				GL11.glEnable(GL11.GL_TEXTURE_2D);
-				GL11.glEnable(GL11.GL_BLEND);
-			    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 			 	GL11.glBegin(GL11.GL_TRIANGLES);
 			 	for(Face face:faces){
 			 		//n=normal t=texel v=vertex
@@ -183,7 +181,6 @@ public class Model {
 				Information.Console.setLine6("[XMAX= " + xmax + " YMAX = " + ymax + " ZMAX = " + zmax + "]" + "CHUNK Y = " + this.getChunk().getLocation().getY());
 				if(moved)this.moved = false;
 				GL11.glDisable(GL11.GL_TEXTURE_2D);
-				GL11.glDisable(GL11.GL_BLEND);
 		        glEnd(); 
 			glPopMatrix();
 	        GameLoop.test.getLocation().setX((xmin));

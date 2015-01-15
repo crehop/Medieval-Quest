@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 
 import renderer.RenderModels;
@@ -42,9 +43,9 @@ public class GameLoop {
 		Information.FPS.updateFPS();
 		Main.Main.cam.useView();
 		Controls.checkInput();
+		Skybox.renderSkyBox(Main.Main.cam);
 		terrain.renderChunks(Main.Main.cam);	
 		renderer.RenderModels.renderActiveModels();
-		Skybox.renderSkyBox(Main.Main.cam);
 		Information.Console.setLine1("CAMERA [X =" + (int)Main.Main.cam.getLocation().getX() +" Y =" + (int)Main.Main.cam.getLocation().getY() + " Z =" + (int)Main.Main.cam.getLocation().getZ() + " Pitch =" + (int)Main.Main.cam.getPitch() + " Yaw =" + (int)Main.Main.cam.getYaw() + "]");
 		Information.Console.setLine3("FPS = " + FPS.getFPS());
 		Information.Console.setLine4("MODELS ON SCREEN [" + renderer.RenderModels.models.size() + "]");
@@ -70,7 +71,8 @@ public class GameLoop {
 	    glMatrixMode(GL_MODELVIEW);
 	    glLoadIdentity();
 	    glEnable(GL_DEPTH_TEST);
-	    glCullFace(GL_BACK);
+	    glDepthFunc(GL11.GL_LEQUAL);
+	    glCullFace(GL11.GL_BACK);
 	    if(terrain == null){
 	    	terrain = new Terrain(false);
 	    }
