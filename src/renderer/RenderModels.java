@@ -3,6 +3,7 @@ package renderer;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
 
+import entities.Trees;
 import entities.Zombie;
 import gameElements.Model;
 
@@ -45,6 +46,8 @@ public class RenderModels {
 			test3.setStartLocation(0.0f, -12.0f, 2.0f);
 			models.add(test3);
 			models.add(test2);
+			Trees.addTree(20.4f, 0.01f, 10.1f);
+			Trees.addTree(30.4f, 0.01f, 20.1f);
 			
 			//System.out.println("MODEL LOADED V= " + test.vertices.size() + " N= " + test.normals.size() );
 			//System.out.println("MODEL2 LOADED V= " + test2.vertices.size() + " N= " + test2.normals.size() );
@@ -60,6 +63,7 @@ public class RenderModels {
 			initiate();
 			initiated = true;
 		}
+		Trees.render();
 		Console.setLine7("" + one);
 		one++;
 		testZomb.render();

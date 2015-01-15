@@ -1,0 +1,99 @@
+# Blender MTL File: 'None'
+# Material Count: 9
+
+newmtl Mobile_Tree_Foliage
+Ns 94.117647
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Tree_Foliage_Atlas01.tga
+map_d F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Tree_Foliage_Atlas01.tga
+
+newmtl Mobile_Tree_Foliage_Alt
+Ns 94.117647
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Tree_Foliage_Atlas02.tga
+map_d F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Tree_Foliage_Atlas02.tga
+
+newmtl Pine_01_Mat
+Ns 94.117647
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Pine_01_Diffuse.tga
+map_d F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Pine_01_Diffuse.tga
+
+newmtl Pine_02_mat
+Ns 94.117647
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Pine_02_Diffuse.tga
+map_d F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Pine_02_Diffuse.tga
+
+newmtl Pine_03_Mat
+Ns 94.117647
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Pine_03_Diffuse.tga
+map_d F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Pine_03_Diffuse.tga
+
+newmtl Pine_Tree_Shadows
+Ns 94.117647
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Pine_01_Shadow_Alt.tga
+
+newmtl Regular_Tree_01
+Ns 94.117647
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Regular_Tree_01.tga
+map_d F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Regular_Tree_01.tga
+
+newmtl Regular_Tree_02
+Ns 94.117647
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 0.000000
+illum 2
+map_Kd F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Regular_Tree_02.tga
+map_d F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Regular_Tree_02.tga
+
+newmtl Regular_Tree_Shadow
+Ns 94.117647
+Ka 0.000000 0.000000 0.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd F:\\MAIN3D\\UNITY_Stuff\\Asset_Store_Stuff\\Low_Poly_Forest_Pack\\Assets\\LowPolyForestPack\\Textures\\Regular_Tree_Shadow.tga

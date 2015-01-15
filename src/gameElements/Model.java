@@ -82,6 +82,7 @@ public class Model {
 			glPushMatrix();
 			    //READ http://en.wikipedia.org/wiki/Wavefront_.obj_file#Texture_maps
 				this.texture.bind();
+				GL11.glClearColor(0.7f, 0.7f, 0.7f, 1.0f); 
 				GL11.glEnable(GL11.GL_TEXTURE_2D);
 				GL11.glEnable(GL11.GL_BLEND);
 			    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
