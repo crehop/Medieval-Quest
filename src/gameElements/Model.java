@@ -30,6 +30,7 @@ import utils.TextureHandler;
 
 @SuppressWarnings("unused")
 public class Model {
+	int faceCount = 0;
 	boolean render = true;
 	public Location location;
 	public List<Vector3f> vertices = new ArrayList<Vector3f>();
@@ -177,8 +178,8 @@ public class Model {
 
 				 	}
 			 	}
-			 	Information.Console.setLine5("[XMIN = " + xmin + " YMIN = " + ymin + " ZMIN = " + zmin + "]");
-				Information.Console.setLine6("[XMAX= " + xmax + " YMAX = " + ymax + " ZMAX = " + zmax + "]" + "CHUNK Y = " + this.getChunk().getLocation().getY());
+			 	if(this.ID == 2)Information.Console.setLine5("[XMIN = " + xmin + " YMIN = " + ymin + " ZMIN = " + zmin + "]");
+			 	if(this.ID == 2)Information.Console.setLine6("[XMAX= " + xmax + " YMAX = " + ymax + " ZMAX = " + zmax + "]" + "CHUNK Y = " + this.getChunk().getLocation().getY());
 				if(moved)this.moved = false;
 				GL11.glDisable(GL11.GL_TEXTURE_2D);
 		        glEnd(); 
@@ -187,6 +188,7 @@ public class Model {
 	        GameLoop.test.getLocation().setY(ymin);
 	        GameLoop.test.getLocation().setZ((zmin));
 			GameLoop.test.render();
+			this.faceCount = faces.size();
 		}
 	}
 	public Location getLocation(){
@@ -368,5 +370,8 @@ public class Model {
 	}
 	public void setTexture(Texture texture2) {
 		this.texture = texture2;
+	}
+	public int faceCount() {
+		return faceCount;
 	}
 }

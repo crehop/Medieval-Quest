@@ -22,6 +22,8 @@ public class RenderModels {
 	static boolean offsetXMinus = false;
 	static boolean offsetYPlus = false;
 	static boolean offsetYMinus = false;
+	static boolean offsetZPlus = false;
+	static boolean offsetZMinus = false;
 	static Model test2;
 	static Model test3;
 	static Model test4;
@@ -30,23 +32,24 @@ public class RenderModels {
 	static float y = 0;
 	static Model spam = null;
 	static Zombie testZomb = null;
+	static int facesOnScreen = 0;
 	public static ArrayList<Model> models = new ArrayList<Model>();
 	static Random rand = new Random();
 	public static void initiate(){
 		try {
-			testZomb = new Zombie(10.0f,-0.01f,10.0f);
+			//testZomb = new Zombie(10.0f,-0.01f,10.0f);
 			test2 = ModelLoader.loadModel(new File("res/models/wall/wall.obj"));
-			test3 = ModelLoader.loadModel(new File("res/models/zombie/zombie.obj"));
-			test2.setCollidable(true);
-			test2.setMovable(true);
-			test2.setStartLocation(0.0f, 2.0f, 0.0f);
-			test3.setCollidable(true);
+			test3 = ModelLoader.loadModel(new File("res/models/test/test.obj"));
+			//test2.setCollidable(true);
+			//test2.setMovable(true);
+			//test2.setStartLocation(0.0f, 2.0f, 0.0f);
+			//test3.setCollidable(true);
 			test3.setMovable(true);
 			test3.setStartLocation(0.0f, -12.0f, 2.0f);
 			models.add(test3);
 			models.add(test2);
 			Trees.addTree(20.4f, 0.01f, 10.1f);
-			Trees.addTree(30.4f, 0.01f, 20.1f);
+			//Trees.addTree(30.4f, 0.01f, 20.1f);
 			
 			//System.out.println("MODEL LOADED V= " + test.vertices.size() + " N= " + test.normals.size() );
 			//System.out.println("MODEL2 LOADED V= " + test2.vertices.size() + " N= " + test2.normals.size() );
@@ -64,26 +67,36 @@ public class RenderModels {
 		}
 		Console.setLine7("" + one);
 		one++;
-		testZomb.render();
+		//testZomb.render();
+		facesOnScreen = 0;
 		for(Model m:models){
+			facesOnScreen += m.faceCount();
 			m.renderModel();
 			if(m.getID() == 2){
 				if(offsetXPlus){
-					m.move(0.01f, 0, 0);
-					testZomb.animateBackward();
+					m.move(0.1f, 0, 0);
+					//testZomb.animateBackward();
 					Console.setLine7("OFFSET - X - PLUS");
 				}
 				if(offsetXMinus){
-					m.move(-0.01f, 0, 0);
-					testZomb.animateForward();
+					m.move(-0.1f, 0, 0);
+					//testZomb.animateForward();
 					Console.setLine7("OFFSET - X - MINUS");
 				}
 				if(offsetYPlus){
-					m.move(0.0f, 0.0f, 0.01f);
-					Console.setLine7("OFFSET - Y - PLUS");
+					m.move(0.0f, 0.0f, -0.1f);
+					Console.setLine7("OFFSET - Z - PLUS");
 				}
 				if(offsetYMinus){
-					m.move(0.0f, 0.0f, -0.01f);
+					m.move(0.0f, 0.0f, 0.1f);
+					Console.setLine7("OFFSET - Z - MINUS");
+				}
+				if(offsetZPlus){
+					m.move(0.0f, -0.1f, -0.0f);
+					Console.setLine7("OFFSET - Y - PLUS");
+				}
+				if(offsetZMinus){
+					m.move(0.0f, 0.1f, 0.0f);
 					Console.setLine7("OFFSET - Y - MINUS");
 				}
 			}
@@ -93,9 +106,10 @@ public class RenderModels {
 		GL11.glEnable(GL11.GL_BLEND);
 	    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GL11.glAlphaFunc(GL11.GL_GREATER, 0);
-		Trees.render();
+		//Trees.render();
 		GL11.glDisable(GL11.GL_BLEND);
 		//END TRANSPARENT MODEL==============================================
+		Console.setLine2("Faces on screen = " + facesOnScreen);
 	}
 	public static void spam(){
 		try {
@@ -136,5 +150,17 @@ public class RenderModels {
 	}
 	public static void setOffsetYMinus(boolean offsetYMinus) {
 		RenderModels.offsetYMinus = offsetYMinus;
+	}
+	public static boolean isOffsetZMinus() {
+		return offsetZMinus;
+	}
+	public static void setOffsetZMinus(boolean offsetZMinus) {
+		RenderModels.offsetZMinus = offsetZMinus;
+	}
+	public static boolean isOffsetZPlus() {
+		return offsetZPlus;
+	}
+	public static void setOffsetZPlus(boolean offsetZPlus) {
+		RenderModels.offsetZPlus = offsetZPlus;
 	}
 }

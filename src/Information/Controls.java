@@ -31,6 +31,8 @@ public class Controls {
 	static boolean offsetXMinus;
 	static boolean offsetYPlus;
 	static boolean offsetYMinus;
+	static boolean offsetZPlus;
+	static boolean offsetZMinus;
 
 	
 	//Mouse sensitivity
@@ -77,6 +79,8 @@ public class Controls {
 		offsetXMinus = Keyboard.isKeyDown(KEY_DOWN);
 		offsetYPlus = Keyboard.isKeyDown(KEY_LEFT);
 		offsetYMinus = Keyboard.isKeyDown(KEY_RIGHT);
+		offsetZPlus = Keyboard.isKeyDown(KEY_RSHIFT);
+		offsetZMinus = Keyboard.isKeyDown(KEY_RCONTROL);
 		dwheel = Mouse.getDWheel();
 		aKeyIsDown = false;
 		if(exitKey){
@@ -161,6 +165,8 @@ public class Controls {
 		renderer.RenderModels.setOffsetXMinus(offsetXMinus);
 		renderer.RenderModels.setOffsetYPlus(offsetYPlus);
 		renderer.RenderModels.setOffsetYMinus(offsetYMinus);
+		renderer.RenderModels.setOffsetZPlus(offsetZPlus);
+		renderer.RenderModels.setOffsetZMinus(offsetZMinus);
 	}
 
 }
