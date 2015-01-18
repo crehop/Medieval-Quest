@@ -39,14 +39,14 @@ public class Renderer3D {
 		try {
 			//testZomb = new Zombie(10.0f,-0.01f,10.0f);
 			test2 = ModelLoader.loadModel(new File("res/models/wall/wall.obj"));
-			test3 = ModelLoader.loadModel(new File("res/models/test/test.obj"));
+			//test3 = ModelLoader.loadModel(new File("res/models/test/test.obj"));
 			//test2.setCollidable(true);
 			//test2.setMovable(true);
 			//test2.setStartLocation(0.0f, 2.0f, 0.0f);
 			//test3.setCollidable(true);
-			test3.setMovable(true);
-			test3.setStartLocation(0.0f, -12.0f, 2.0f);
-			models.add(test3);
+			//test3.setMovable(true);
+			//test3.setStartLocation(0.0f, -12.0f, 2.0f);
+			//models.add(test3);
 			models.add(test2);
 			Trees.addTree(20.4f, 0.01f, 10.1f);
 			//Trees.addTree(30.4f, 0.01f, 20.1f);
@@ -65,9 +65,6 @@ public class Renderer3D {
 			initiate();
 			initiated = true;
 		}
-		Console.setLine7("" + one);
-		one++;
-		//testZomb.render();
 		facesOnScreen = 0;
 		for(Model m:models){
 			facesOnScreen += m.faceCount();

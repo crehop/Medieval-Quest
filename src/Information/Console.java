@@ -37,21 +37,21 @@ public class Console {
 			}
 			int x = 5;
 			int y = 5;
-			renderer.Renderer2D.render(x, y, line1, Color.white);
+			renderer.Renderer2D.renderText(x, y, line1, Color.white);
 			y += (renderer.Renderer2D.font.getHeight(line1) + 5);
-			renderer.Renderer2D.render(x, y, line2, Color.white);
+			renderer.Renderer2D.renderText(x, y, line2, Color.white);
 			y += (renderer.Renderer2D.font.getHeight(line2) + 5);
-			renderer.Renderer2D.render(x, y, line3, Color.white);
+			renderer.Renderer2D.renderText(x, y, line3, Color.white);
 			y += (renderer.Renderer2D.font.getHeight(line3) + 5);
-			renderer.Renderer2D.render(x, y, line4, Color.white);
+			renderer.Renderer2D.renderText(x, y, line4, Color.white);
 			y += (renderer.Renderer2D.font.getHeight(line4) + 5);
-			renderer.Renderer2D.render(x, y, line5, Color.white);
+			renderer.Renderer2D.renderText(x, y, line5, Color.white);
 			y += (renderer.Renderer2D.font.getHeight(line5) + 5);
-			renderer.Renderer2D.render(x, y, line6, Color.white);
+			renderer.Renderer2D.renderText(x, y, line6, Color.white);
 			y += (renderer.Renderer2D.font.getHeight(line6) + 5);
-			renderer.Renderer2D.render(x, y, line7, Color.white);
+			renderer.Renderer2D.renderText(x, y, line7, Color.white);
 			y += (renderer.Renderer2D.font.getHeight(line7) + 5);
-			renderer.Renderer2D.render(x, y, line8, Color.white);
+			renderer.Renderer2D.renderText(x, y, line8, Color.white);
 		}
 	}
 	public static boolean isConsoleOn() {

@@ -62,7 +62,6 @@ public class Zombie implements Unit{
 	public void render(){
 		interem.setTexture(this.texture);
 		interem.setLocation(this.location);
-		Console.setLine7(" X=" + this.interem.getLocation().getX() + " Y=" + this.interem.getLocation().getY() + " Z=" + this.interem.getLocation().getZ() + " Base =" + base + " Interim = " + interem.getName());
 		this.interem.renderModel();
 	}
 	public void animateForward(){

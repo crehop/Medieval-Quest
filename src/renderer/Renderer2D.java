@@ -50,16 +50,13 @@ public class Renderer2D {
 	    //    e.printStackTrace();
 	    //}   
 	}
-	public static void render(float x, float y, String text, Color color) {
+	public static void renderText(float x, float y, String text, Color color) {
 		draw2D();
 		if(!(initiated)){
 			init();
 			initiated = true;
 		}
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		font.drawString(x, y, text, color);
-		Color.white.bind();
 		reinitiatePreviousDrawState();
 	}
 	public static void reinitiatePreviousDrawState(){
@@ -92,5 +89,9 @@ public class Renderer2D {
         glOrtho(0.0f, Display.getWidth(), Display.getHeight(), 0.0f, 0.0f, 1.0f);
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
+		glEnable(GL_BLEND);
+		glEnable(GL_DEPTH_TEST);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		Color.white.bind();
 	}
 }

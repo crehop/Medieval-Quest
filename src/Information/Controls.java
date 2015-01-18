@@ -1,8 +1,11 @@
 package Information;
 
+import gameElements.RightClickMenu;
+
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
 
 import Main.Main;
 
@@ -33,6 +36,7 @@ public class Controls {
 	static boolean offsetYMinus;
 	static boolean offsetZPlus;
 	static boolean offsetZMinus;
+	static boolean menu;
 
 	
 	//Mouse sensitivity
@@ -81,7 +85,8 @@ public class Controls {
 		offsetYMinus = Keyboard.isKeyDown(KEY_RIGHT);
 		offsetZPlus = Keyboard.isKeyDown(KEY_RSHIFT);
 		offsetZMinus = Keyboard.isKeyDown(KEY_RCONTROL);
-		dwheel = Mouse.getDWheel();
+		dwheel = Mouse.getDWheel();		
+		menu = Keyboard.isKeyDown(KEY_M);
 		aKeyIsDown = false;
 		if(exitKey){
 			Main.scrub();
@@ -160,6 +165,10 @@ public class Controls {
 		if(test3){
 		}
 		if(test4){
+		}
+		if(menu){
+			String[] lines = {"TEST1","TEST2","TEST3","TEST4"};
+			RightClickMenu.openMenu(lines, Display.getWidth()/2, Display.getHeight()/2);
 		}
 		renderer.Renderer3D.setOffsetXPlus(offsetXPlus);
 		renderer.Renderer3D.setOffsetXMinus(offsetXMinus);
