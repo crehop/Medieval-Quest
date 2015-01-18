@@ -1,5 +1,7 @@
 package gameElements;
 import org.newdawn.slick.opengl.Texture;
+
+import renderer.Renderer2D;
 import utils.TextureHandler;
 
 public class RightClickMenu {
@@ -11,22 +13,22 @@ public class RightClickMenu {
 	public static boolean clicked = false;
 	public static int[] xy = {0,43,44,85,86,128,129,171,25,475};
 	
-	
 	public static void openMenu(String[] lines, Object obj){
 		if(menuOpen){
 			closeMenu();
 		}
 	}
-	
+	public static void render(){
+		if(menuOpen){
+			Renderer2D.draw2D();
+			//INSET CODE HERE!
+			Renderer2D.reinitiatePreviousDrawState();
+		}
+	}
 	public static int getChoice(){
 		return choice;
 	}
 	public static void closeMenu(){
 		
-	}
-	public static void render(){
-		if(menuOpen){
-			
-		}
 	}
 }
