@@ -13,7 +13,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 
-import renderer.RenderModels;
+import renderer.Renderer3D;
 import server.Location;
 import voxel.Voxel;
 import voxel.WireframePart;
@@ -45,10 +45,10 @@ public class GameLoop {
 		Controls.checkInput();
 		Skybox.renderSkyBox(Main.Main.cam);
 		terrain.renderChunks(Main.Main.cam);	
-		renderer.RenderModels.renderActiveModels();
+		renderer.Renderer3D.renderActiveModels();
 		Information.Console.setLine1("CAMERA [X =" + (int)Main.Main.cam.getLocation().getX() +" Y =" + (int)Main.Main.cam.getLocation().getY() + " Z =" + (int)Main.Main.cam.getLocation().getZ() + " Pitch =" + (int)Main.Main.cam.getPitch() + " Yaw =" + (int)Main.Main.cam.getYaw() + "]");
 		Information.Console.setLine3("FPS = " + FPS.getFPS());
-		Information.Console.setLine4("MODELS ON SCREEN [" + renderer.RenderModels.models.size() + "]");
+		Information.Console.setLine4("MODELS ON SCREEN [" + renderer.Renderer3D.models.size() + "]");
 		Information.Console.renderConsole();
 		//STAY LAST IN THIS ORDER ++++++++++++++++++
 		glLoadIdentity();
@@ -56,7 +56,7 @@ public class GameLoop {
 	}
 	public static void physicsUpdates(){
 		Model m = null;
-		if(RenderModels.models.size() > 0){
+		if(Renderer3D.models.size() > 0){
 			if(m == null){
 				//m = RenderModels.models.get(0);
 				//m.move(0.0f, 0.0f, -0.03f);

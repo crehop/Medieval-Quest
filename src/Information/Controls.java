@@ -161,12 +161,12 @@ public class Controls {
 		}
 		if(test4){
 		}
-		renderer.RenderModels.setOffsetXPlus(offsetXPlus);
-		renderer.RenderModels.setOffsetXMinus(offsetXMinus);
-		renderer.RenderModels.setOffsetYPlus(offsetYPlus);
-		renderer.RenderModels.setOffsetYMinus(offsetYMinus);
-		renderer.RenderModels.setOffsetZPlus(offsetZPlus);
-		renderer.RenderModels.setOffsetZMinus(offsetZMinus);
+		renderer.Renderer3D.setOffsetXPlus(offsetXPlus);
+		renderer.Renderer3D.setOffsetXMinus(offsetXMinus);
+		renderer.Renderer3D.setOffsetYPlus(offsetYPlus);
+		renderer.Renderer3D.setOffsetYMinus(offsetYMinus);
+		renderer.Renderer3D.setOffsetZPlus(offsetZPlus);
+		renderer.Renderer3D.setOffsetZMinus(offsetZMinus);
 	}
 
 }

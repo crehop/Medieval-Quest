@@ -1,6 +1,8 @@
 package renderer;
 
 
+import java.util.ArrayList;
+
 import loops.GameLoop;
 import loops.StartLoop;
 
@@ -9,13 +11,20 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
+import org.newdawn.slick.opengl.Texture;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class TextRenderer {
+public class Renderer2D {
 	public static UnicodeFont font;
 	static boolean initiated = false;
-	public TextRenderer(){
+	public static Texture top;
+	public static Texture middle;
+	public static Texture bottom;
+	public static int x = 0;
+	public static int y = 0;
+	public static ArrayList<String> lines = new ArrayList<String>();
+	public Renderer2D(){
 		init();
 	}
 	@SuppressWarnings("unchecked")

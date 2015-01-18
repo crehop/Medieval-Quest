@@ -16,7 +16,7 @@ import Information.Console;
 
 import utils.ModelLoader;
 
-public class RenderModels {
+public class Renderer3D {
 	static boolean initiated = false;
 	static boolean offsetXPlus = false;
 	static boolean offsetXMinus = false;
@@ -131,36 +131,36 @@ public class RenderModels {
 		return offsetXPlus;
 	}
 	public static void setOffsetXPlus(boolean offsetXPlus) {
-		RenderModels.offsetXPlus = offsetXPlus;
+		Renderer3D.offsetXPlus = offsetXPlus;
 	}
 	public static boolean isOffsetXMinus() {
 		return offsetXMinus;
 	}
 	public static void setOffsetXMinus(boolean offsetXMinus) {
-		RenderModels.offsetXMinus = offsetXMinus;
+		Renderer3D.offsetXMinus = offsetXMinus;
 	}
 	public static boolean isOffsetYPlus() {
 		return offsetYPlus;
 	}
 	public static void setOffsetYPlus(boolean offsetYPlus) {
-		RenderModels.offsetYPlus = offsetYPlus;
+		Renderer3D.offsetYPlus = offsetYPlus;
 	}
 	public static boolean isOffsetYMinus() {
 		return offsetYMinus;
 	}
 	public static void setOffsetYMinus(boolean offsetYMinus) {
-		RenderModels.offsetYMinus = offsetYMinus;
+		Renderer3D.offsetYMinus = offsetYMinus;
 	}
 	public static boolean isOffsetZMinus() {
 		return offsetZMinus;
 	}
 	public static void setOffsetZMinus(boolean offsetZMinus) {
-		RenderModels.offsetZMinus = offsetZMinus;
+		Renderer3D.offsetZMinus = offsetZMinus;
 	}
 	public static boolean isOffsetZPlus() {
 		return offsetZPlus;
 	}
 	public static void setOffsetZPlus(boolean offsetZPlus) {
-		RenderModels.offsetZPlus = offsetZPlus;
+		Renderer3D.offsetZPlus = offsetZPlus;
 	}
 }
