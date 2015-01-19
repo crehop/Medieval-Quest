@@ -44,6 +44,10 @@ public class RightClickMenu {
 	}
 	public static void render(){
 		lines[1]="FIXED ME";
+		lines[2]="FIXED ME";
+		lines[3]="FIXED ME";
+		lines[4]="FIXED ME";
+
 		Console.setLine5("Menu Status|| Menu = " + menuOpen + "|| MenuSize = " + menuSize + " || x = " +x +" y = " +y + " Lines = " + lines[0] + " " + lines[1]+" " + lines[2]+" " + lines[3]+" " + lines[4]);
 		
 		if(menuOpen){
@@ -61,13 +65,13 @@ public class RightClickMenu {
 				}
 				count = 1;
 				GL11.glVertex2f(100, 100);
-				GL11.glTexCoord2f(0,44);
+				GL11.glTexCoord2f(0,0);
 				GL11.glVertex2f(100, 200);
-				GL11.glTexCoord2f(512,44);
+				GL11.glTexCoord2f(0,512);
 				GL11.glVertex2f(200, 200);
-				GL11.glTexCoord2f(512,85);
+				GL11.glTexCoord2f(256,512);
 				GL11.glVertex2f(200, 100);
-				GL11.glTexCoord2f(0,85);
+				GL11.glTexCoord2f(256,0);
 				for(String line:lines){
 					if(!(line.equalsIgnoreCase("null"))){
 						// UPPER LEFT ========================================================================
@@ -90,7 +94,7 @@ public class RightClickMenu {
 							GL11.glTexCoord2f(25, 86);
 						}
 						// UPPER RIGHT ========================================================================
-						GL11.glVertex2f(x + 100, y + (25 * count));
+						GL11.glVertex2f(x + 100, y);
 						if(count == 0){
 							if(hover){
 								GL11.glTexCoord2f(512,44);
@@ -109,7 +113,7 @@ public class RightClickMenu {
 							GL11.glTexCoord2f(475, 128);
 						}
 						// BOTTOM RIGHT ========================================================================
-						GL11.glVertex2f(x + 100, y + 25 + (25 * count));
+						GL11.glVertex2f(x + 100, y + (25 * count));
 						if(count == 0){
 							if(hover){
 								GL11.glTexCoord2f(512,85);
@@ -128,7 +132,7 @@ public class RightClickMenu {
 							GL11.glTexCoord2f(475, 86);
 						}
 						// BOTTOM LEFT ========================================================================
-						GL11.glVertex2f(x, y + 25 + (25 * count));
+						GL11.glVertex2f(x, y +(25 * count));
 						if(count == 0){
 							if(hover){
 								GL11.glTexCoord2f(0,85);
