@@ -40,6 +40,7 @@ public class EnhancedDelta {
 	      while (Main.Main.isOpen())
 	      {
 	         now = System.nanoTime();
+	         Main.Main.updateTime(now);
 	         updateCount = 0;
 	         format.setRoundingMode(RoundingMode.DOWN);
 	         format.setMaximumFractionDigits(2);

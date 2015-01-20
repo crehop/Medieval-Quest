@@ -2,10 +2,10 @@ package gameElements;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
-
 import Information.Console;
 
 import renderer.Renderer2D;
+import utils.Pixel;
 import utils.TextureHandler;
 
 public class RightClickMenu {
@@ -20,40 +20,33 @@ public class RightClickMenu {
 	public static boolean clicked = false;
 	private static int count = 1;
 	private static int menuSize = 0;
+	private static double lastToggle = Main.Main.getTime();
 	public static int[] xy = {0,43,44,85,86,128,129,171,215,256,25,475};
 	private static String[] lines = {"null","null","null","null","null","null","null","null","null","null","null"};
 	
-	public static void openMenu(String[] lines, int MouseX, int MouseY){
-		if(menuOpen){
-			closeMenu();
-		}else{
-			System.out.println("OUT TRIGGERED");
-			x = MouseX;
-			y = MouseY;
-			count = 0;
-			for(String line: lines){
-				lines[count] = line;
-				System.out.println(line + " count = " + count);
-				System.out.println(lines[count]);
-				count++;
+	public static void openMenu(String[] args, int MouseX, int MouseY){
+		if(Main.Main.getTime() - lastToggle > 4.0f){
+			lastToggle = Main.Main.getTime();
+			if(menuOpen){
+				closeMenu();
+			}else{
+				x = MouseX;
+				y = MouseY;
+				count = 1;
+				for(int i = 0; i<args.length -1; i++){
+					lines[i] = args[i];
+				}
+				count = 1;
+				menuSize = args.length;
+				menuOpen = true;
 			}
-			count = 1;
-			menuSize = lines.length;
-			menuOpen = true;
 		}
 	}
 	public static void render(){
-		lines[1]="FIXED ME";
-		lines[2]="FIXED ME";
-		lines[3]="FIXED ME";
-		lines[4]="FIXED ME";
-
 		Console.setLine5("Menu Status|| Menu = " + menuOpen + "|| MenuSize = " + menuSize + " || x = " +x +" y = " +y + " Lines = " + lines[0] + " " + lines[1]+" " + lines[2]+" " + lines[3]+" " + lines[4]);
-		
 		if(menuOpen){
 			Renderer2D.draw2D();
 			//INSET MENU DRAW CODE HERE!
-			Console.setLine7("RUNNING");
 			menu.bind();
 			GL11.glBegin(GL11.GL_QUADS);
 				GL11.glEnable(GL11.GL_TEXTURE_2D);
@@ -63,93 +56,93 @@ public class RightClickMenu {
 						hover = true;
 					}
 				}
-				count = 1;
-				GL11.glVertex2f(100, 100);
-				GL11.glTexCoord2f(0,0);
-				GL11.glVertex2f(100, 200);
-				GL11.glTexCoord2f(0,512);
-				GL11.glVertex2f(200, 200);
-				GL11.glTexCoord2f(256,512);
-				GL11.glVertex2f(200, 100);
-				GL11.glTexCoord2f(256,0);
+				count = 1;				
+				GL11.glTexCoord2f(0,Pixel.getPixel(44, 256));
+				GL11.glVertex2f(400, 400);
+				GL11.glTexCoord2f(1,Pixel.getPixel(44, 256));
+				GL11.glVertex2f(400, 425);
+				GL11.glTexCoord2f(1,Pixel.getPixel(85, 256));
+				GL11.glVertex2f(500, 425);
+				GL11.glTexCoord2f(0,Pixel.getPixel(85, 256));
+				GL11.glVertex2f(500, 400);
 				for(String line:lines){
 					if(!(line.equalsIgnoreCase("null"))){
 						// UPPER LEFT ========================================================================
+						if(count == 0){
+							if(hover){
+								GL11.glTexCoord2f(0,Pixel.getPixel(44, 256));
+							}else{
+								GL11.glTexCoord2f(0,Pixel.getPixel(86, 256));
+							}
+						}
+						else if(count == menuSize){
+							if(hover){
+								GL11.glTexCoord2f(0,Pixel.getPixel(172, 256));
+							}else{
+								GL11.glTexCoord2f(0,Pixel.getPixel(86, 256));
+							}
+						}
+						else{
+							GL11.glTexCoord2f(Pixel.getPixel(25, 512), Pixel.getPixel(86, 256));
+						}
 						GL11.glVertex2f(x, y);
-						if(count == 0){
-							if(hover){
-								GL11.glTexCoord2f(0,44);
-							}else{
-								GL11.glTexCoord2f(0,86);
-							}
-						}
-						else if(count == menuSize){
-							if(hover){
-								GL11.glTexCoord2f(0,172);
-							}else{
-								GL11.glTexCoord2f(0,86);
-							}
-						}
-						else{
-							GL11.glTexCoord2f(25, 86);
-						}
 						// UPPER RIGHT ========================================================================
+						if(count == 0){
+							if(hover){
+								GL11.glTexCoord2f(1,Pixel.getPixel(44, 256));
+							}else{
+								GL11.glTexCoord2f(1,Pixel.getPixel(86, 256));
+							}
+						}
+						else if(count == menuSize){
+							if(hover){
+								GL11.glTexCoord2f(1,Pixel.getPixel(215, 256));
+							}else{
+								GL11.glTexCoord2f(1,Pixel.getPixel(128, 256));
+							}
+						}
+						else{
+							GL11.glTexCoord2f(Pixel.getPixel(475, 512), 128);
+						}
 						GL11.glVertex2f(x + 100, y);
-						if(count == 0){
-							if(hover){
-								GL11.glTexCoord2f(512,44);
-							}else{
-								GL11.glTexCoord2f(512,86);
-							}
-						}
-						else if(count == menuSize){
-							if(hover){
-								GL11.glTexCoord2f(512,215);
-							}else{
-								GL11.glTexCoord2f(512,128);
-							}
-						}
-						else{
-							GL11.glTexCoord2f(475, 128);
-						}
 						// BOTTOM RIGHT ========================================================================
+						if(count == 0){
+							if(hover){
+								GL11.glTexCoord2f(1,Pixel.getPixel(85, 256));
+							}else{
+								GL11.glTexCoord2f(1,Pixel.getPixel(128, 256));
+							}
+						}
+						else if(count == menuSize){
+							if(hover){
+								GL11.glTexCoord2f(1,Pixel.getPixel(171, 256));
+							}else{
+								GL11.glTexCoord2f(1,Pixel.getPixel(86, 256));
+							}
+						}
+						else{
+							GL11.glTexCoord2f(Pixel.getPixel(475, 512), Pixel.getPixel(86, 256));
+						}
 						GL11.glVertex2f(x + 100, y + (25 * count));
-						if(count == 0){
-							if(hover){
-								GL11.glTexCoord2f(512,85);
-							}else{
-								GL11.glTexCoord2f(512,128);
-							}
-						}
-						else if(count == menuSize){
-							if(hover){
-								GL11.glTexCoord2f(512,171);
-							}else{
-								GL11.glTexCoord2f(512,86);
-							}
-						}
-						else{
-							GL11.glTexCoord2f(475, 86);
-						}
 						// BOTTOM LEFT ========================================================================
-						GL11.glVertex2f(x, y +(25 * count));
 						if(count == 0){
 							if(hover){
-								GL11.glTexCoord2f(0,85);
+								GL11.glTexCoord2f(0,Pixel.getPixel(85, 256));
 							}else{
-								GL11.glTexCoord2f(0,128);
+								GL11.glTexCoord2f(0,Pixel.getPixel(128, 256));
 							}
 						}
 						else if(count == menuSize){
 							if(hover){
-								GL11.glTexCoord2f(0,171);
+								GL11.glTexCoord2f(0,Pixel.getPixel(171, 256));
 							}else{
-								GL11.glTexCoord2f(0,86);
+								GL11.glTexCoord2f(0,Pixel.getPixel(86, 256));
 							}
 						}
 						else{
-							GL11.glTexCoord2f(25, 86);
+							GL11.glTexCoord2f(Pixel.getPixel(25, 512), Pixel.getPixel(86, 256));
 						}
+						GL11.glVertex2f(x, y +(25 * count));
 						count++;
 					}
 				}
@@ -179,6 +172,9 @@ public class RightClickMenu {
 		clicked = false;
 		count = 1;
 		menuSize = 0;
+		for(int i = 0; i<lines.length -1; i++){
+			lines[i] = "null";
+		}
 	}
 	public static boolean isOpen() {
 		return menuOpen;

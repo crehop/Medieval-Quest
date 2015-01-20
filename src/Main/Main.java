@@ -30,6 +30,7 @@ public class Main {
 	public static boolean loopSwitch = false;
 	public static boolean open = true;
 	public static boolean paused = false;
+	private static double time = 0.0f;
 	public static Location center = new Location(0.0f,0.0f,0.0f);
 	
 	public static void main(String[] args) {
@@ -62,7 +63,7 @@ public class Main {
 	}
 	private static void confirmLoop() {
 		switch(loop){
-		case"start": 
+		case "start": 
 			if(loopSwitch == true){
 				StartLoop.toggleInitiate();
 				loopSwitch = false;
@@ -86,7 +87,7 @@ public class Main {
 				
 			}
 			break;
-		case"game":
+		case "game":
 			if(loopSwitch == true){
 				GameLoop.toggleInitiate();
 				loopSwitch = false;
@@ -145,14 +146,16 @@ public class Main {
 	public static String getLoop(){
 		return loop;
 	}
-	public static Location getCenter() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	public static boolean isOpen(){
 		return open;
 	}
 	public static boolean isPaused() {
 		return paused;
+	}
+	public static void updateTime(double now){
+		time = now;
+	}
+	public static double getTime(){
+		return (time/100000000.0f);
 	}
 }
