@@ -7,6 +7,7 @@ import loops.StartLoop;
 import org.lwjgl.LWJGLException;
 import static org.lwjgl.opengl.GL11.*;
 
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 
 import org.lwjgl.opengl.*;
@@ -30,6 +31,7 @@ public class Main {
 	public static boolean loopSwitch = false;
 	public static boolean open = true;
 	public static boolean paused = false;
+	private static boolean lockCamera = false;
 	private static int height = 720;
 	private static int width = 1080;
 	private static double time = 0.0f;
@@ -58,6 +60,7 @@ public class Main {
 	      loop.start();
    		while(!Display.isCloseRequested()){
   			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  			Mouse.updateCursor();
   			confirmLoop();
   			Display.update();
   			Display.sync(60);
@@ -168,5 +171,11 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public static void lockCamera(boolean lock){
+		lockCamera = lock;
+	}
+	public static boolean isCameraLocked(){
+		return lockCamera;
 	}
 }

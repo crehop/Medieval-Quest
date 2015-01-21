@@ -46,6 +46,7 @@ public class RightClickMenu {
 		Console.setLine5("Menu Status|| Menu = " + menuOpen + "|| MenuSize = " + menuSize + " || x = " +x +" y = " +y + " Lines = " + lines[0] + " " + lines[1]+" " + lines[2]+" " + lines[3]+" " + lines[4]);
 		if(menuOpen){
 			Mouse.setGrabbed(false);
+			Main.Main.lockCamera(true);
 			Renderer2D.draw2D();
 			//INSET MENU DRAW CODE HERE!
 			menu.bind();
@@ -187,6 +188,7 @@ public class RightClickMenu {
 		for(int i = 0; i<lines.length -1; i++){
 			lines[i] = "null";
 		}
+		Main.Main.lockCamera(false);
 	}
 	public static boolean isOpen() {
 		return menuOpen;

@@ -38,7 +38,7 @@ public class GameLoop {
 			initProjection();
 			toggleInitiate();
 		}
-		if(Mouse.isGrabbed() == false){
+		if(Mouse.isGrabbed() == false && Main.Main.isCameraLocked() == false){
 			Mouse.setGrabbed(true);
 		}
 		Information.FPS.updateFPS();

@@ -99,10 +99,12 @@ public class Controls {
 		if(dwheel < 0){
 			//Main.cam.plusZoom();
 		}
-		mouseY = Mouse.getDY() * -1;
-		mouseX = Mouse.getDX();
-		Main.cam.setYaw(mouseX * mouseSensitivity);
-		Main.cam.setPitch(mouseY * mouseSensitivity);
+		if(Main.isCameraLocked() == false){
+			mouseY = Mouse.getDY() * -1;
+			mouseX = Mouse.getDX();
+			Main.cam.setYaw(mouseX * mouseSensitivity);
+			Main.cam.setPitch(mouseY * mouseSensitivity);
+		}
 		
 		if(Keyboard.isKeyDown(KEY_RETURN)){
 			Main.setLoop("game");
