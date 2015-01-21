@@ -34,11 +34,9 @@ public class RightClickMenu {
 			}else{
 				x = MouseX;
 				y = MouseY;
-				count = 1;
 				for(int i = 0; i<args.length -1; i++){
 					lines[i] = args[i];
 				}
-				count = 1;
 				menuSize = args.length;
 				menuOpen = true;
 			}
@@ -53,24 +51,16 @@ public class RightClickMenu {
 			menu.bind();
 			GL11.glBegin(GL11.GL_QUADS);
 				GL11.glEnable(GL11.GL_TEXTURE_2D);
+				GL11.glEnable(GL11.GL_DEPTH_TEST);
 				hover = false;
 				//if(Mouse.getX() >= x && Mouse.getX() <= (x + sizeX)){
 					//if(Mouse.getY() >= y && Mouse.getY() <= (y + sizeY)){
 					//	hover = true;
 					//}
 				//}
-				count = 0;				
-				GL11.glTexCoord2f(0,Pixel.getPixel(44, 256));
-				GL11.glVertex2f(400, 400);
-				GL11.glTexCoord2f(1,Pixel.getPixel(44, 256));
-				GL11.glVertex2f(400, 425);
-				GL11.glTexCoord2f(1,Pixel.getPixel(85, 256));
-				GL11.glVertex2f(500, 425);
-				GL11.glTexCoord2f(0,Pixel.getPixel(85, 256));
-				GL11.glVertex2f(500, 400);
+				count = 1;				
 				for(String line:lines){
 					if(!(line.equalsIgnoreCase("null"))){
-						Renderer2D.renderText(x + 10 * count, y + 10 * count, lines[count], Color.black);
 						//UPPER LEFT ========================================================================
 						if(count == 0){
 							if(hover){
@@ -164,8 +154,10 @@ public class RightClickMenu {
 						}
 						GL11.glVertex2f(x, y + (25 * count));
 						count++;
+						Renderer2D.renderText(x + 10 * count, y + 10 * count, lines[count], Color.black);
 					}
 				}
+				GL11.glDisable(GL11.GL_DEPTH_TEST);
 				GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glEnd();
 			//END INSERT MENU DRAW CODE!
