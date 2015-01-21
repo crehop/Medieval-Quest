@@ -167,7 +167,7 @@ public class Controls {
 		if(test4){
 		}
 		if(menu){
-			String[] lines = {"TEST1","TEST2","TEST3","TEST4"};
+			String[] lines = {"TEST1---------------","TEST2------","TEST3","TEST4"};
 			RightClickMenu.openMenu(lines, Display.getWidth()/2, Display.getHeight()/2);
 		}
 		renderer.Renderer3D.setOffsetXPlus(offsetXPlus);

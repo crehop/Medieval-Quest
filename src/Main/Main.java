@@ -30,6 +30,8 @@ public class Main {
 	public static boolean loopSwitch = false;
 	public static boolean open = true;
 	public static boolean paused = false;
+	private static int height = 720;
+	private static int width = 1080;
 	private static double time = 0.0f;
 	public static Location center = new Location(0.0f,0.0f,0.0f);
 	
@@ -115,11 +117,12 @@ public class Main {
 	}
 	private static void initiate() {
 		try {
-			Display.setFullscreen(true);
-			Display.setDisplayModeAndFullscreen(new DisplayMode(1080,720));
+			Display.setVSyncEnabled(true);
+			Display.setResizable(true);
+			Display.setFullscreen(false);
+			Display.setDisplayMode(new DisplayMode(width,height));
 			Display.setTitle("Zombie RTS");
 			Display.create();
-			Display.setVSyncEnabled(false);
 			//cam = new Camera(70,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
 			cam = new Player(0,0,0);
 			
@@ -157,5 +160,13 @@ public class Main {
 	}
 	public static double getTime(){
 		return (time/100000000.0f);
+	}
+	public static void resizeDisplay(int width, int height){
+		try {
+			Display.setDisplayMode(new DisplayMode(width,height));
+		} catch (LWJGLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
