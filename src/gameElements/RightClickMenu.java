@@ -34,8 +34,8 @@ public class RightClickMenu {
 			}else{
 				x = MouseX;
 				y = MouseY;
-				for(int i = 0; i<args.length -1; i++){
-					lines[i] = args[i];
+				for(int i = 0; i<args.length; i++){
+					lines[i + 1] = args[i];
 				}
 				menuSize = args.length;
 				menuOpen = true;
@@ -43,11 +43,13 @@ public class RightClickMenu {
 		}
 	}
 	public static void render(){
-		Console.setLine5("Menu Status|| Menu = " + menuOpen + "|| MenuSize = " + menuSize + " || x = " +x +" y = " +y + " Lines = " + lines[0] + " " + lines[1]+" " + lines[2]+" " + lines[3]+" " + lines[4]);
 		if(menuOpen){
+			Console.setLine6(lines[0] + "" + lines[1] + "" +lines[2] + "" +lines[3] + "" +lines[4] + "");
 			Mouse.setGrabbed(false);
 			Main.Main.lockCamera(true);
 			Renderer2D.draw2D();
+
+
 			//INSET MENU DRAW CODE HERE!
 			menu.bind();
 			GL11.glBegin(GL11.GL_QUADS);
@@ -62,8 +64,10 @@ public class RightClickMenu {
 				count = 1;				
 				for(String line:lines){
 					if(!(line.equalsIgnoreCase("null"))){
+						if(count == menuSize){
+						}
 						//UPPER LEFT ========================================================================
-						if(count == 0){
+						if(count == 1){
 							if(hover){
 								GL11.glTexCoord2f(0,Pixel.getPixel(22, 128));
 							}else{
@@ -86,7 +90,7 @@ public class RightClickMenu {
 						}
 						GL11.glVertex2f(x, y + (25 * count) - 25);
 						//UPPER RIGHT ========================================================================
-						if(count == 0){
+						if(count == 1){
 							if(hover){
 								GL11.glTexCoord2f(1,Pixel.getPixel(22, 128));
 							}else{
@@ -109,11 +113,11 @@ public class RightClickMenu {
 						}
 						GL11.glVertex2f(x + 100, y + (25 * count) - 25);
 						//BOTTOM RIGHT ========================================================================
-						if(count == 0){
+						if(count == 1){
 							if(hover){
 								GL11.glTexCoord2f(1,Pixel.getPixel(42, 128));
 							}else{
-								GL11.glTexCoord2f(1,Pixel.getPixel(64, 128));
+								GL11.glTexCoord2f(1,Pixel.getPixel(65, 128));
 							}
 						}
 						else if(count == menuSize){
@@ -132,18 +136,18 @@ public class RightClickMenu {
 						}
 						GL11.glVertex2f(x + 100, y + (25 * count));
 						//BOTTOM LEFT ========================================================================
-						if(count == 0){
+						if(count == 1){
 							if(hover){
 								GL11.glTexCoord2f(0,Pixel.getPixel(42, 128));
 							}else{
-								GL11.glTexCoord2f(0,Pixel.getPixel(64, 128));
+								GL11.glTexCoord2f(0,Pixel.getPixel(65, 128));
 							}
 						}
 						else if(count == menuSize){
 							if(hover){
 								GL11.glTexCoord2f(0,Pixel.getPixel(106, 128));
 							}else{
-								GL11.glTexCoord2f(0,1);
+								GL11.glTexCoord2f(0, 1);
 							}
 						}
 						else{
@@ -155,9 +159,9 @@ public class RightClickMenu {
 						}
 						GL11.glVertex2f(x, y + (25 * count));
 						count++;
-						Renderer2D.renderText(x + 10 * count, y + 10 * count, lines[count], Color.black);
 					}
 				}
+				
 				GL11.glDisable(GL11.GL_DEPTH_TEST);
 				GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glEnd();

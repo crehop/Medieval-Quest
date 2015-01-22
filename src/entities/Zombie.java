@@ -1,15 +1,11 @@
 package entities;
 
-import java.awt.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 
 import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
-
-import Information.Console;
 
 import server.Location;
 import utils.ModelLoader;

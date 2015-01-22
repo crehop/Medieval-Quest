@@ -12,7 +12,6 @@ import org.lwjgl.util.vector.Vector3f;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.opengl.Texture;
 
-import Information.Console;
 public class ModelLoader {
 	public static String line;
 	private static Vector3f vertexIndices;
