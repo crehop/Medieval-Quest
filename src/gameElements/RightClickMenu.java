@@ -44,7 +44,6 @@ public class RightClickMenu {
 	}
 	public static void render(){
 		if(menuOpen){
-			Console.setLine6(lines[0] + "" + lines[1] + "" +lines[2] + "" +lines[3] + "" +lines[4] + "");
 			Mouse.setGrabbed(false);
 			Main.Main.lockCamera(true);
 			Renderer2D.draw2D();
@@ -161,7 +160,6 @@ public class RightClickMenu {
 						count++;
 					}
 				}
-				
 				GL11.glDisable(GL11.GL_DEPTH_TEST);
 				GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glEnd();
