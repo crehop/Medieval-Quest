@@ -7,6 +7,7 @@ import loops.GameLoop;
 import loops.StartLoop;
 
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
@@ -61,9 +62,8 @@ public class Renderer2D {
 	}
 	public static void reinitiatePreviousDrawState(){
 		glDrawBuffer(GL_FRONT);
-        glPopMatrix();
-		glEnable(GL_DEPTH_TEST);
 		glDisable(GL_TEXTURE_2D);
+		glDisable(GL_BLEND);
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 
         glDepthFunc(GL_LEQUAL);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
@@ -81,7 +81,6 @@ public class Renderer2D {
 	}
 	public static void draw2D()
 	{
-        glPushMatrix();
 		glEnable(GL_TEXTURE_2D);
         glMatrixMode(GL_MODELVIEW);
         glMatrixMode(GL_PROJECTION);
@@ -90,8 +89,9 @@ public class Renderer2D {
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
 		glEnable(GL_BLEND);
-		glEnable(GL_DEPTH_TEST);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glEnable(GL11.GL_BLEND);
+	    GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		GL11.glAlphaFunc(GL11.GL_GREATER, 0);
 		Color.white.bind();
 	}
 }

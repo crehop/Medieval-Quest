@@ -11,19 +11,19 @@ import utils.Pixel;
 import utils.TextureHandler;
 
 public class RightClickMenu {
-	public static Texture menu = TextureHandler.getTexture("menuitem");
-	public static int x = 0;
-	public static int y = 0;
-	public static int sizeX = 0;
-	public static int sizeY = 0;
+	private static Texture menu = TextureHandler.getTexture("menuitem");
+	private static int x = 0;
+	private static int y = 0;
+	private static float sizeX = 100.0f;
+	private static float sizeY = 25.0f;
 	private static int choice = 0;
-	public static boolean hover = false;
-	public static boolean menuOpen = false;
-	public static boolean clicked = false;
+	private static boolean hover = false;
+	private static boolean menuOpen = false;
+	private static boolean clicked = false;
 	private static int count = 1;
 	private static int menuSize = 0;
 	private static double lastToggle = Main.Main.getTime();
-	public static int[] xy = {0,43,44,85,86,128,129,171,215,256,25,475};
+	private static int[] xy = {0,43,44,85,86,128,129,171,215,256,25,475};
 	private static String[] lines = {"null","null","null","null","null","null","null","null","null","null","null"};
 	
 	public static void openMenu(String[] args, int MouseX, int MouseY){
@@ -32,6 +32,26 @@ public class RightClickMenu {
 			if(menuOpen){
 				closeMenu();
 			}else{
+				sizeX = 125.0f;
+				sizeY = 25.0f;
+				x = MouseX;
+				y = MouseY;
+				for(int i = 0; i<args.length; i++){
+					lines[i + 1] = args[i];
+				}
+				menuSize = args.length;
+				menuOpen = true;
+			}
+		}
+	}
+	public static void openMenu(String[] args, int MouseX, int MouseY, int xSize, int ySize){
+		if(Main.Main.getTime() - lastToggle > 4.0f){
+			lastToggle = Main.Main.getTime();
+			if(menuOpen){
+				closeMenu();
+			}else{
+				sizeX = xSize;
+				sizeY = ySize;
 				x = MouseX;
 				y = MouseY;
 				for(int i = 0; i<args.length; i++){
@@ -47,13 +67,10 @@ public class RightClickMenu {
 			Mouse.setGrabbed(false);
 			Main.Main.lockCamera(true);
 			Renderer2D.draw2D();
-
-
-			//INSET MENU DRAW CODE HERE!
+			
+			//INSET MENU DRAW CODE HERE!		
 			menu.bind();
 			GL11.glBegin(GL11.GL_QUADS);
-				GL11.glEnable(GL11.GL_TEXTURE_2D);
-				GL11.glEnable(GL11.GL_DEPTH_TEST);
 				hover = false;
 				//if(Mouse.getX() >= x && Mouse.getX() <= (x + sizeX)){
 					//if(Mouse.getY() >= y && Mouse.getY() <= (y + sizeY)){
@@ -87,7 +104,7 @@ public class RightClickMenu {
 								GL11.glTexCoord2f(0, Pixel.getPixel(64, 128));
 							}
 						}
-						GL11.glVertex2f(x, y + (25 * count) - 25);
+						GL11.glVertex2f(x, y + (sizeY * count) - sizeY);
 						//UPPER RIGHT ========================================================================
 						if(count == 1){
 							if(hover){
@@ -110,7 +127,7 @@ public class RightClickMenu {
 								GL11.glTexCoord2f(1, Pixel.getPixel(64, 128));
 							}
 						}
-						GL11.glVertex2f(x + 100, y + (25 * count) - 25);
+						GL11.glVertex2f(x + sizeX, y + (sizeY * count) - sizeY);
 						//BOTTOM RIGHT ========================================================================
 						if(count == 1){
 							if(hover){
@@ -133,7 +150,7 @@ public class RightClickMenu {
 								GL11.glTexCoord2f(1, Pixel.getPixel(86, 128));
 							}
 						}
-						GL11.glVertex2f(x + 100, y + (25 * count));
+						GL11.glVertex2f(x + sizeX, y + (sizeY * count));
 						//BOTTOM LEFT ========================================================================
 						if(count == 1){
 							if(hover){
@@ -156,13 +173,13 @@ public class RightClickMenu {
 								GL11.glTexCoord2f(0, Pixel.getPixel(86, 128));
 							}
 						}
-						GL11.glVertex2f(x, y + (25 * count));
+						GL11.glVertex2f(x, y + (sizeY * count));
 						count++;
 					}
 				}
-				GL11.glDisable(GL11.GL_DEPTH_TEST);
-				GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glEnd();
+			GL11.glDisable(GL11.GL_TEXTURE_2D);
+			GL11.glDisable(GL11.GL_BLEND); 
 			//END INSERT MENU DRAW CODE!
 			
 			Renderer2D.reinitiatePreviousDrawState();

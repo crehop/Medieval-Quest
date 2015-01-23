@@ -12,7 +12,7 @@ import entities.Player;
 import utils.TextureHandler;
 
 public class Skybox {
-	private static float size = 100;
+	private static float size = 256;
 	private static Texture side1 = TextureHandler.getTexture("skybox1");
 	private static Texture side2 = TextureHandler.getTexture("skybox2");
 	private static Texture side3 = TextureHandler.getTexture("skybox3");
@@ -28,12 +28,10 @@ public class Skybox {
 		X = player.getLocation().getX();
 		Y = player.getLocation().getY();
 		Z = player.getLocation().getZ();
-
+		
 		glPushMatrix();
-
-			Console.setLine6(X + " , " +  Y + " , " + Z);
-			GL11.glEnable(GL11.GL_TEXTURE_2D);
-			
+			GL11.glPushAttrib(GL11.GL_DEPTH_TEST);
+			GL11.glDisable(GL11.GL_DEPTH_TEST);
 			//Front Face
 			side4.bind();
 			glBegin(GL_QUADS);
@@ -85,9 +83,7 @@ public class Skybox {
 				glTexCoord2f(1, 0f);  //4
 				glVertex3f(X - size - var, Y - size - var, Z + size + var);
 			glEnd();
-			
-			
-	     
+	
 			// Back Face
 	    	side2.bind();
 			glBegin(GL_QUADS);
@@ -113,10 +109,7 @@ public class Skybox {
 				glTexCoord2f(1, 0f);  //4
 				glVertex3f(X - size - var, Y - size - var, Z + size + var);
 			glEnd();
-
-	
-
-			GL11.glDisable(GL11.GL_TEXTURE_2D);
+			GL11.glPopAttrib();
 		glPopMatrix();
 	}
 }

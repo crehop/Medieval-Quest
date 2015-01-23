@@ -52,9 +52,6 @@ public class GameLoop {
 		Information.Console.setLine3("FPS = " + FPS.getFPS());
 		Information.Console.setLine4("MODELS ON SCREEN [" + renderer.Renderer3D.models.size() + "]");
 		Information.Console.renderConsole();
-		//STAY LAST IN THIS ORDER ++++++++++++++++++
-		glLoadIdentity();
-		//++++++++++++++++++++++++++++++++++++++++++
 	}
 	public static void physicsUpdates(){
 		Model m = null;

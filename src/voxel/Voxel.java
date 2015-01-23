@@ -100,6 +100,7 @@ public class Voxel {
 		renderFinal();
 	}
 	private void renderFinal() {
+	    glDisable(GL_TEXTURE_2D);  
 		glEnd();
 	    glPopMatrix();
 	}

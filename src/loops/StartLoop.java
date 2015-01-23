@@ -46,7 +46,6 @@ public class StartLoop {
 	}
 	public static void initiateProjection() {
 		glOrtho(0,1080,720,0,1,-1);
-		glEnable(GL_TEXTURE_2D);
 		toggleInitiate();
 	}
 }

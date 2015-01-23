@@ -12,7 +12,7 @@ public class EnhancedDelta {
     final static double TIME_BETWEEN_UPDATES = 1000000000 / GAME_HERTZ;
     //At the very most we will update the game this many times before a new render.
     //If you're worried about visual hitches more than perfect timing, set this to 1.
-    final static int MAX_UPDATES_BEFORE_RENDER = 5;
+    final static int MAX_UPDATES_BEFORE_RENDER = 1;
     static int fps = 0;
     static double startSeconds = System.nanoTime()/1000000000;
     static double now = System.nanoTime();
