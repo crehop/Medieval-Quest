@@ -61,10 +61,9 @@ public class Renderer2D {
 		reinitiatePreviousDrawState();
 	}
 	public static void reinitiatePreviousDrawState(){
-		glDrawBuffer(GL_FRONT);
 		glDisable(GL_TEXTURE_2D);
 		glDisable(GL_BLEND);
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 
+		glClearColor(1.0f, 1.0f, 1.0f, 1.0f); 
         glDepthFunc(GL_LEQUAL);
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
         Main.Main.cam.initProjection();
@@ -77,7 +76,6 @@ public class Renderer2D {
 		else{
 			
 		}
-		glDrawBuffer(GL_BACK);
 	}
 	public static void draw2D()
 	{

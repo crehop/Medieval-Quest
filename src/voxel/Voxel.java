@@ -86,7 +86,7 @@ public class Voxel {
 	    }
 	    texture1.bind(); 
 	    glEnable(GL_TEXTURE_2D);  
-	    glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 
+	    glClearColor(1.0f, 1.0f, 1.0f, 1.0f); 
 	    glBegin(GL_QUADS);
 		{
 			renderFront(true);

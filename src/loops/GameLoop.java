@@ -62,7 +62,7 @@ public class GameLoop {
 		}
 	}
 	public static void initProjection() {
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);   
+		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);   
 		glMatrixMode(GL_PROJECTION);
 	    glLoadIdentity();
 		gluPerspective(70,(float)Display.getWidth()/(float)Display.getHeight(),0.0003f,1000);

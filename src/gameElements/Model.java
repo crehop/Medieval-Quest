@@ -83,14 +83,13 @@ public class Model {
 	}
 	public void renderModel(){
 		if(render){
-			glPushMatrix();
 				Console.setLine6("YAW = " + yaw);
 				glRotatef(pitch,1,0,0);
 				glRotatef(yaw,0,1,0);
 				glRotatef(roll,0,0,1);
 			    //READ http://en.wikipedia.org/wiki/Wavefront_.obj_file#Texture_maps
 				this.texture.bind();
-				GL11.glClearColor(0.7f, 0.7f, 0.7f, 1.0f); 
+				GL11.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); 
 				GL11.glEnable(GL11.GL_TEXTURE_2D);
 			 	GL11.glBegin(GL11.GL_TRIANGLES);
 			 	for(Face face:faces){
@@ -187,7 +186,6 @@ public class Model {
 				if(moved)this.moved = false;
 				GL11.glDisable(GL11.GL_TEXTURE_2D);
 		        glEnd(); 
-			glPopMatrix();
 	        GameLoop.test.getLocation().setX((xmin));
 	        GameLoop.test.getLocation().setY(ymin);
 	        GameLoop.test.getLocation().setZ((zmin));

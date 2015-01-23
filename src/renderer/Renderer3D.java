@@ -1,5 +1,6 @@
 package renderer;
 
+import static org.lwjgl.opengl.GL11.glPushMatrix;
 import entities.Trees;
 import entities.Zombie;
 import gameElements.Model;
@@ -66,6 +67,7 @@ public class Renderer3D {
 			initiated = true;
 		}
 		facesOnScreen = 0;
+		glPushMatrix();
 		for(Model m:models){
 			facesOnScreen += m.faceCount();
 			m.renderModel();
@@ -107,6 +109,7 @@ public class Renderer3D {
 		GL11.glAlphaFunc(GL11.GL_GREATER, 0);
 		//Trees.render();
 		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glPopMatrix();
 		//END TRANSPARENT MODEL==============================================
 		Console.setLine2("Faces on screen = " + facesOnScreen);
 	}
