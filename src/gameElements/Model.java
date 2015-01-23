@@ -3,6 +3,8 @@ package gameElements;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
+import static org.lwjgl.opengl.GL11.glRotatef;
+import static org.lwjgl.opengl.GL11.glTranslatef;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,7 +24,6 @@ import entities.Player;
 import physics.PhysicsEngine;
 
 import Information.Console;
-import TerrainGeneration.Chunk;
 
 import server.Location;
 import utils.Face;
@@ -47,8 +48,6 @@ public class Model {
 	private boolean moved = true;
 	private boolean collided = false;
 	private boolean firstRun = true;
-	private Chunk currentChunk;
-	private Chunk chunk;
 	private final int ID;
 	private String name = " NULL ";
 	private boolean collidable = true;
@@ -65,6 +64,10 @@ public class Model {
 	private Vector2f t3 = null;
 	private Vector3f n3 = null;
 	private Vector3f v3 = null;
+	private float roll = 0.0f;
+	private float yaw = 0.0f;
+	private float pitch = 0.0f;
+	
 	private int count = 0;
 	public Model(float x,float y,float z,File f, boolean movable, boolean collidable){
 		this.ID = entities.ID.getID();
@@ -81,6 +84,10 @@ public class Model {
 	public void renderModel(){
 		if(render){
 			glPushMatrix();
+				Console.setLine6("YAW = " + yaw);
+				glRotatef(pitch,1,0,0);
+				glRotatef(yaw,0,1,0);
+				glRotatef(roll,0,0,1);
 			    //READ http://en.wikipedia.org/wiki/Wavefront_.obj_file#Texture_maps
 				this.texture.bind();
 				GL11.glClearColor(0.7f, 0.7f, 0.7f, 1.0f); 
@@ -107,9 +114,8 @@ public class Model {
 				    GL11.glTexCoord2f(-t3.x,-t3.y);
 			 		GL11.glVertex3f((v3.x + this.location.getX()), (v3.y + this.location.getY()), (v3.z + this.location.getZ())); 
 			 		GL11.glNormal3f((n3.x + this.location.getX()), (n3.y + this.location.getY()), (n3.z + this.location.getZ()));
-			 		
-			 		
-			 		
+
+					
 			 		if(n1.x + this.location.getX() > xmax){
 			 			xmax = (n1.x + this.location.getX());
 			 		}
@@ -178,8 +184,6 @@ public class Model {
 
 				 	}
 			 	}
-			 	if(this.ID == 2)Information.Console.setLine5("[XMIN = " + xmin + " YMIN = " + ymin + " ZMIN = " + zmin + "]");
-			 	if(this.ID == 2)Information.Console.setLine6("[XMAX= " + xmax + " YMAX = " + ymax + " ZMAX = " + zmax + "]" + "CHUNK Y = " + this.getChunk().getLocation().getY());
 				if(moved)this.moved = false;
 				GL11.glDisable(GL11.GL_TEXTURE_2D);
 		        glEnd(); 
@@ -297,19 +301,6 @@ public class Model {
 	public void setZmax(float zmax) {
 		this.zmax = zmax;
 	}
-	/**
-	 * The Chunk in which the model currently resides.
-	 * @return
-	 */
-	public Chunk getChunk(){
-		int x = (int) this.getLocation().getX() - ((int) this.getLocation().getX()%20);
-		int z = (int) this.getLocation().getZ() - ((int) this.getLocation().getZ()%20);
-		chunk = GameLoop.terrain.world.get("0,0");
-		key = "" + x + "," + z;
-		if(GameLoop.terrain.world.get(key) != null)chunk = GameLoop.terrain.world.get(key);
-		return chunk;
-		
-	}
 	public String getName() {
 		if(name == null){
 			name = " NULL ";
@@ -333,15 +324,6 @@ public class Model {
 	}
 	public int getID() {
 		return ID;
-	}
-	public void fixCollisionGround() {
-		while(ymin < this.getChunk().getLocation().getY()){
-			this.getLocation().setY(this.getLocation().getY() + 0.3f);
-			this.ymin += 0.3f;
-			this.ymax += 0.3f;
-		}
-		this.moved = true;
-		this.renderModel();
 	}
 	public boolean isMoved() {
 		return moved;
@@ -373,5 +355,47 @@ public class Model {
 	}
 	public int faceCount() {
 		return faceCount;
+	}
+	public void setPitch(float f){
+		if(f > 360){
+			this.pitch = 0 + f-360;
+		}
+		else if(f < 0){
+			this.pitch = 360 + f; 
+		}
+		else{
+			this.pitch = f;
+		}
+	}
+	public void setYaw(float f){
+		if(f > 360){
+			this.yaw = 0 + f-360;
+		}
+		else if(f < 0){
+			this.yaw = 360 + f; 
+		}
+		else{
+			this.yaw = f;
+		}
+	}
+	public void setRoll(float f){
+		if(f > 360){
+			this.roll = 0 + f-360;
+		}
+		else if(f < 0){
+			this.roll = 360 + f; 
+		}
+		else{
+			this.roll = f;
+		}
+	}
+	public float getYaw(){
+		return yaw;
+	}
+	public float getPitch(){
+		return pitch;
+	}
+	public float getRoll(){
+		return roll;
 	}
 }

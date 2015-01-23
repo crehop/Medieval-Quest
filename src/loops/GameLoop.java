@@ -44,8 +44,7 @@ public class GameLoop {
 		Information.FPS.updateFPS();
 		Main.Main.cam.useView();
 		Controls.checkInput();
-		Skybox.renderSkyBox(Main.Main.cam);
-		terrain.renderChunks(Main.Main.cam);	
+		Skybox.renderSkyBox(Main.Main.cam);	
 		renderer.Renderer3D.renderActiveModels();
 		RightClickMenu.render();
 		Information.Console.setLine1("CAMERA [X =" + (int)Main.Main.cam.getLocation().getX() +" Y =" + (int)Main.Main.cam.getLocation().getY() + " Z =" + (int)Main.Main.cam.getLocation().getZ() + " Pitch =" + (int)Main.Main.cam.getPitch() + " Yaw =" + (int)Main.Main.cam.getYaw() + "]");

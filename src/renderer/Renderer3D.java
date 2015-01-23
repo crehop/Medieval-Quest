@@ -69,6 +69,9 @@ public class Renderer3D {
 		for(Model m:models){
 			facesOnScreen += m.faceCount();
 			m.renderModel();
+			m.setYaw(m.getYaw() + 1.0f);
+			m.setPitch(m.getPitch() + 0.01f);
+			m.setRoll(m.getRoll() + 0.10f);
 			if(m.getID() == 2){
 				if(offsetXPlus){
 					m.move(0.1f, 0, 0);
@@ -97,7 +100,6 @@ public class Renderer3D {
 					Console.setLine7("OFFSET - Y - MINUS");
 				}
 			}
-			//m.move(one/5, 0.0f, two/5);
 		}
 		//DRAW TRANSPARENT MODELS HERE=======================================
 		GL11.glEnable(GL11.GL_BLEND);

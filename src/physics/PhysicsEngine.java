@@ -22,11 +22,6 @@ public class PhysicsEngine {
 						return true;
 					}
 				}
-				if(m.getChunk().getLocation().getY() > m.getYmin()){
-					m.fixCollisionGround();
-					//Main.Console.setLine7("COLLISION GROUND!" + model.getName() + " "  + " X= " + x + " Y=" + y + " Z=" + z + "ID =" + m.getID() + "SECOND MODEL =" + model.getID());
-					return true;
-				}
 			}
 		}
 		return false;

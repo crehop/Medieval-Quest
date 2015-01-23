@@ -43,7 +43,7 @@ public class Controls {
 	static float mouseSensitivity = 0.05f;
 	static int dwheel = Mouse.getDWheel();
 	//change to adjust movement speed
-	static final float defaultMovementSpeed = 0.5f;
+	static final float defaultMovementSpeed = 0.01f;
 	static float movementSpeed = defaultMovementSpeed;
 	
 	static float lastTime = 0.0f;
