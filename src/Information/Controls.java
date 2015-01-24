@@ -44,7 +44,7 @@ public class Controls {
 	static float mouseSensitivity = 0.05f;
 	static int dwheel = Mouse.getDWheel();
 	//change to adjust movement speed
-	static final float defaultMovementSpeed = 0.01f;
+	static final float defaultMovementSpeed = 0.101f;
 	static float movementSpeed = defaultMovementSpeed;
 	
 	static float lastTime = 0.0f;
@@ -53,7 +53,8 @@ public class Controls {
 	
 	static float mouseX = 0.0f;
 	static float mouseY = 0.0f;
-	
+	static String[] lines = {"TEST1---------------","TEST2------","TEST3","TEST4","hghh", "ffd"};
+
 	public static long getTime() {
 		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
 	}
@@ -170,7 +171,6 @@ public class Controls {
 		if(test4){
 		}
 		if(menu){
-			String[] lines = {"TEST1---------------","TEST2------","TEST3","TEST4"};
 			RightClickMenu.openMenu(lines, Display.getWidth()/2, Display.getHeight()/2);
 		}
 		if(offsetXPlus) Skybox.setX(Skybox.getX() + 0.001f);

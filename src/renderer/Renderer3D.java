@@ -4,6 +4,7 @@ import static org.lwjgl.opengl.GL11.glPushMatrix;
 import entities.Trees;
 import entities.Zombie;
 import gameElements.Model;
+import gameElements.RightClickMenu;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import Information.Console;
@@ -40,17 +42,17 @@ public class Renderer3D {
 		try {
 			//testZomb = new Zombie(10.0f,-0.01f,10.0f);
 			test2 = ModelLoader.loadModel(new File("res/models/wall/wall.obj"));
-			test3 = ModelLoader.loadModel(new File("res/models/map/map.obj"));
+			//test3 = ModelLoader.loadModel(new File("res/models/map/map.obj"));
 			//test2.setCollidable(true);
 			//test2.setMovable(true);
 			//test2.setStartLocation(0.0f, 2.0f, 0.0f);
 			//test3.setCollidable(true);
 			//test3.setMovable(true);
-			test3.setStartLocation(0.0f, 0.0f, 0.0f);
+			//test3.setStartLocation(0.0f, 0.0f, 0.0f);
 			//models.add(test3);
 			models.add(test2);
-			models.add(test3);
-			Trees.addTree(20.4f, 0.01f, 10.1f);
+			//models.add(test3);
+			//Trees.addTree(20.4f, 0.01f, 10.1f);
 			//Trees.addTree(30.4f, 0.01f, 20.1f);
 			
 			//System.out.println("MODEL LOADED V= " + test.vertices.size() + " N= " + test.normals.size() );
@@ -63,6 +65,8 @@ public class Renderer3D {
 		}
 	}
 	public static void renderActiveModels(){
+		if(Mouse.isButtonDown(0))Console.setLine7("CHOICE = " + RightClickMenu.getSelection());
+		
 		if(!(initiated)){
 			initiate();
 			initiated = true;
