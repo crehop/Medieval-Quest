@@ -20,7 +20,6 @@ import voxel.Voxel;
 import voxel.WireframePart;
 import Information.Controls;
 import Information.FPS;
-import TerrainGeneration.Terrain;
 
 public class GameLoop {
 	public static ArrayList<WireframePart> renderMe = new ArrayList<WireframePart>();
@@ -30,7 +29,6 @@ public class GameLoop {
 	static boolean gravity = false;
 	static Random rand = new Random();
 	static boolean initiated = false;
-	public static Terrain terrain;
 	public static Texture health = utils.TextureHandler.getTexture("health");
 	public static Voxel test = new Voxel(new Location(0,0,0), 0.15f, health, 0.0f, 0.0f, 0.0f);
 	public static void loop(){
@@ -71,9 +69,6 @@ public class GameLoop {
 	    glLoadIdentity();
 	    //glEnable(GL_DEPTH_TEST);
 	    //glDepthFunc(GL11.GL_LEQUAL);
-	    if(terrain == null){
-	    	terrain = new Terrain(false);
-	    }
 	}
 	public static void toggleInitiate(){
 		GameLoop.initProjection();
