@@ -1,5 +1,10 @@
 package gameElements;
 
+import static org.lwjgl.opengl.GL11.GL_BLEND;
+import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
+import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
+import static org.lwjgl.opengl.GL11.glBlendFunc;
+import static org.lwjgl.opengl.GL11.glEnable;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
@@ -83,6 +88,7 @@ public class Model {
 	}
 	public void renderModel(){
 		if(render){
+				glPushMatrix();
 				Console.setLine6("YAW = " + yaw);
 				glRotatef(pitch,1,0,0);
 				glRotatef(yaw,0,1,0);
@@ -91,6 +97,9 @@ public class Model {
 				this.texture.bind();
 				GL11.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); 
 				GL11.glEnable(GL11.GL_TEXTURE_2D);
+				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+		        glEnable(GL_BLEND);
+		        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			 	GL11.glBegin(GL11.GL_TRIANGLES);
 			 	for(Face face:faces){
 			 		//n=normal t=texel v=vertex
@@ -113,83 +122,12 @@ public class Model {
 				    GL11.glTexCoord2f(-t3.x,-t3.y);
 			 		GL11.glVertex3f((v3.x + this.location.getX()), (v3.y + this.location.getY()), (v3.z + this.location.getZ())); 
 			 		GL11.glNormal3f((n3.x + this.location.getX()), (n3.y + this.location.getY()), (n3.z + this.location.getZ()));
-
-					
-			 		if(n1.x + this.location.getX() > xmax){
-			 			xmax = (n1.x + this.location.getX());
-			 		}
-			 		if(n1.x + this.location.getX() < xmin){
-			 			xmin = (n1.x + this.location.getX()) ;
-			 		}
-			 		if(n2.x + this.location.getX() > xmax){
-			 			xmax = (n2.x + this.location.getX()) ;
-			 		}
-			 		if(n2.x + this.location.getX() < xmin){
-			 			xmin = (n2.x + this.location.getX()) ;
-			 		}
-			 		if(n3.x + this.location.getX() > xmax){
-			 			xmax = (n3.x + this.location.getX()) ;
-			 		}
-			 		if(n3.x + this.location.getX() < xmin){
-			 			xmin = (n3.x + this.location.getX()) ;
-			 		}
-			 		if(firstRun){
-				 		if(n1.x + this.location.getX() > xmax)xmax = (n1.x + this.location.getX());
-				 		if(n1.x + this.location.getX() < xmin)xmin = (n1.x + this.location.getX());
-				 		if(n2.x + this.location.getX() > xmax)xmax = (n2.x + this.location.getX());
-				 		if(n2.x + this.location.getX() < xmin)xmin = (n2.x + this.location.getX());
-				 		if(n3.x + this.location.getX() > xmax)xmax = (n3.x + this.location.getX());
-				 		if(n3.x + this.location.getX() < xmin)xmin = (n3.x + this.location.getX());
-				 		
-				 		if(v1.x + this.location.getX() > xmax)xmax = (v1.x + this.location.getX());
-				 		if(v1.x + this.location.getX() < xmin)xmin = (v1.x + this.location.getX());
-				 		if(v2.x + this.location.getX() > xmax)xmax = (v2.x + this.location.getX());
-				 		if(v2.x + this.location.getX() < xmin)xmin = (v2.x + this.location.getX());
-				 		if(v3.x + this.location.getX() > xmax)xmax = (v3.x + this.location.getX());
-				 		if(v3.x + this.location.getX() < xmin)xmin = (v3.x + this.location.getX());
-				 		
-				 		if(n1.y + this.location.getY() > ymax)ymax = (n1.y + this.location.getY());
-				 		if(n1.y + this.location.getY() < ymin)ymin = (n1.y + this.location.getY());
-				 		if(n2.y + this.location.getY() > ymax)ymax = (n2.y + this.location.getY());
-				 		if(n2.y + this.location.getY() < ymin)ymin = (n2.y + this.location.getY());
-				 		if(n3.y + this.location.getY() > ymax)ymax = (n3.y + this.location.getY());
-				 		if(n3.y + this.location.getY() < ymin)ymin = (n3.y + this.location.getY());
-				 		
-				 		if(v1.y + this.location.getY() > ymax)ymax = (v1.y + this.location.getY());
-				 		if(v1.y + this.location.getY() < ymin)ymin = (v1.y + this.location.getY());
-				 		if(v2.y + this.location.getY() > ymax)ymax = (v2.y + this.location.getY());
-				 		if(v2.y + this.location.getY() < ymin)ymin = (v2.y + this.location.getY());
-				 		if(v3.y + this.location.getY() > ymax)ymax = (v3.y + this.location.getY());
-				 		if(v3.y + this.location.getY() < ymin)ymin = (v3.y + this.location.getY());
-				 		
-				 		if(n1.z + this.location.getZ() > zmax)zmax = (n1.z + this.location.getZ());
-				 		if(n1.z + this.location.getZ() < zmin)zmin = (n1.z + this.location.getZ());
-				 		if(n2.z + this.location.getZ() > zmax)zmax = (n2.z + this.location.getZ());
-				 		if(n2.z + this.location.getZ() < zmin)zmin = (n2.z + this.location.getZ());
-				 		if(n3.z + this.location.getZ() > zmax)zmax = (n3.z + this.location.getZ());
-				 		if(n3.z + this.location.getZ() < zmin)zmin = (n3.z + this.location.getZ());
-				 		
-				 		if(v1.z + this.location.getZ() > zmax)zmax = (v1.z + this.location.getZ());
-				 		if(v1.z + this.location.getZ() < zmin)zmin = (v1.z + this.location.getZ());
-				 		if(v2.z + this.location.getZ() > zmax)zmax = (v2.z + this.location.getZ());
-				 		if(v2.z + this.location.getZ() < zmin)zmin = (v2.z + this.location.getZ());
-				 		if(v3.z + this.location.getZ() > zmax)zmax = (v3.z + this.location.getZ());
-				 		if(v3.z + this.location.getZ() < zmin)zmin = (v3.z + this.location.getZ());
-						renderRun++;
-						this.firstRun = false;
-						if(this.isMovable() && this.isCollidable()){
-							physics.PhysicsEngine.checkForCollision(this);
-						}
-
-				 	}
+			 		
 			 	}
 				if(moved)this.moved = false;
 				GL11.glDisable(GL11.GL_TEXTURE_2D);
 		        glEnd(); 
-	        GameLoop.test.getLocation().setX((xmin));
-	        GameLoop.test.getLocation().setY(ymin);
-	        GameLoop.test.getLocation().setZ((zmin));
-			GameLoop.test.render();
+				GL11.glPopMatrix();
 			this.faceCount = faces.size();
 		}
 	}

@@ -1,6 +1,7 @@
 package Information;
 
 import gameElements.RightClickMenu;
+import gameElements.Skybox;
 
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
@@ -172,12 +173,10 @@ public class Controls {
 			String[] lines = {"TEST1---------------","TEST2------","TEST3","TEST4"};
 			RightClickMenu.openMenu(lines, Display.getWidth()/2, Display.getHeight()/2);
 		}
-		renderer.Renderer3D.setOffsetXPlus(offsetXPlus);
-		renderer.Renderer3D.setOffsetXMinus(offsetXMinus);
-		renderer.Renderer3D.setOffsetYPlus(offsetYPlus);
-		renderer.Renderer3D.setOffsetYMinus(offsetYMinus);
-		renderer.Renderer3D.setOffsetZPlus(offsetZPlus);
-		renderer.Renderer3D.setOffsetZMinus(offsetZMinus);
+		if(offsetXPlus) Skybox.setX(Skybox.getX() + 0.001f);
+		if(offsetXMinus) Skybox.setX(Skybox.getX() - 0.001f);
+		if(offsetYPlus) Skybox.setY(Skybox.getY() + 0.001f);
+		if(offsetYMinus) Skybox.setY(Skybox.getY() - 0.001f);
 	}
 
 }

@@ -67,10 +67,10 @@ public class GameLoop {
 	    glLoadIdentity();
 		gluPerspective(70,(float)Display.getWidth()/(float)Display.getHeight(),0.0003f,1000);
 	    glMatrixMode(GL_MODELVIEW);
+	    GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_NICEST);
 	    glLoadIdentity();
-	    glEnable(GL_DEPTH_TEST);
-	    glDepthFunc(GL11.GL_LEQUAL);
-	    glCullFace(GL11.GL_BACK);
+	    //glEnable(GL_DEPTH_TEST);
+	    //glDepthFunc(GL11.GL_LEQUAL);
 	    if(terrain == null){
 	    	terrain = new Terrain(false);
 	    }

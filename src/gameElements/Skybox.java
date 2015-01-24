@@ -1,115 +1,112 @@
 package gameElements;
 
 import static org.lwjgl.opengl.GL11.*;
-
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 
 import Information.Console;
-
 import entities.Player;
-
 import utils.TextureHandler;
 
 public class Skybox {
 	private static float size = 256;
-	private static Texture side1 = TextureHandler.getTexture("skybox1");
-	private static Texture side2 = TextureHandler.getTexture("skybox2");
-	private static Texture side3 = TextureHandler.getTexture("skybox3");
-	private static Texture side4 = TextureHandler.getTexture("skybox4");
-	private static Texture top = TextureHandler.getTexture("skyboxtop");
-	private static Texture bottom = TextureHandler.getTexture("skyboxbottom");
+	private static Texture night = TextureHandler.getTexture("skybox");
 	private static float X = 0.0f;
 	private static float Y = 0.0f;
 	private static float Z = 0.0f;
-	private static float var = 2.0f;
-
+	private static boolean init = false;
+	private static float x = 0;
+	private static float y = 0;
+	
 	public static void renderSkyBox(Player player){
 		X = player.getLocation().getX();
 		Y = player.getLocation().getY();
 		Z = player.getLocation().getZ();
 		
 		glPushMatrix();
+			if(!(init)){
+				GL11.glRotatef(90.0f, 0, 0, 0);
+				init = true;
+			}
 			GL11.glPushAttrib(GL11.GL_DEPTH_TEST);
 			GL11.glDisable(GL11.GL_DEPTH_TEST);
+			GL11.glEnable(GL11.GL_CLAMP);
 			//Front Face
-			side4.bind();
+			night.bind();
+			Console.setLine5("X=" + getX() + " Y=" + getY());
 			glBegin(GL_QUADS);
-				glTexCoord2f(0f, 0f); //1
-				glVertex3f(X - size - var, Y + size + var, Z - size - var);
-				glTexCoord2f(0f, 1f); //2
-				glVertex3f(X + size + var, Y + size + var, Z - size - var);
-				glTexCoord2f(1f, 1f); //3
-				glVertex3f(X + size + var, Y - size - var, Z - size - var);
-				glTexCoord2f(1, 0f);  //4
-				glVertex3f(X - size - var, Y - size - var, Z - size - var);
-			glEnd(); 
+				glTexCoord2f(0.25f + getX(),0.333333f + getY()); //1
+				glVertex3f(X - size , Y + size , Z - size );
+				glTexCoord2f(0.5f + getX(),0.333333f + getY()); //2
+				glVertex3f(X + size , Y + size , Z - size );
+				glTexCoord2f(0.5f + getX(),0.666666f + getY()); //3
+				glVertex3f(X + size , Y - size , Z - size );
+				glTexCoord2f(0.25f + getX(),0.666666f + getY());  //4
+				glVertex3f(X - size , Y - size , Z - size );
 			
 	        // Right face
-			side3.bind();
-			glBegin(GL_QUADS);
-				glTexCoord2f(0f, 0f); //1
-				glVertex3f(X + size + var, Y + size + var, Z - size - var);
-				glTexCoord2f(0f, 1f); //2
-				glVertex3f(X + size + var, Y + size + var, Z + size + var);
-				glTexCoord2f(1f, 1f); //3
-				glVertex3f(X + size + var, Y - size - var, Z + size + var);
-				glTexCoord2f(1, 0f);  //4
-				glVertex3f(X + size + var, Y - size - var, Z - size - var);
-			glEnd();
-			
+				glTexCoord2f(0.5f + getX(),0.333333f + getY()); //1
+				glVertex3f(X + size , Y + size , Z - size );
+				glTexCoord2f(0.75f + getX(),0.333333f + getY()); //2
+				glVertex3f(X + size , Y + size , Z + size );
+				glTexCoord2f(0.75f + getX(),0.666666f + getY()); //3
+				glVertex3f(X + size , Y - size , Z + size );
+				glTexCoord2f(0.5f + getX(),0.666666f + getY());  //4
+				glVertex3f(X + size , Y - size , Z - size );
 			// Top Face
-			top.bind();
-			glBegin(GL_QUADS);
-				glTexCoord2f(0f, 0f); //1
-				glVertex3f(X - size - var, Y + size + var, Z + size + var);
-				glTexCoord2f(0f, 1f); //2
-				glVertex3f(X + size + var, Y + size + var, Z + size + var);
-				glTexCoord2f(1f, 1f); //3
-				glVertex3f(X + size + var, Y + size + var, Z - size - var);
-				glTexCoord2f(1, 0f);  //4
-				glVertex3f(X - size - var, Y + size + var, Z - size - var);
-			glEnd();
-
+				glTexCoord2f(0.25f + getX(),0f + getY()); //1
+				glVertex3f(X - size , Y + size , Z + size );
+				glTexCoord2f(0.5f + getX(),0f + getY()); //2
+				glVertex3f(X + size , Y + size , Z + size );
+				glTexCoord2f(0.5f + getX(),0.333333f + getY()); //3
+				glVertex3f(X + size , Y + size , Z - size );
+				glTexCoord2f(0.25f + getX(),0.333333f + getY()); //4
+				glVertex3f(X - size , Y + size , Z - size );
 			// Bottom Face
-			bottom.bind();
-			glBegin(GL_QUADS);
-			glTexCoord2f(0f, 0f); //1
-				glVertex3f(X - size - var, Y - size - var, Z - size - var);
-				glTexCoord2f(0f, 1f); //2
-				glVertex3f(X + size + var, Y - size - var, Z - size - var);
-				glTexCoord2f(1f, 1f); //3
-				glVertex3f(X + size + var, Y - size - var, Z + size + var);
-				glTexCoord2f(1, 0f);  //4
-				glVertex3f(X - size - var, Y - size - var, Z + size + var);
-			glEnd();
-	
+				glTexCoord2f(0.25f + getX(),0.666666f + getY()); //1
+				glVertex3f(X - size , Y - size , Z - size );
+				glTexCoord2f(0.5f + getX(),0.666666f  + getY()); //2
+				glVertex3f(X + size , Y - size , Z - size );
+				glTexCoord2f(0.5f + getX(),1f  + getY()); //3
+				glVertex3f(X + size , Y - size , Z + size );
+				glTexCoord2f(0.25f + getX(), 1f + getY()); //4
+				glVertex3f(X - size , Y - size , Z + size );
 			// Back Face
-	    	side2.bind();
-			glBegin(GL_QUADS);
-				glTexCoord2f(0f, 0f); //1
-				glVertex3f(X + size + var, Y + size + var, Z + size + var);
-				glTexCoord2f(0f, 1f); //2
-				glVertex3f(X - size - var, Y + size + var, Z + size + var);
-				glTexCoord2f(1f, 1f); //3
-				glVertex3f(X - size - var, Y - size - var, Z + size + var);
-				glTexCoord2f(1, 0f);  //4
-				glVertex3f(X + size + var, Y - size - var, Z + size + var);
-	        glEnd();
-
+				glTexCoord2f(0.75f + getX(),0.333333f + getY()); //1
+				glVertex3f(X + size , Y + size , Z + size );
+				glTexCoord2f(1.0f + getX(),0.333333f + getY()); //2
+				glVertex3f(X - size , Y + size , Z + size );
+				glTexCoord2f(1.0f + getX(),0.666666f + getY()); //3
+				glVertex3f(X - size , Y - size , Z + size );
+				glTexCoord2f(0.75f + getX(),0.666666f + getY());  //4
+				glVertex3f(X + size , Y - size , Z + size );
 		    // Left Face
-			side1.bind();
-			glBegin(GL_QUADS);
-				glTexCoord2f(0f, 0f); //1
-				glVertex3f(X - size - var, Y + size + var, Z + size + var);
-				glTexCoord2f(0f, 1f); //2
-				glVertex3f(X - size - var, Y + size + var, Z - size - var);
-				glTexCoord2f(1f, 1f); //3
-				glVertex3f(X - size - var, Y - size - var, Z - size - var);
-				glTexCoord2f(1, 0f);  //4
-				glVertex3f(X - size - var, Y - size - var, Z + size + var);
+				glTexCoord2f(0f + getX(),0.333333f + getY()); //1
+				glVertex3f(X - size , Y + size , Z + size );
+				glTexCoord2f(0.25f + getX(),0.333333f + getY()); //2
+				glVertex3f(X - size , Y + size , Z - size );
+				glTexCoord2f(0.25f + getX(),0.666666f + getY()); //3
+				glVertex3f(X - size , Y - size , Z - size );
+				glTexCoord2f(0f + getX(),0.666666f + getY());  //4
+				glVertex3f(X - size , Y - size , Z + size );
 			glEnd();
 			GL11.glPopAttrib();
 		glPopMatrix();
+	}
+
+	public static float getX() {
+		return x;
+	}
+
+	public static void setX(float X) {
+		x = X;
+	}
+
+	public static float getY() {
+		return y;
+	}
+
+	public static void setY(float Y) {
+		y = Y;
 	}
 }
