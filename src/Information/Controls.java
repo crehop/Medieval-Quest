@@ -53,7 +53,7 @@ public class Controls {
 	
 	static float mouseX = 0.0f;
 	static float mouseY = 0.0f;
-	static String[] lines = {"TEST1---------------","TEST2------","TEST3","TEST4","hghh", "ffd"};
+	static String[] lines = {"TEST1","TEST2","TEST3","TEST4","TEST5","TEST6"};
 
 	public static long getTime() {
 		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
@@ -171,7 +171,7 @@ public class Controls {
 		if(test4){
 		}
 		if(menu){
-			RightClickMenu.openMenu(lines, Display.getWidth()/2, Display.getHeight()/2);
+			RightClickMenu.openMenu(lines, Display.getWidth(), Display.getHeight());
 		}
 		if(offsetXPlus) Skybox.setX(Skybox.getX() + 0.001f);
 		if(offsetXMinus) Skybox.setX(Skybox.getX() - 0.001f);

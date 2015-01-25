@@ -19,13 +19,12 @@ public class RightClickMenu {
 	private static int choice = 0;
 	private static int clickChoice = 0;
 	private static boolean menuOpen = false;
-	private static boolean lock = false;
 	private static int count = 1;
 	private static int menuSize = 0;
 	private static double lastToggle = Main.Main.getTime();
 	private static String[] lines = {"null","null","null","null","null","null","null","null","null","null","null"};
 	
-	public static void openMenu(String[] args, int MouseX, int MouseY){
+	public static void openMenu(String[] args, int X, int Y){
 		if(Main.Main.getTime() - lastToggle > 4.0f){
 			lastToggle = Main.Main.getTime();
 			if(menuOpen){
@@ -33,8 +32,8 @@ public class RightClickMenu {
 			}else{
 				sizeX = 125.0f;
 				sizeY = 25.0f;
-				x = MouseX;
-				y = MouseY;
+				x = X;
+				y = Y;
 				for(int i = 0; i<args.length; i++){
 					lines[i + 1] = args[i];
 				}
@@ -43,7 +42,7 @@ public class RightClickMenu {
 			}
 		}
 	}
-	public static void openMenu(String[] args, int MouseX, int MouseY, int xSize, int ySize){
+	public static void openMenu(String[] args, int X, int Y, int xSize, int ySize){
 		clickChoice = 0;
 		if(Main.Main.getTime() - lastToggle > 4.0f){
 			lastToggle = Main.Main.getTime();
@@ -52,8 +51,8 @@ public class RightClickMenu {
 			}else{
 				sizeX = xSize;
 				sizeY = ySize;
-				x = MouseX;
-				y = MouseY;
+				x = X;
+				y = Y;
 				for(int i = 0; i<args.length; i++){
 					lines[i + 1] = args[i];
 				}
@@ -171,6 +170,12 @@ public class RightClickMenu {
 						count++;
 					}
 				}
+				while(x + sizeX >Display.getWidth()){
+					x--;
+					while(y + (sizeY * count) -sizeY > Display.getHeight()){
+						y--;
+				}
+			}
 			GL11.glEnd();
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glDisable(GL11.GL_BLEND); 
@@ -237,6 +242,9 @@ public class RightClickMenu {
 			}
 		}
 		if(menuOpen){
+			if(choice > menuSize){
+				choice = 0;
+			}
 			clickChoice = choice;
 			closeMenu();
 		}

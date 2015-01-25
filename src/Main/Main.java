@@ -12,9 +12,9 @@ import org.lwjgl.opengl.Display;
 
 import org.lwjgl.opengl.*;
 
-import Information.EnhancedDelta;
 
 import server.Location;
+import threads.EnhancedDelta;
 
 import entities.Player;
 import voxel.Wireframe;
