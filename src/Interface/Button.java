@@ -3,12 +3,9 @@ package Interface;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
 import renderer.Renderer2D;
-import utils.Pixel;
-import utils.TextureHandler;
 
 
 public class Button {
