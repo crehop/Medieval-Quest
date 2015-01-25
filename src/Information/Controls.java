@@ -1,6 +1,5 @@
 package Information;
 
-import gameElements.RightClickMenu;
 import gameElements.Skybox;
 
 import org.lwjgl.Sys;
@@ -8,6 +7,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 
+import Interface.RightClickMenu;
 import Main.Main;
 
 import static org.lwjgl.input.Keyboard.*;

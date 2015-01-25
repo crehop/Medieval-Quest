@@ -4,7 +4,6 @@ import static org.lwjgl.opengl.GL11.glPushMatrix;
 import entities.Trees;
 import entities.Zombie;
 import gameElements.Model;
-import gameElements.RightClickMenu;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,6 +15,7 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import Information.Console;
+import Interface.RightClickMenu;
 
 import utils.ModelLoader;
 

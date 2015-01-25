@@ -1,4 +1,4 @@
-package gameElements;
+package Interface;
 
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -174,8 +174,19 @@ public class RightClickMenu {
 			GL11.glEnd();
 			GL11.glDisable(GL11.GL_TEXTURE_2D);
 			GL11.glDisable(GL11.GL_BLEND); 
-			//END INSERT MENU DRAW CODE!
 			Renderer2D.reinitiatePreviousDrawState();
+			//START TEXT DRAW
+			count = 0;
+			for(String line:lines){
+				if(!(line.equalsIgnoreCase("null"))){
+					count++;
+					if(count == choice){
+						Renderer2D.renderText(x + 10 , y - 4 + (count * sizeY) - sizeY, line, Color.white);
+					}else{
+						Renderer2D.renderText(x + 10 , y - 4 + (count * sizeY) - sizeY, line, Color.black);
+					}
+				}
+			}
 			choice = 0;
 		}
 	}

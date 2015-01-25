@@ -4,7 +4,6 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.util.glu.GLU.gluPerspective;
 
 import gameElements.Model;
-import gameElements.RightClickMenu;
 import gameElements.Skybox;
 
 import java.util.ArrayList;
@@ -20,6 +19,7 @@ import voxel.Voxel;
 import voxel.WireframePart;
 import Information.Controls;
 import Information.FPS;
+import Interface.RightClickMenu;
 
 public class GameLoop {
 	public static ArrayList<WireframePart> renderMe = new ArrayList<WireframePart>();
