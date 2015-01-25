@@ -3,8 +3,8 @@ package loops;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.util.glu.GLU.gluPerspective;
 
+import gameElements.Interface;
 import gameElements.Model;
-import gameElements.RightClickMenu;
 import gameElements.Skybox;
 
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class GameLoop {
 		Controls.checkInput();
 		Skybox.renderSkyBox(Main.Main.cam);	
 		renderer.Renderer3D.renderActiveModels();
-		RightClickMenu.render();
+		Interface.renderMenus();
 		Information.Console.setLine1("CAMERA [X =" + (int)Main.Main.cam.getLocation().getX() +" Y =" + (int)Main.Main.cam.getLocation().getY() + " Z =" + (int)Main.Main.cam.getLocation().getZ() + " Pitch =" + (int)Main.Main.cam.getPitch() + " Yaw =" + (int)Main.Main.cam.getYaw() + "]");
 		Information.Console.setLine3("FPS = " + FPS.getFPS());
 		Information.Console.setLine4("MODELS ON SCREEN [" + renderer.Renderer3D.models.size() + "]");

@@ -1,6 +1,6 @@
 package Information;
 
-import gameElements.RightClickMenu;
+import gameElements.ClickMenu;
 import gameElements.Skybox;
 
 import org.lwjgl.Sys;
@@ -38,6 +38,7 @@ public class Controls {
 	static boolean offsetZPlus;
 	static boolean offsetZMinus;
 	static boolean menu;
+	static ClickMenu cMenu =  null;
 
 	
 	//Mouse sensitivity
@@ -171,12 +172,16 @@ public class Controls {
 		if(test4){
 		}
 		if(menu){
-			RightClickMenu.openMenu(lines, Display.getWidth()/2, Display.getHeight()/2);
+			if(cMenu == null)cMenu = new ClickMenu(lines, Display.getWidth()/2, Display.getHeight()/2);
+			cMenu.openMenu();
 		}
 		if(offsetXPlus) Skybox.setX(Skybox.getX() + 0.001f);
 		if(offsetXMinus) Skybox.setX(Skybox.getX() - 0.001f);
 		if(offsetYPlus) Skybox.setY(Skybox.getY() + 0.001f);
 		if(offsetYMinus) Skybox.setY(Skybox.getY() - 0.001f);
+	}
+	public static ClickMenu getMenu(){
+		return cMenu;
 	}
 
 }
