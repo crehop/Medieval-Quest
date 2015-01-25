@@ -181,9 +181,9 @@ public class RightClickMenu {
 				if(!(line.equalsIgnoreCase("null"))){
 					count++;
 					if(count == choice){
-						Renderer2D.renderText(x + 10 , y - 4 + (count * sizeY) - sizeY, line, Color.white);
+						Renderer2D.renderText(x + 10 , y + (count * sizeY) - sizeY, line, Color.white,2);
 					}else{
-						Renderer2D.renderText(x + 10 , y - 4 + (count * sizeY) - sizeY, line, Color.black);
+						Renderer2D.renderText(x + 10 , y + (count * sizeY) - sizeY, line, Color.black,2);
 					}
 				}
 			}

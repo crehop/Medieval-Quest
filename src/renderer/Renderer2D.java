@@ -17,26 +17,35 @@ import org.newdawn.slick.opengl.Texture;
 import static org.lwjgl.opengl.GL11.*;
 
 public class Renderer2D {
-	public static UnicodeFont font;
+;
 	static boolean initiated = false;
-	public static Texture top;
-	public static Texture middle;
-	public static Texture bottom;
-	public static int x = 0;
-	public static int y = 0;
-	public static ArrayList<String> lines = new ArrayList<String>();
+	private static int x = 0;
+	private static int y = 0;
+	static java.awt.Font awtFont1  = new java.awt.Font("Times New Roman", java.awt.Font.BOLD, 12);
+	static java.awt.Font awtFont2  = new java.awt.Font("Times New Roman", java.awt.Font.BOLD, 20);
+	static java.awt.Font awtFont3 = new java.awt.Font("Times New Roman", java.awt.Font.BOLD, 28);
+	private static UnicodeFont font1 = new UnicodeFont(awtFont1);
+	private static UnicodeFont font2 = new UnicodeFont(awtFont2);
+	public static UnicodeFont font3 = new UnicodeFont(awtFont3);
+
+	private static ArrayList<String> lines = new ArrayList<String>();
 	public Renderer2D(){
 		init();
 	}
 	@SuppressWarnings("unchecked")
 	public static void init() {
-		java.awt.Font awtFont = new java.awt.Font("Times New Roman", java.awt.Font.BOLD, 28);
-		font = new UnicodeFont(awtFont);
-		font.addAsciiGlyphs();
-		font.getEffects().add(new ColorEffect(java.awt.Color.white));
+		font1.addAsciiGlyphs();
+		font2.addAsciiGlyphs();
+		font3.addAsciiGlyphs();
+
+		font1.getEffects().add(new ColorEffect(java.awt.Color.white));
+		font2.getEffects().add(new ColorEffect(java.awt.Color.white));
+		font3.getEffects().add(new ColorEffect(java.awt.Color.white));
 
 		try{
-			font.loadGlyphs();
+			font1.loadGlyphs();
+			font2.loadGlyphs();
+			font3.loadGlyphs();
 		}catch(SlickException e){
 			e.printStackTrace();
 		}
@@ -51,13 +60,24 @@ public class Renderer2D {
 	    //    e.printStackTrace();
 	    //}   
 	}
-	public static void renderText(float x, float y, String text, Color color) {
+	public static void renderText(float x, float y, String text, Color color, int size) {
 		draw2D();
 		if(!(initiated)){
 			init();
 			initiated = true;
 		}
-		font.drawString(x, y, text, color);
+		switch(size){
+			case 1:	
+				font1.drawString(x, y, text, color);
+			break;
+			case 2:  
+				font2.drawString(x, y, text, color);
+			break;
+			default: 	
+				font3.drawString(x, y, text, color);
+
+
+		}
 		reinitiatePreviousDrawState();
 	}
 	public static void reinitiatePreviousDrawState(){

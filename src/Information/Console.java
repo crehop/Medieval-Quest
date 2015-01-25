@@ -12,6 +12,8 @@ public class Console {
 	public static String line6 = "6";
 	public static String line7 = "7";
 	public static String line8 = "8";
+	public static int x = 5;
+	public static int y = 5;
 	public static void renderConsole(){
 		if(consoleOn){
 			if(line1 == null){
@@ -35,23 +37,23 @@ public class Console {
 			if(line7 == null){
 				line7 = "null";
 			}
-			int x = 5;
-			int y = 5;
-			renderer.Renderer2D.renderText(x, y, line1, Color.white);
-			y += (renderer.Renderer2D.font.getHeight(line1) + 5);
-			renderer.Renderer2D.renderText(x, y, line2, Color.white);
-			y += (renderer.Renderer2D.font.getHeight(line2) + 5);
-			renderer.Renderer2D.renderText(x, y, line3, Color.white);
-			y += (renderer.Renderer2D.font.getHeight(line3) + 5);
-			renderer.Renderer2D.renderText(x, y, line4, Color.white);
-			y += (renderer.Renderer2D.font.getHeight(line4) + 5);
-			renderer.Renderer2D.renderText(x, y, line5, Color.white);
-			y += (renderer.Renderer2D.font.getHeight(line5) + 5);
-			renderer.Renderer2D.renderText(x, y, line6, Color.white);
-			y += (renderer.Renderer2D.font.getHeight(line6) + 5);
-			renderer.Renderer2D.renderText(x, y, line7, Color.white);
-			y += (renderer.Renderer2D.font.getHeight(line7) + 5);
-			renderer.Renderer2D.renderText(x, y, line8, Color.white);
+			x = 5;
+			y = 5;
+			renderer.Renderer2D.renderText(x, y, line1, Color.white,3);
+			y += (renderer.Renderer2D.font3.getHeight(line1) + 5);
+			renderer.Renderer2D.renderText(x, y, line2, Color.white,3);
+			y += (renderer.Renderer2D.font3.getHeight(line2) + 5);
+			renderer.Renderer2D.renderText(x, y, line3, Color.white,3);
+			y += (renderer.Renderer2D.font3.getHeight(line3) + 5);
+			renderer.Renderer2D.renderText(x, y, line4, Color.white,3);
+			y += (renderer.Renderer2D.font3.getHeight(line4) + 5);
+			renderer.Renderer2D.renderText(x, y, line5, Color.white,3);
+			y += (renderer.Renderer2D.font3.getHeight(line5) + 5);
+			renderer.Renderer2D.renderText(x, y, line6, Color.white,3);
+			y += (renderer.Renderer2D.font3.getHeight(line6) + 5);
+			renderer.Renderer2D.renderText(x, y, line7, Color.white,3);
+			y += (renderer.Renderer2D.font3.getHeight(line7) + 5);
+			renderer.Renderer2D.renderText(x, y, line8, Color.white,3);
 		}
 	}
 	public static boolean isConsoleOn() {
