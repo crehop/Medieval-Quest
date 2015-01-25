@@ -10,53 +10,59 @@ import renderer.Renderer2D;
 import utils.Pixel;
 import utils.TextureHandler;
 
-public class ClickMenu {
-	private  Texture menu = TextureHandler.getTexture("menuitem");
-	private  int x = 0;
-	private  int y = 0;
-	private  float sizeX = 100.0f;
-	private  float sizeY = 25.0f;
-	private  int choice = 0;
-	private  int clickChoice = 0;
-	private  boolean menuOpen = false;
-	private  int count = 1;
-	private  int menuSize = 0;
-	private  double lastToggle = 0.0f;
-	private  String[] lines = {"null","null","null","null","null","null","null","null","null","null","null"};
+public class RightClickMenu {
+	private static Texture menu = TextureHandler.getTexture("menuitem");
+	private static int x = 0;
+	private static int y = 0;
+	private static float sizeX = 100.0f;
+	private static float sizeY = 25.0f;
+	private static int choice = 0;
+	private static int clickChoice = 0;
+	private static boolean menuOpen = false;
+	private static boolean lock = false;
+	private static int count = 1;
+	private static int menuSize = 0;
+	private static double lastToggle = Main.Main.getTime();
+	private static String[] lines = {"null","null","null","null","null","null","null","null","null","null","null"};
 	
-	public ClickMenu(String[] args, int MouseX, int MouseY){
-		Interface.addMenu(this);
-		sizeX = 125.0f;
-		sizeY = 25.0f;
-		x = MouseX;
-		y = MouseY;
-		for(int i = 0; i<args.length; i++){
-			lines[i + 1] = args[i];
-		}
-		menuSize = args.length;
-	}
-	public ClickMenu(String[] args, int MouseX, int MouseY, int xSize, int ySize){
-		Interface.addMenu(this);
-		clickChoice = 0;
-		sizeX = xSize;
-		sizeY = ySize;
-		x = MouseX;
-		y = MouseY;
-		for(int i = 0; i<args.length; i++){
-			lines[i + 1] = args[i];
-		}
-		menuSize = args.length;
-	}
-	public  void openMenu(){
+	public static void openMenu(String[] args, int MouseX, int MouseY){
 		if(Main.Main.getTime() - lastToggle > 4.0f){
 			lastToggle = Main.Main.getTime();
-			menuOpen = true;
-		}
-		if(menuOpen){
-			closeMenu();
+			if(menuOpen){
+				closeMenu();
+			}else{
+				sizeX = 125.0f;
+				sizeY = 25.0f;
+				x = MouseX;
+				y = MouseY;
+				for(int i = 0; i<args.length; i++){
+					lines[i + 1] = args[i];
+				}
+				menuSize = args.length;
+				menuOpen = true;
+			}
 		}
 	}
-	public  void render(){
+	public static void openMenu(String[] args, int MouseX, int MouseY, int xSize, int ySize){
+		clickChoice = 0;
+		if(Main.Main.getTime() - lastToggle > 4.0f){
+			lastToggle = Main.Main.getTime();
+			if(menuOpen){
+				closeMenu();
+			}else{
+				sizeX = xSize;
+				sizeY = ySize;
+				x = MouseX;
+				y = MouseY;
+				for(int i = 0; i<args.length; i++){
+					lines[i + 1] = args[i];
+				}
+				menuSize = args.length;
+				menuOpen = true;
+			}
+		}
+	}
+	public static void render(){
 		if(menuOpen){
 			Mouse.setGrabbed(false);
 			Main.Main.lockCamera(true);
@@ -173,7 +179,7 @@ public class ClickMenu {
 			choice = 0;
 		}
 	}
-	private  int getChoice(){
+	private static int getChoice(){
 		choice = 0;
 		for(String line:lines){
 			if(!(line.equalsIgnoreCase("null"))){
@@ -187,7 +193,7 @@ public class ClickMenu {
 		}
 		return choice;
 	}
-	public  void closeMenu(){
+	public static void closeMenu(){
 		for(int i = 0; i <lines.length; i++){
 		 	lines[i] = "null";
 		}
@@ -204,10 +210,10 @@ public class ClickMenu {
 		}
 		Main.Main.lockCamera(false);
 	}
-	public  boolean isOpen() {
+	public static boolean isOpen() {
 		return menuOpen;
 	}
-	public  int getSelection(){
+	public static int getSelection(){
 		choice = 0;
 		for(String line:lines){
 			if(!(line.equalsIgnoreCase("null"))){

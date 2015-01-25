@@ -1,8 +1,10 @@
 package renderer;
 
+import static org.lwjgl.opengl.GL11.glPushMatrix;
 import entities.Trees;
 import entities.Zombie;
 import gameElements.Model;
+import gameElements.RightClickMenu;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +16,6 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import Information.Console;
-import Information.Controls;
 
 import utils.ModelLoader;
 
@@ -64,7 +65,7 @@ public class Renderer3D {
 		}
 	}
 	public static void renderActiveModels(){
-		if(Mouse.isButtonDown(0))Console.setLine7("CHOICE = " +	Controls.getMenu().getSelection());
+		if(Mouse.isButtonDown(0))Console.setLine7("CHOICE = " + RightClickMenu.getSelection());
 		
 		if(!(initiated)){
 			initiate();
