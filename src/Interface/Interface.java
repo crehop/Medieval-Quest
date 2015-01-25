@@ -1,4 +1,4 @@
-package gameElements;
+package Interface;
 
 public class Interface {
 

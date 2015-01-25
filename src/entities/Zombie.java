@@ -12,7 +12,6 @@ import utils.ModelLoader;
 import utils.TextureHandler;
 
 import gameElements.Model;
-import gameElements.Unit;
 
 public class Zombie implements Unit{
 	private HashMap<Integer,Model> animate = new HashMap<Integer,Model>();

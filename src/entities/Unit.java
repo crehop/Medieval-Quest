@@ -1,4 +1,4 @@
-package gameElements;
+package entities;
 
 public interface Unit {
 	public void walkForward();
