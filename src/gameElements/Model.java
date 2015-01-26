@@ -12,6 +12,7 @@ import static org.lwjgl.opengl.GL11.glRotatef;
 import static org.lwjgl.opengl.GL11.glTranslatef;
 
 import java.io.File;
+import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +33,7 @@ import Information.Console;
 
 import server.Location;
 import utils.Face;
+import utils.ModelUtils;
 import utils.TextureHandler;
 
 @SuppressWarnings("unused")
@@ -44,12 +46,6 @@ public class Model {
 	public List<Vector2f> textures = new ArrayList<Vector2f>();
 	public List<Face> faces = new ArrayList<Face>();
 	public int renderloop = 0;
-	private float xmax = -100000000.0f;
-	private float xmin = 100000000.0f;
-	private float ymin = 100000000.0f;
-	private float ymax = -100000000.0f;
-	private float zmin = 100000000.0f;
-	private float zmax = -100000000.0f;
 	private boolean moved = true;
 	private boolean collided = false;
 	private boolean firstRun = true;
@@ -72,6 +68,9 @@ public class Model {
 	private float roll = 0.0f;
 	private float yaw = 0.0f;
 	private float pitch = 0.0f;
+    private int[] vbo = new int[3];
+
+
 	
 	private int count = 0;
 	public Model(float x,float y,float z,File f, boolean movable, boolean collidable){
@@ -80,16 +79,19 @@ public class Model {
 		this.movable = movable;
 		this.collidable = collidable;
 		this.name = f.getName().replace(".obj", "");
-		texture = TextureHandler.getModelTexture(f.getPath().replace(".obj",".png"));	}
+		texture = TextureHandler.getModelTexture(f.getPath().replace(".obj",".png"));	
+		ModelUtils.convertToVBO(this);
+	}
 	public Model(File f, Texture texture2) {
 		this.name = f.getName().replace(".obj", "");
 		this.texture = texture2;	
 		this.ID = -1;
+		ModelUtils.convertToVBO(this);
 	}
 	public void renderModel(){
 		if(render){
 				glPushMatrix();
-				Console.setLine6("YAW = " + yaw);
+				Console.setLine6("VBO = " + vbo[0] + "," + vbo[1] + "," + vbo[2]);
 				glRotatef(pitch,1,0,0);
 				glRotatef(yaw,0,1,0);
 				glRotatef(roll,0,0,1);
@@ -104,13 +106,13 @@ public class Model {
 			 	for(Face face:faces){
 			 		//n=normal t=texel v=vertex
 			 		n1 = this.normals.get((int)face.normal.x - 1);
-		            t1 = this.textures.get((int)face.textureCall.x -1);
+		            t1 = this.textures.get((int)face.texture.x -1);
 			 		v1 = this.vertices.get((int)face.vertex.x - 1);
 			 		n2 = this.normals.get((int)face.normal.y - 1);
-			 		t2 = this.textures.get((int)face.textureCall.y -1);
+			 		t2 = this.textures.get((int)face.texture.y -1);
 			 		v2 = this.vertices.get((int)face.vertex.y - 1);
 			 		n3 = this.normals.get((int)face.normal.z - 1);
-		            t3 = this.textures.get((int)face.textureCall.z -1);
+		            t3 = this.textures.get((int)face.texture.z -1);
 			 		v3 = this.vertices.get((int)face.vertex.z - 1);
 			 		
 			        GL11.glTexCoord2f(-t1.x,-t1.y);
@@ -143,12 +145,6 @@ public class Model {
 				this.collided = true;
 			}
 		}else{
-			this.xmin += x;
-			this.xmax += x;
-			this.ymin += y;
-			this.ymax += y;
-			this.zmin += z;
-			this.zmax += z;
 			this.location.setX(this.location.getX() + x);
 			this.location.setY(this.location.getY() + y);
 			this.location.setZ(this.location.getZ() + z);
@@ -164,12 +160,6 @@ public class Model {
 				this.collided = true;
 			}
 		}else{
-			this.xmin += this.getLocation().getX() - x;
-			this.xmax += this.getLocation().getX() - x;
-			this.ymin += this.getLocation().getY() - y;
-			this.ymax += this.getLocation().getY() - y;
-			this.zmin += this.getLocation().getZ() - z;
-			this.zmax += this.getLocation().getZ() - z;
 			this.location.setX(x);
 			this.location.setY(y);
 			this.location.setZ(z);
@@ -188,58 +178,15 @@ public class Model {
 				this.collided = true;
 			}
 		}else{
-			this.xmin += this.getLocation().getX() - location.getX();
-			this.xmax += this.getLocation().getX() - location.getX();
-			this.ymin += this.getLocation().getY() - location.getY();
-			this.ymax += this.getLocation().getY() - location.getY();
-			this.zmin += this.getLocation().getZ() - location.getZ();
-			this.zmax += this.getLocation().getZ() - location.getZ();
 			this.location.setX(location.getX());
 			this.location.setY(location.getY());
 			this.location.setZ(location.getZ());
 			this.moved = true;
 		}
 	}
-	public float getXmax() {
-		return xmax;
-	}
-	public void setXmax(float xmax) {
-		this.xmax = xmax;
-	}
-	public float getXmin() {
-		return xmin;
-	}
-	public void setXmin(float xmin) {
-		this.xmin = xmin;
-	}
-	public float getYmin() {
-		return ymin;
-	}
-	public void setYmin(float ymin) {
-		this.ymin = ymin;
-	}
-	public float getYmax() {
-		return ymax;
-	}
-	public void setYmax(float ymax) {
-		this.ymax = ymax;
-	}
-	public float getZmin() {
-		return zmin;
-	}
-	public void setZmin(float zmin) {
-		this.zmin = zmin;
-	}
-	public float getZmax() {
-		return zmax;
-	}
-	
-	public void setZmax(float zmax) {
-		this.zmax = zmax;
-	}
 	public String getName() {
 		if(name == null){
-			name = " NULL ";
+			name = "2 NULL ";
 		}
 		return name;
 	}
@@ -333,5 +280,10 @@ public class Model {
 	}
 	public float getRoll(){
 		return roll;
+	}
+	public void setVBOInfo(int[] vbo){
+		this.vbo[0] = vbo[0];
+		this.vbo[1] = vbo[1];
+		this.vbo[2] = vbo[2];
 	}
 }

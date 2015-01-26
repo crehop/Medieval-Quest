@@ -17,6 +17,7 @@ public class Button {
 	private  boolean render = false;
 	private  int count = 1;
 	private  double lastToggle = Main.Main.getTime();
+	private  boolean pressed = false;
 	
 	public Button(Texture texture, String name, int X, int Y, int xSize, int ySize){
 		if(Main.Main.getTime() - lastToggle > 4.0f){
@@ -61,5 +62,11 @@ public class Button {
 	}
 	public boolean isRendered(){
 		return render;
+	}
+	public boolean isPressed(){
+		return this.pressed;
+	}
+	public void reset(){
+		pressed = false;
 	}
 }
