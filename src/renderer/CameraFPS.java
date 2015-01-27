@@ -110,11 +110,11 @@ public class CameraFPS {
 		return pitch;
 	}
 	public void setPitch(float pitch) {
-		if ((this.pitch + pitch) > 88.0){
-			this.pitch = 88.0f;
+		if ((this.pitch + pitch) > 90.0){
+			this.pitch = 90.0f;
 		}
-		else if ((this.pitch + pitch) < -88.0){
-			this.pitch = -88.0f;
+		else if ((this.pitch + pitch) < -90.0){
+			this.pitch = -90.0f;
 		}
 		else{
 			this.pitch += pitch;

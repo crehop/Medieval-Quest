@@ -69,6 +69,7 @@ public class Model {
 	private float yaw = 0.0f;
 	private float pitch = 0.0f;
     private int[] vbo = new int[3];
+    private int rendercall = 0;
 
 
 	
@@ -89,9 +90,10 @@ public class Model {
 		ModelUtils.convertToVBO(this);
 	}
 	public void renderModel(){
+		rendercall++;
 		if(render){
 				glPushMatrix();
-				Console.setLine6("VBO = " + vbo[0] + "," + vbo[1] + "," + vbo[2]);
+				Console.setLine6("VBO = " + vbo[0] + "," + vbo[1] + "," + vbo[2] + "times rendered =" + rendercall);
 				glRotatef(pitch,1,0,0);
 				glRotatef(yaw,0,1,0);
 				glRotatef(roll,0,0,1);
