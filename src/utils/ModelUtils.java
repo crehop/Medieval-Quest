@@ -17,6 +17,7 @@ import org.lwjgl.opengl.GL15;
 
 
 public class ModelUtils {
+	private static IntBuffer buffer;
 	private static ByteBuffer byteBuf = null;
     private static final int FLOAT = Float.SIZE/Byte.SIZE;
 	private static ArrayList<Float> V = new ArrayList();
@@ -65,19 +66,32 @@ public class ModelUtils {
 	    	texels.flip();
 	    	
 	        // define the size and function of the buffer.
-	        GL15.glGenBuffers();
-	        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo[0]);
+	    	createNewVBOID();
+	        GL15.glGenBuffers(buffer);
+	        System.out.println("" + buffer.get(0));
+	        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, buffer.get(0));
 	        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertices, GL15.GL_STATIC_DRAW);
-	        GL15.glGenBuffers();
-	        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo[1]);
+	        vbo[0] = buffer.get(0);
+	    	createNewVBOID();
+	        GL15.glGenBuffers(buffer);
+	        System.out.println("" + buffer.get(0));
+	        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, buffer.get(0));
 	        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, normals, GL15.GL_STATIC_DRAW);
-	        GL15.glGenBuffers();
-	        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo[2]);
+	        vbo[1] = buffer.get(0);
+	    	createNewVBOID();
+	        GL15.glGenBuffers(buffer);
+	        System.out.println("" + buffer.get(0));
+	        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, buffer.get(0));
 	        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, texels, GL15.GL_STATIC_DRAW);
 	        ID.putVBO(vbo, model.getName());
+	        vbo[2] = buffer.get(0);
 		    model.setVBOInfo(vbo);
     	}else{
     		model.setVBOInfo(ID.getVBO(model.getName()));
     	}
+    }
+    public static void createNewVBOID() {
+        buffer = BufferUtils.createIntBuffer(1);
+        GL15.glGenBuffers(buffer);
     }
 }
