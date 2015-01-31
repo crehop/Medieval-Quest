@@ -93,51 +93,48 @@ public class Model {
 	}
 	public void renderModel(){
 		rendercall++;
-		this.renderAsVBO();
-		Console.setLine6("VBO = " + vbo[0] + "," + vbo[1] + "," + vbo[2] + "times rendered =" + rendercall);
-		/*if(render){
+		if(render){
 				glPushMatrix();
-				Console.setLine6("VBO = " + vbo[0] + "," + vbo[1] + "," + vbo[2] + "times rendered =" + rendercall);
-				glRotatef(pitch,1,0,0);
-				glRotatef(yaw,0,1,0);
-				glRotatef(roll,0,0,1);
-			    //READ http://en.wikipedia.org/wiki/Wavefront_.obj_file#Texture_maps
-				this.texture.bind();
-				GL11.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); 
-				GL11.glEnable(GL11.GL_TEXTURE_2D);
-				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-		        glEnable(GL_BLEND);
-		        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			 	GL11.glBegin(GL11.GL_TRIANGLES);
-			 	for(Face face:faces){
-			 		//n=normal t=texel v=vertex
-			 		n1 = this.normals.get((int)face.normal.x - 1);
-		            t1 = this.textures.get((int)face.texture.x -1);
-			 		v1 = this.vertices.get((int)face.vertex.x - 1);
-			 		n2 = this.normals.get((int)face.normal.y - 1);
-			 		t2 = this.textures.get((int)face.texture.y -1);
-			 		v2 = this.vertices.get((int)face.vertex.y - 1);
-			 		n3 = this.normals.get((int)face.normal.z - 1);
-		            t3 = this.textures.get((int)face.texture.z -1);
-			 		v3 = this.vertices.get((int)face.vertex.z - 1);
-			 		
-			        GL11.glTexCoord2f(-t1.x,-t1.y);
-			        GL11.glNormal3f((n1.x + this.location.getX()), (n1.y + this.location.getY()), (n1.z + this.location.getZ()));
-			 		GL11.glVertex3f((v1.x + this.location.getX()), (v1.y + this.location.getY()), (v1.z + this.location.getZ()));	
-			        GL11.glTexCoord2f(-t2.x,-t2.y);
-			 		GL11.glVertex3f((v2.x + this.location.getX()), (v2.y + this.location.getY()), (v2.z + this.location.getZ()));
-			 		GL11.glNormal3f((n2.x + this.location.getX()), (n2.y + this.location.getY()), (n2.z + this.location.getZ()));
-				    GL11.glTexCoord2f(-t3.x,-t3.y);
-			 		GL11.glVertex3f((v3.x + this.location.getX()), (v3.y + this.location.getY()), (v3.z + this.location.getZ())); 
-			 		GL11.glNormal3f((n3.x + this.location.getX()), (n3.y + this.location.getY()), (n3.z + this.location.getZ()));
-			 		
-			 	}
-				if(moved)this.moved = false;
-				GL11.glDisable(GL11.GL_TEXTURE_2D);
-		        glEnd(); 
+				    glTranslatef(this.location.getX(),this.location.getY(),this.location.getZ());
+					glRotatef(pitch,1,0,0);
+					glRotatef(yaw,0,1,0);
+					glRotatef(roll,0,0,1);
+				    glTranslatef(-this.location.getX(),-this.location.getY(),-this.location.getZ());
+				    //READ http://en.wikipedia.org/wiki/Wavefront_.obj_file#Texture_maps
+					this.texture.bind();
+					GL11.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); 
+					GL11.glEnable(GL11.GL_TEXTURE_2D);
+					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+			        glEnable(GL_BLEND);
+			        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+				 	GL11.glBegin(GL11.GL_TRIANGLES);
+				 	for(Face face:faces){
+				 		//n=normal t=texel v=vertex
+				 		n1 = this.normals.get((int)face.normal.x - 1);
+			            t1 = this.textures.get((int)face.texture.x -1);
+				 		v1 = this.vertices.get((int)face.vertex.x - 1);
+				 		n2 = this.normals.get((int)face.normal.y - 1);
+				 		t2 = this.textures.get((int)face.texture.y -1);
+				 		v2 = this.vertices.get((int)face.vertex.y - 1);
+				 		n3 = this.normals.get((int)face.normal.z - 1);
+			            t3 = this.textures.get((int)face.texture.z -1);
+				 		v3 = this.vertices.get((int)face.vertex.z - 1);
+				        GL11.glTexCoord2f(-t1.x,-t1.y);
+				        GL11.glNormal3f((n1.x + this.location.getX()), (n1.y + this.location.getY()), (n1.z + this.location.getZ()));
+				 		GL11.glVertex3f((v1.x + this.location.getX()), (v1.y + this.location.getY()), (v1.z + this.location.getZ()));	
+				        GL11.glTexCoord2f(-t2.x,-t2.y);
+				 		GL11.glVertex3f((v2.x + this.location.getX()), (v2.y + this.location.getY()), (v2.z + this.location.getZ()));
+				 		GL11.glNormal3f((n2.x + this.location.getX()), (n2.y + this.location.getY()), (n2.z + this.location.getZ()));
+					    GL11.glTexCoord2f(-t3.x,-t3.y);
+				 		GL11.glVertex3f((v3.x + this.location.getX()), (v3.y + this.location.getY()), (v3.z + this.location.getZ())); 
+				 		GL11.glNormal3f((n3.x + this.location.getX()), (n3.y + this.location.getY()), (n3.z + this.location.getZ()));
+
+				 	}
+					if(moved)this.moved = false;
+			        glEnd(); 
 				GL11.glPopMatrix();
 			this.faceCount = faces.size();
-		}*/
+		}
 	}
 	public Location getLocation(){
 		return location;
@@ -293,12 +290,32 @@ public class Model {
 		this.vbo[2] = vbo[2];
 	}
 	public void renderAsVBO(){
-	    GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
-	    GL11.glVertexPointer(3, GL11.GL_FLOAT, 0, 0);
-		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo[0]);         // for vertex coordinates
-		GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, 0);
-		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vbo[1]); // for indices
-		GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, 0);
-		GL15.glBindBuffer(GL12.GL_TEXTURE_WRAP_R, this.vbo[2]);
+		/*glPushMatrix();
+			Console.setLine6("VBO = " + vbo[0] + "," + vbo[1] + "," + vbo[2] + "times rendered =" + rendercall);
+			glRotatef(pitch,1,0,0);
+			glRotatef(yaw,0,1,0);
+			glRotatef(roll,0,0,1);
+			GL11.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); 
+	        glEnable(GL_BLEND);
+	        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+			Console.setLine9("GL ERROR ? = " + GL11.glGetError());
+			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+			
+		    GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
+			GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, this.vbo[0]); 
+			GL11.glVertexPointer(3, GL11.GL_FLOAT, 0,0);
+		   
+			GL11.glEnableClientState(GL11.GL_NORMAL_ARRAY);
+			GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, this.vbo[1]); 
+			GL11.glVertexPointer(3, GL11.GL_FLOAT, 0,0);
+		   
+			GL11.glEnableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
+			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.vbo[2]);
+			GL11.glVertexPointer(3, GL11.GL_FLOAT, 0,0);
+
+			GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, 0);
+
+			Console.setLine10("GL ERROR ? = " + GL11.glGetError());
+		glPopMatrix();*/
 	}
 }

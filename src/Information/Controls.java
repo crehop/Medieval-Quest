@@ -173,10 +173,10 @@ public class Controls {
 		if(menu){
 			RightClickMenu.openMenu(lines, Display.getWidth(), Display.getHeight());
 		}
-		if(offsetXPlus) Skybox.setX(Skybox.getX() + 0.001f);
-		if(offsetXMinus) Skybox.setX(Skybox.getX() - 0.001f);
-		if(offsetYPlus) Skybox.setY(Skybox.getY() + 0.001f);
-		if(offsetYMinus) Skybox.setY(Skybox.getY() - 0.001f);
+		if(offsetXPlus);
+		if(offsetXMinus);
+		if(offsetYPlus);
+		if(offsetYMinus);
 	}
 
 }

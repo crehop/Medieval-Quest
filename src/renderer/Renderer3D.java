@@ -45,7 +45,7 @@ public class Renderer3D {
 			//test3 = ModelLoader.loadModel(new File("res/models/map/map.obj"));
 			//test2.setCollidable(true);
 			//test2.setMovable(true);
-			//test2.setStartLocation(0.0f, 2.0f, 0.0f);
+			test2.setStartLocation(10.0f, 0.0f, 0.0f);
 			//test3.setCollidable(true);
 			//test3.setMovable(true);
 			//test3.setStartLocation(0.0f, 0.0f, 0.0f);
@@ -76,8 +76,9 @@ public class Renderer3D {
 			facesOnScreen += m.faceCount();
 			m.renderModel();
 			m.setYaw(m.getYaw() + 1.0f);
-			m.setPitch(m.getPitch() + 0.01f);
-			m.setRoll(m.getRoll() + 0.10f);
+			m.setPitch(m.getPitch() + 1.0f);
+			m.setRoll(m.getRoll() + 1.0f);
+
 			if(m.getID() == 2){
 				if(offsetXPlus){
 					m.move(0.1f, 0, 0);

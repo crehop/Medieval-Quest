@@ -12,6 +12,8 @@ public class Console {
 	public static String line6 = "6";
 	public static String line7 = "7";
 	public static String line8 = "8";
+	public static String line9 = "9";
+	public static String line10 = "10";
 	public static int x = 5;
 	public static int y = 5;
 	public static void renderConsole(){
@@ -37,6 +39,15 @@ public class Console {
 			if(line7 == null){
 				line7 = "null";
 			}
+			if(line8 == null){
+				line8 = "null";
+			}
+			if(line9 == null){
+				line9 = "null";
+			}
+			if(line10 == null){
+				line10 = "null";
+			}
 			x = 5;
 			y = 5;
 			renderer.Renderer2D.renderText(x, y, line1, Color.white,3);
@@ -54,6 +65,10 @@ public class Console {
 			renderer.Renderer2D.renderText(x, y, line7, Color.white,3);
 			y += (renderer.Renderer2D.font3.getHeight(line7) + 5);
 			renderer.Renderer2D.renderText(x, y, line8, Color.white,3);
+			y += (renderer.Renderer2D.font3.getHeight(line8) + 5);
+			renderer.Renderer2D.renderText(x, y, line9, Color.white,3);
+			y += (renderer.Renderer2D.font3.getHeight(line9) + 5);
+			renderer.Renderer2D.renderText(x, y, line10, Color.white,3);
 		}
 	}
 	public static boolean isConsoleOn() {
@@ -107,7 +122,19 @@ public class Console {
 	public static String getLine8() {
 		return line8;
 	}
-	public static void setLine8(String line7) {
-		Console.line8 = line7;
+	public static void setLine8(String line8) {
+		Console.line8 = line8;
+	}
+	public static String getLine9() {
+		return line9;
+	}
+	public static void setLine9(String line9) {
+		Console.line9 = line9;
+	}
+	public static String getLine10() {
+		return line10;
+	}
+	public static void setLine10(String line10) {
+		Console.line10 = line10;
 	}
 }

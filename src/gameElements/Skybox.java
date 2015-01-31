@@ -30,7 +30,6 @@ public class Skybox {
 			}
 			GL11.glPushAttrib(GL11.GL_DEPTH_TEST);
 			GL11.glDisable(GL11.GL_DEPTH_TEST);
-			GL11.glEnable(GL11.GL_CLAMP);
 			//Front Face
 			night.bind();
 			Console.setLine5("X=" + getX() + " Y=" + getY());

@@ -10,6 +10,7 @@ import java.nio.IntBuffer;
 import java.util.ArrayList;
 
 import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 
 
@@ -63,26 +64,28 @@ public class ModelUtils {
 	    	texels.flip();
 	    	
 	        // define the size and function of the buffer.
+	    	// Vertices
 	    	createNewVBOID();
-	        GL15.glGenBuffers(buffer);
 	        System.out.println("" + buffer.get(0));
 	        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, buffer.get(0));
 	        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, vertices, GL15.GL_STATIC_DRAW);
 	        vbo[0] = buffer.get(0);
-	    	createNewVBOID();
-	        GL15.glGenBuffers(buffer);
-	        System.out.println("" + buffer.get(0));
+	    	
+	        // Normals
+	        createNewVBOID();
 	        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, buffer.get(0));
 	        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, normals, GL15.GL_STATIC_DRAW);
 	        vbo[1] = buffer.get(0);
-	    	createNewVBOID();
-	        GL15.glGenBuffers(buffer);
-	        System.out.println("" + buffer.get(0));
+	        
+	        // Texels
+	        createNewTexVBOID();
+	        //System.out.println("" + buffer.get(0));
 	        GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, buffer.get(0));
 	        GL15.glBufferData(GL15.GL_ARRAY_BUFFER, texels, GL15.GL_STATIC_DRAW);
-	        ID.putVBO(vbo, model.getName());
 	        vbo[2] = buffer.get(0);
+	        
 		    model.setVBOInfo(vbo);
+	        ID.putVBO(vbo, model.getName());
     	}else{
     		model.setVBOInfo(ID.getVBO(model.getName()));
     	}
@@ -90,5 +93,9 @@ public class ModelUtils {
     public static void createNewVBOID() {
         buffer = BufferUtils.createIntBuffer(1);
         GL15.glGenBuffers(buffer);
+    }
+    public static void createNewTexVBOID() {
+        buffer = BufferUtils.createIntBuffer(1);
+        GL11.glGenTextures(buffer);
     }
 }
