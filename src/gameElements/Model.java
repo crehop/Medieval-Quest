@@ -19,6 +19,8 @@ import java.util.List;
 import loops.GameLoop;
 
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL11.*;
 import org.lwjgl.util.vector.Vector3f;
 import org.newdawn.slick.geom.Vector2f;
@@ -91,7 +93,9 @@ public class Model {
 	}
 	public void renderModel(){
 		rendercall++;
-		if(render){
+		this.renderAsVBO();
+		Console.setLine6("VBO = " + vbo[0] + "," + vbo[1] + "," + vbo[2] + "times rendered =" + rendercall);
+		/*if(render){
 				glPushMatrix();
 				Console.setLine6("VBO = " + vbo[0] + "," + vbo[1] + "," + vbo[2] + "times rendered =" + rendercall);
 				glRotatef(pitch,1,0,0);
@@ -133,7 +137,7 @@ public class Model {
 		        glEnd(); 
 				GL11.glPopMatrix();
 			this.faceCount = faces.size();
-		}
+		}*/
 	}
 	public Location getLocation(){
 		return location;
@@ -287,5 +291,14 @@ public class Model {
 		this.vbo[0] = vbo[0];
 		this.vbo[1] = vbo[1];
 		this.vbo[2] = vbo[2];
+	}
+	public void renderAsVBO(){
+	    GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
+	    GL11.glVertexPointer(3, GL11.GL_FLOAT, 0, 0);
+		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, vbo[0]);         // for vertex coordinates
+		GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, 0);
+		GL15.glBindBuffer(GL15.GL_ELEMENT_ARRAY_BUFFER, vbo[1]); // for indices
+		GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, 0);
+		GL15.glBindBuffer(GL12.GL_TEXTURE_WRAP_R, this.vbo[2]);
 	}
 }
