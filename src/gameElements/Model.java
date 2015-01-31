@@ -43,10 +43,6 @@ public class Model {
 	int faceCount = 0;
 	boolean render = true;
 	public Location location;
-	public List<Vector3f> vertices = new ArrayList<Vector3f>();
-	public List<Vector3f> normals = new ArrayList<Vector3f>();
-	public List<Vector2f> textures = new ArrayList<Vector2f>();
-	public List<Face> faces = new ArrayList<Face>();
 	public int renderloop = 0;
 	private boolean moved = true;
 	private boolean collided = false;
@@ -82,14 +78,14 @@ public class Model {
 		this.movable = movable;
 		this.collidable = collidable;
 		this.name = f.getName().replace(".obj", "");
-		texture = TextureHandler.getModelTexture(f.getPath().replace(".obj",".png"));	
-		ModelUtils.convertToVBO(this);
+		texture = TextureHandler.getModelTexture(f.getPath().replace(".obj",".png"));
+		//ModelUtils.convertToVBO(this);
 	}
 	public Model(File f, Texture texture2) {
 		this.name = f.getName().replace(".obj", "");
 		this.texture = texture2;	
 		this.ID = -1;
-		ModelUtils.convertToVBO(this);
+		//ModelUtils.convertToVBO(this);
 	}
 	public void renderModel(){
 		rendercall++;
@@ -108,17 +104,17 @@ public class Model {
 			        glEnable(GL_BLEND);
 			        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				 	GL11.glBegin(GL11.GL_TRIANGLES);
-				 	for(Face face:faces){
+				 	for(Face face:ModelUtils.getFaces(name)){
 				 		//n=normal t=texel v=vertex
-				 		n1 = this.normals.get((int)face.normal.x - 1);
-			            t1 = this.textures.get((int)face.texture.x -1);
-				 		v1 = this.vertices.get((int)face.vertex.x - 1);
-				 		n2 = this.normals.get((int)face.normal.y - 1);
-				 		t2 = this.textures.get((int)face.texture.y -1);
-				 		v2 = this.vertices.get((int)face.vertex.y - 1);
-				 		n3 = this.normals.get((int)face.normal.z - 1);
-			            t3 = this.textures.get((int)face.texture.z -1);
-				 		v3 = this.vertices.get((int)face.vertex.z - 1);
+				 		n1 = ModelUtils.getNormalArray(name).get((int)face.normal.x - 1);
+			            t1 = ModelUtils.getTexelArray(name).get((int)face.texture.x -1);
+				 		v1 = ModelUtils.getVerticeArray(name).get((int)face.vertex.x - 1);
+				 		n2 = ModelUtils.getNormalArray(name).get((int)face.normal.y - 1);
+				 		t2 = ModelUtils.getTexelArray(name).get((int)face.texture.y -1);
+				 		v2 = ModelUtils.getVerticeArray(name).get((int)face.vertex.y - 1);
+				 		n3 = ModelUtils.getNormalArray(name).get((int)face.normal.z - 1);
+			            t3 = ModelUtils.getTexelArray(name).get((int)face.texture.z -1);
+				 		v3 = ModelUtils.getVerticeArray(name).get((int)face.vertex.z - 1);
 				        GL11.glTexCoord2f(-t1.x,-t1.y);
 				        GL11.glNormal3f((n1.x + this.location.getX()), (n1.y + this.location.getY()), (n1.z + this.location.getZ()));
 				 		GL11.glVertex3f((v1.x + this.location.getX()), (v1.y + this.location.getY()), (v1.z + this.location.getZ()));	
@@ -133,7 +129,7 @@ public class Model {
 					if(moved)this.moved = false;
 			        glEnd(); 
 				GL11.glPopMatrix();
-			this.faceCount = faces.size();
+			this.faceCount = ModelUtils.getFaces(name).size();
 		}
 	}
 	public Location getLocation(){
@@ -234,7 +230,7 @@ public class Model {
 		this.firstRun = true;
 	}
 	public List<Face> getFaces() {
-		return faces;
+		return ModelUtils.getFaces(name);
 	}
 	public void setTexture(Texture texture2) {
 		this.texture = texture2;

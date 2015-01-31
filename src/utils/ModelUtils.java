@@ -8,10 +8,13 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
+import org.lwjgl.util.vector.Vector3f;
+import org.newdawn.slick.geom.Vector2f;
 
 
 public class ModelUtils {
@@ -21,6 +24,12 @@ public class ModelUtils {
 	private static ArrayList<Float> V = new ArrayList();
 	private static ArrayList<Float> N = new ArrayList();
 	private static ArrayList<Float> T = new ArrayList();
+	
+	public static HashMap<String, ArrayList<Vector2f>> modelTex = new HashMap<String, ArrayList<Vector2f>>();
+	public static HashMap<String, ArrayList<Vector3f>> modelVert = new HashMap<String, ArrayList<Vector3f>>();
+	public static HashMap<String, ArrayList<Vector3f>> modelNorm = new HashMap<String, ArrayList<Vector3f>>();
+	public static HashMap<String, ArrayList<Face>> modelFaces = new HashMap<String, ArrayList<Face>>();
+
     private static Float[] normal = null;
     private static Float[] vertice = null;
     private static Float[] texel = null;
@@ -98,4 +107,60 @@ public class ModelUtils {
         buffer = BufferUtils.createIntBuffer(1);
         GL11.glGenTextures(buffer);
     }
+    public static ArrayList<Vector3f> getVerticeArray(String string){
+    	if(modelVert.containsKey(string)){
+    		return modelVert.get(string);
+    	}
+    	else{
+    		return null;
+    	}
+    }
+    public static ArrayList<Vector3f> getNormalArray(String string){
+    	if(modelNorm.containsKey(string)){
+    		return modelNorm.get(string);
+    	}
+    	else{
+    		return null;
+    	}
+    }
+    public static ArrayList<Vector2f> getTexelArray(String string){
+    	if(modelTex.containsKey(string)){
+    		return modelTex.get(string);
+    	}
+    	else{
+    		return null;
+    	}
+    }
+	public static ArrayList<Face> getFaces(String string) {
+    	if(modelFaces.containsKey(string)){
+    		return modelFaces.get(string);
+    	}
+    	else{
+    		return null;
+    	}
+	}
+	public static void createModelVertArray(String name){
+		if(!(modelVert.containsKey(name))){
+			System.out.println("VERTS MADE" + name);
+			modelVert.put(name,new ArrayList<Vector3f>());
+		}
+	}
+	public static void createModelNormalArray(String name){
+		if(!(modelNorm.containsKey(name))){
+			System.out.println("NORMAL MADE" + name);
+			modelNorm.put(name,new ArrayList<Vector3f>());
+		}
+	}
+	public static void createModelTexelArray(String name){
+		if(!(modelTex.containsKey(name))){
+			System.out.println("TEXEL MADE" + name);
+			modelTex.put(name,new ArrayList<Vector2f>());
+		}
+	}
+	public static void createModelFaceArray(String name){
+		if(!(modelFaces.containsKey(name))){
+			System.out.println("FACE MADE" + name);
+			modelFaces.put(name,new ArrayList<Face>());
+		}
+	}
 }
