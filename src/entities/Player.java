@@ -1,6 +1,6 @@
 package entities;
 import renderer.CameraFPS;
-import renderer.CameraRTS;
+//import renderer.CameraRTS;
 						
 public class Player extends CameraFPS{
 	public Player(float x, float y, float z) {

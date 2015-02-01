@@ -217,47 +217,13 @@ public class Model {
 	public float getRoll(){
 		return roll;
 	}
-	/*public void setVBOInfo(int[] vbo){
-		this.vbo[0] = vbo[0];
-		this.vbo[1] = vbo[1];
-		this.vbo[2] = vbo[2];
-	}
-	public void renderAsVBO(){
-		glPushMatrix();
-			Console.setLine6("VBO = " + vbo[0] + "," + vbo[1] + "," + vbo[2] + "times rendered =" + rendercall);
-			glRotatef(pitch,1,0,0);
-			glRotatef(yaw,0,1,0);
-			glRotatef(roll,0,0,1);
-			GL11.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); 
-	        glEnable(GL_BLEND);
-	        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			Console.setLine9("GL ERROR ? = " + GL11.glGetError());
-			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-			
-		    GL11.glEnableClientState(GL11.GL_VERTEX_ARRAY);
-			GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, this.vbo[0]); 
-			GL11.glVertexPointer(3, GL11.GL_FLOAT, 0,0);
-		   
-			GL11.glEnableClientState(GL11.GL_NORMAL_ARRAY);
-			GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, this.vbo[1]); 
-			GL11.glVertexPointer(3, GL11.GL_FLOAT, 0,0);
-		   
-			GL11.glEnableClientState(GL11.GL_TEXTURE_COORD_ARRAY);
-			GL11.glBindTexture(GL11.GL_TEXTURE_2D, this.vbo[2]);
-			GL11.glVertexPointer(3, GL11.GL_FLOAT, 0,0);
-
-			GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, 0);
-
-			Console.setLine10("GL ERROR ? = " + GL11.glGetError());
-		glPopMatrix();
-	}*/
 	public boolean getDisplayList(){
 		if(list == 0){
 			return false;
 		}
 		return true;
 	}
-	public void setList(int displayListHandle) {
+	public void setDisplayList(int displayListHandle) {
 		this.list = displayListHandle;
-	}
+	}		
 }

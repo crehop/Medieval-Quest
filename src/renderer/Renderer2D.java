@@ -1,8 +1,5 @@
 package renderer;
 
-
-import java.util.ArrayList;
-
 import loops.GameLoop;
 import loops.StartLoop;
 
@@ -12,15 +9,12 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
-import org.newdawn.slick.opengl.Texture;
 
 import static org.lwjgl.opengl.GL11.*;
 
 public class Renderer2D {
 ;
 	static boolean initiated = false;
-	private static int x = 0;
-	private static int y = 0;
 	static java.awt.Font awtFont1  = new java.awt.Font("Times New Roman", java.awt.Font.BOLD, 12);
 	static java.awt.Font awtFont2  = new java.awt.Font("Times New Roman", java.awt.Font.BOLD, 20);
 	static java.awt.Font awtFont3 = new java.awt.Font("Times New Roman", java.awt.Font.BOLD, 28);
@@ -28,7 +22,6 @@ public class Renderer2D {
 	private static UnicodeFont font2 = new UnicodeFont(awtFont2);
 	public static UnicodeFont font3 = new UnicodeFont(awtFont3);
 
-	private static ArrayList<String> lines = new ArrayList<String>();
 	public Renderer2D(){
 		init();
 	}
@@ -49,16 +42,6 @@ public class Renderer2D {
 		}catch(SlickException e){
 			e.printStackTrace();
 		}
-		//try {
-	    //   InputStream inputStream = ResourceLoader.getResourceAsStream("myfont.ttf");
-	    //     
-	    //    Font awtFont2 = Font.createFont(Font.TRUETYPE_FONT, inputStream);
-	    //    awtFont2 = awtFont2.deriveFont(24f); // set font size
-	    //    font2 = new TrueTypeFont(awtFont2, false);
-	    //         
-	    //} catch (Exception e) {
-	    //    e.printStackTrace();
-	    //}   
 	}
 	public static void renderText(float x, float y, String text, Color color, int size) {
 		draw2D();

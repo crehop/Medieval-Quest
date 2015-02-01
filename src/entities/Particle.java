@@ -1,9 +1,9 @@
 package entities;
 
-import server.Location;
+//import server.Location;
 
 public class Particle {
-	private Location location;
-	private String type;
-	private float duration;
+	//private Location location;
+	//private String type;
+	//private float duration;
 }

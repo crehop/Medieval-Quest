@@ -3,8 +3,6 @@ package threads;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
 
-import Information.Console;
-
 import loops.GameLoop;
 
 public class EnhancedDelta {
