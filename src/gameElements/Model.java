@@ -1,44 +1,15 @@
 package gameElements;
-
-import static org.lwjgl.opengl.GL11.GL_BLEND;
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.glBlendFunc;
-import static org.lwjgl.opengl.GL11.glEnable;
-import static org.lwjgl.opengl.GL11.glEnd;
-import static org.lwjgl.opengl.GL11.glPopMatrix;
-import static org.lwjgl.opengl.GL11.glPushMatrix;
-import static org.lwjgl.opengl.GL11.glRotatef;
-import static org.lwjgl.opengl.GL11.glTranslatef;
-
 import java.io.File;
-import java.nio.IntBuffer;
-import java.util.ArrayList;
 import java.util.List;
 
-import loops.GameLoop;
-
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-import org.lwjgl.opengl.GL15;
-import org.lwjgl.opengl.GL11.*;
-import org.lwjgl.util.vector.Vector3f;
-import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
-
-import entities.Player;
-
-import physics.PhysicsEngine;
-
-import Information.Console;
 
 import server.Location;
 import utils.Face;
 import utils.ModelUtils;
 import utils.TextureHandler;
 
-@SuppressWarnings("unused")
 public class Model {
 	int faceCount = 0;
 	boolean render = true;
@@ -46,32 +17,15 @@ public class Model {
 	public int renderloop = 0;
 	private boolean moved = true;
 	private boolean collided = false;
-	private boolean firstRun = true;
 	private final int ID;
 	private String name = " NULL ";
 	private boolean collidable = true;
 	private boolean movable = false;
-	private int renderRun;
 	protected Texture texture;
-	private String key = "";
-	private Vector2f t1 = null;
-	private Vector3f n1 = null;
-	private Vector3f v1 = null;
-	private Vector2f t2 = null;
-	private Vector3f n2 = null;
-	private Vector3f v2 = null;
-	private Vector2f t3 = null;
-	private Vector3f n3 = null;
-	private Vector3f v3 = null;
 	private float roll = 0.0f;
 	private float yaw = 0.0f;
 	private float pitch = 0.0f;
-    private int[] vbo = new int[3];
-    private int rendercall = 0;
-
-
-	
-	private int count = 0;
+    private int list = 0;
 	public Model(float x,float y,float z,File f, boolean movable, boolean collidable){
 		this.ID = entities.ID.getID();
 		this.location = new Location(x,y,z);
@@ -84,54 +38,34 @@ public class Model {
 	public Model(File f, Texture texture2) {
 		this.name = f.getName().replace(".obj", "");
 		this.texture = texture2;	
-		this.ID = -1;
+		this.ID = entities.ID.getID();
+		if(this.getDisplayList() == false){
+			ModelUtils.createDisplayList(this);
+		}
 		//ModelUtils.convertToVBO(this);
 	}
 	public void renderModel(){
-		rendercall++;
+		if(this.getDisplayList() == false){
+			ModelUtils.createDisplayList(this);
+		}
 		if(render){
-				glPushMatrix();
-				    glTranslatef(this.location.getX(),this.location.getY(),this.location.getZ());
-					glRotatef(pitch,1,0,0);
-					glRotatef(yaw,0,1,0);
-					glRotatef(roll,0,0,1);
-				    glTranslatef(-this.location.getX(),-this.location.getY(),-this.location.getZ());
+			GL11.glPushMatrix();
+				GL11.glTranslatef(this.location.getX(),this.location.getY(),this.location.getZ());
+				    GL11.glRotatef(pitch,1,0,0);
+					GL11.glRotatef(yaw,0,1,0);
+					GL11.glRotatef(roll,0,0,1);
+					GL11.glTranslatef(-this.location.getX(),-this.location.getY(),-this.location.getZ());
 				    //READ http://en.wikipedia.org/wiki/Wavefront_.obj_file#Texture_maps
 					this.texture.bind();
 					GL11.glClearColor(1.0f, 1.0f, 1.0f, 1.0f); 
 					GL11.glEnable(GL11.GL_TEXTURE_2D);
 					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-			        glEnable(GL_BLEND);
-					GL11.glCullFace(GL11.GL_FRONT_AND_BACK);
-			        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-				 	GL11.glBegin(GL11.GL_TRIANGLES);
-			        GL11.glEnable(GL11.GL_CULL_FACE);
-				 	for(Face face:ModelUtils.getFaces(name)){
-				 		//n=normal t=texel v=vertex
-				 		n1 = ModelUtils.getNormalArray(name).get((int)face.normal.x - 1);
-			            t1 = ModelUtils.getTexelArray(name).get((int)face.texture.x -1);
-				 		v1 = ModelUtils.getVerticeArray(name).get((int)face.vertex.x - 1);
-				 		n2 = ModelUtils.getNormalArray(name).get((int)face.normal.y - 1);
-				 		t2 = ModelUtils.getTexelArray(name).get((int)face.texture.y -1);
-				 		v2 = ModelUtils.getVerticeArray(name).get((int)face.vertex.y - 1);
-				 		n3 = ModelUtils.getNormalArray(name).get((int)face.normal.z - 1);
-			            t3 = ModelUtils.getTexelArray(name).get((int)face.texture.z -1);
-				 		v3 = ModelUtils.getVerticeArray(name).get((int)face.vertex.z - 1);
-				        GL11.glTexCoord2f(-t1.x,-t1.y);
-				        GL11.glNormal3f((n1.x + this.location.getX()), (n1.y + this.location.getY()), (n1.z + this.location.getZ()));
-				 		GL11.glVertex3f((v1.x + this.location.getX()), (v1.y + this.location.getY()), (v1.z + this.location.getZ()));	
-				        GL11.glTexCoord2f(-t2.x,-t2.y);
-				 		GL11.glVertex3f((v2.x + this.location.getX()), (v2.y + this.location.getY()), (v2.z + this.location.getZ()));
-				 		GL11.glNormal3f((n2.x + this.location.getX()), (n2.y + this.location.getY()), (n2.z + this.location.getZ()));
-					    GL11.glTexCoord2f(-t3.x,-t3.y);
-				 		GL11.glVertex3f((v3.x + this.location.getX()), (v3.y + this.location.getY()), (v3.z + this.location.getZ())); 
-				 		GL11.glNormal3f((n3.x + this.location.getX()), (n3.y + this.location.getY()), (n3.z + this.location.getZ()));
-
-				 	}
-					if(moved)this.moved = false;
-					System.out.println("" + GL11.glIsEnabled(GL11.GL_CULL_FACE));
-					GL11.glCullFace(GL11.GL_FRONT_AND_BACK);
-			        glEnd(); 
+					GL11.glEnable(GL11.GL_BLEND);
+					GL11.glEnable(GL11.GL_CULL_FACE);
+					GL11.glCullFace(GL11.GL_BACK);
+					GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+			        GL11.glCallList(list);
+					GL11.glDisable(GL11.GL_CULL_FACE);
 				GL11.glPopMatrix();
 			this.faceCount = ModelUtils.getFaces(name).size();
 		}
@@ -231,7 +165,6 @@ public class Model {
 		this.location.setX(x);
 		this.location.setY(y);
 		this.location.setZ(z);
-		this.firstRun = true;
 	}
 	public List<Face> getFaces() {
 		return ModelUtils.getFaces(name);
@@ -284,13 +217,13 @@ public class Model {
 	public float getRoll(){
 		return roll;
 	}
-	public void setVBOInfo(int[] vbo){
+	/*public void setVBOInfo(int[] vbo){
 		this.vbo[0] = vbo[0];
 		this.vbo[1] = vbo[1];
 		this.vbo[2] = vbo[2];
 	}
 	public void renderAsVBO(){
-		/*glPushMatrix();
+		glPushMatrix();
 			Console.setLine6("VBO = " + vbo[0] + "," + vbo[1] + "," + vbo[2] + "times rendered =" + rendercall);
 			glRotatef(pitch,1,0,0);
 			glRotatef(yaw,0,1,0);
@@ -316,6 +249,15 @@ public class Model {
 			GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, 0);
 
 			Console.setLine10("GL ERROR ? = " + GL11.glGetError());
-		glPopMatrix();*/
+		glPopMatrix();
+	}*/
+	public boolean getDisplayList(){
+		if(list == 0){
+			return false;
+		}
+		return true;
+	}
+	public void setList(int displayListHandle) {
+		this.list = displayListHandle;
 	}
 }

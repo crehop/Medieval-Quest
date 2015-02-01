@@ -1,7 +1,5 @@
 package renderer;
 
-import static org.lwjgl.opengl.GL11.glPushMatrix;
-import entities.Trees;
 import entities.Zombie;
 import gameElements.Model;
 
@@ -52,7 +50,7 @@ public class Renderer3D {
 			//test3.setStartLocation(0.0f, 0.0f, 0.0f);
 			//models.add(test3);
 			models.add(test2);
-			for(int i = 0; i < 30; i++){
+			for(int i = 0; i < 20; i++){
 				spam();
 			}
 			//models.add(test3);
