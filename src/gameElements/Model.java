@@ -102,8 +102,10 @@ public class Model {
 					GL11.glEnable(GL11.GL_TEXTURE_2D);
 					GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 			        glEnable(GL_BLEND);
+					GL11.glCullFace(GL11.GL_FRONT_AND_BACK);
 			        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				 	GL11.glBegin(GL11.GL_TRIANGLES);
+			        GL11.glEnable(GL11.GL_CULL_FACE);
 				 	for(Face face:ModelUtils.getFaces(name)){
 				 		//n=normal t=texel v=vertex
 				 		n1 = ModelUtils.getNormalArray(name).get((int)face.normal.x - 1);
@@ -127,6 +129,8 @@ public class Model {
 
 				 	}
 					if(moved)this.moved = false;
+					System.out.println("" + GL11.glIsEnabled(GL11.GL_CULL_FACE));
+					GL11.glCullFace(GL11.GL_FRONT_AND_BACK);
 			        glEnd(); 
 				GL11.glPopMatrix();
 			this.faceCount = ModelUtils.getFaces(name).size();

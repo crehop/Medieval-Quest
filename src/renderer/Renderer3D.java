@@ -35,6 +35,7 @@ public class Renderer3D {
 	static float y = 0;
 	static Model spam = null;
 	static Zombie testZomb = null;
+	static float spamLoc = 0.0f;
 	static int facesOnScreen = 0;
 	public static ArrayList<Model> models = new ArrayList<Model>();
 	static Random rand = new Random();
@@ -51,6 +52,9 @@ public class Renderer3D {
 			//test3.setStartLocation(0.0f, 0.0f, 0.0f);
 			//models.add(test3);
 			models.add(test2);
+			for(int i = 0; i < 30; i++){
+				spam();
+			}
 			//models.add(test3);
 			//Trees.addTree(20.4f, 0.01f, 10.1f);
 			//Trees.addTree(30.4f, 0.01f, 20.1f);
@@ -119,10 +123,11 @@ public class Renderer3D {
 	}
 	public static void spam(){
 		try {
-			if(spam == null)spam = ModelLoader.loadModel(new File("res/models/zombie/zombie.obj"));
-			test3.setCollidable(true);
-			test3.setMovable(true);
-			test3.setStartLocation(0.0f, 2.0f, (models.get(models.size()-1).getLocation().getZ() + 2.0f));
+			spam = ModelLoader.loadModel(new File("res/models/wall/wall.obj"));
+			spam.setCollidable(true);
+			spam.setMovable(true);
+			spam.setStartLocation(spamLoc, 0f, spamLoc + 0.5f);
+			spamLoc += 0.5f;
 			models.add(spam);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
