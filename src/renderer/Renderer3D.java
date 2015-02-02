@@ -50,7 +50,7 @@ public class Renderer3D {
 			//test3.setStartLocation(0.0f, 0.0f, 0.0f);
 			//models.add(test3);
 			models.add(test2);
-			for(int i = 0; i < 20; i++){
+			for(int i = 0; i < 1; i++){
 				spam();
 			}
 			//models.add(test3);
@@ -121,9 +121,7 @@ public class Renderer3D {
 	}
 	public static void spam(){
 		try {
-			spam = ModelLoader.loadModel(new File("res/models/wall/wall.obj"));
-			spam.setCollidable(true);
-			spam.setMovable(true);
+			spam = ModelLoader.loadModel(new File("res/models/copcar/copcar.obj"));
 			spam.setStartLocation(spamLoc, 0f, spamLoc + 0.5f);
 			spamLoc += 0.5f;
 			models.add(spam);

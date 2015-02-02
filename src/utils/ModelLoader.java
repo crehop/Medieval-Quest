@@ -21,8 +21,9 @@ public class ModelLoader {
 	private static float x = 0.0f;
 	private static float y = 0.0f;
 	private static float z = 0.0f;
+	private static Texture texture;
 	public static Model loadModel(File f) throws FileNotFoundException, IOException{
-		Model m = new Model(0, 0, 0, f,false,true);
+		Model m = new Model(0, 0, 0, f);
 		physics.PhysicsEngine.modelList.add(m);
 		BufferedReader reader = new BufferedReader(new FileReader(f));
 		ModelUtils.createModelFaceArray(m.getName());
@@ -63,6 +64,10 @@ public class ModelLoader {
 			}
 		}
 		reader.close();
+		if(!(ModelUtils.getTexture(m.getName()))){
+			texture = TextureHandler.getModelTexture(f.getPath().replace(".obj",".png"));
+			ModelUtils.putTexture(m.getName(), texture);
+		}
 		return m;
 	}
 	public static Model loadModel(File f, Texture t) throws FileNotFoundException, IOException{
@@ -103,6 +108,11 @@ public class ModelLoader {
 			}
 		}
 		reader.close();
+		
+		if(!(ModelUtils.getTexture(m.getName()))){
+			texture = TextureHandler.getModelTexture(f.getPath().replace(".obj",".png"));
+			ModelUtils.putTexture(m.getName(), texture);
+		}
 		return m;
 	}
 }

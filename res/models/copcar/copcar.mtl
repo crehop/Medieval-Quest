@@ -1,51 +1,22 @@
 # Blender MTL File: 'None'
-# Material Count: 5
+# Material Count: 2
 
-newmtl Material
-Ns 96.078431
+newmtl CityPoliceCar
+Ns 94.117647
 Ka 0.000000 0.000000 0.000000
-Kd 0.640000 0.640000 0.640000
+Kd 0.800000 0.800000 0.800000
 Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
+map_Kd E:\\MAIN3D\\UNITY_Stuff\\UpdateMobileCarPack\\Assets\\MobileCarPack\\Textures\\CityPoliceCar_Diffuse.psd
 
-newmtl car_glass.tga.001
-Ns 0.000000
+newmtl CityPoliceCar_Tires
+Ns 94.117647
 Ka 0.000000 0.000000 0.000000
-Kd 0.480000 0.480000 0.480000
-Ks 0.900000 0.900000 0.900000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd Texture\car_glass.tga
-
-newmtl police_car.tga.001
-Ns 0.000000
-Ka 0.000000 0.000000 0.000000
-Kd 0.480000 0.480000 0.480000
-Ks 0.900000 0.900000 0.900000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd Texture\\police_car.tga
-
-newmtl police_car.tga.001_police_car.tga
-Ns 0.000000
-Ka 0.000000 0.000000 0.000000
-Kd 0.480000 0.480000 0.480000
-Ks 0.900000 0.900000 0.900000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd Texture\police_car.tga
-
-newmtl police_car3.tga.001
-Ns 0.000000
-Ka 0.000000 0.000000 0.000000
-Kd 0.480000 0.480000 0.480000
-Ks 0.900000 0.900000 0.900000
-Ni 1.000000
-d 1.000000
-illum 2
-map_Kd Texture\police_car3.tga
+map_Kd E:\\MAIN3D\\UNITY_Stuff\\UpdateMobileCarPack\\Assets\\MobileCarPack\\Textures\\Tire.psd

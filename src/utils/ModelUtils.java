@@ -1,10 +1,16 @@
 package utils;
 import gameElements.Model;
+
+import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.opengl.Texture;
 
 
 public class ModelUtils {
@@ -13,6 +19,7 @@ public class ModelUtils {
 	public static HashMap<String, ArrayList<Vector3f>> modelNorm = new HashMap<String, ArrayList<Vector3f>>();
 	public static HashMap<String, ArrayList<Face>> modelFaces = new HashMap<String, ArrayList<Face>>();
 	public static HashMap<String, Integer> displayListID = new HashMap<String, Integer>();
+	public static HashMap<String, Texture> modelTexture = new HashMap<String, Texture>();
 	
 	private static Vector2f t1 = null;
 	private static Vector3f n1 = null;
@@ -23,7 +30,10 @@ public class ModelUtils {
 	private static Vector2f t3 = null;
 	private static Vector3f n3 = null;
 	private static Vector3f v3 = null;
+	private static Texture texture = null;
 	private static int displayListHandle;
+	private static IntBuffer buffer = null;
+	private static final int BYTES_PER_PIXEL = 4;
 	
     public static ArrayList<Vector3f> getVerticeArray(String string){
     	if(modelVert.containsKey(string)){
@@ -111,5 +121,25 @@ public class ModelUtils {
 	        m.setDisplayList(displayListHandle);
 			displayListID.put(m.getName(),displayListHandle);
 		}
+	}
+    public void createNewTexVBOID() {
+        buffer = BufferUtils.createIntBuffer(1);
+        GL11.glGenTextures(buffer);
+    }
+	public static boolean getTexture(String name) {
+		if(modelTexture.containsKey(name)){
+			return true;
+		}
+		return false;
+	}
+	public static void putTexture(String name, Texture texture2) {
+		modelTexture.put(name, texture2);
+	}
+	public static int getTextureID(String key){
+		return modelTexture.get(key).getTextureID();
+	}
+	public static Texture getTextureBind(String name){
+		texture = modelTexture.get(name);
+		return texture;
 	}
 }

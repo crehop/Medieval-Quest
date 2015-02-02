@@ -55,7 +55,7 @@ public class Zombie implements Unit{
 		}
 	}
 	public void render(){
-		interem.setTexture(this.texture);
+		//interem.setTexture(this.texture);
 		interem.setLocation(this.location);
 		this.interem.renderModel();
 	}
